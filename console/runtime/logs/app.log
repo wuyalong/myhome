@@ -1,0 +1,130 @@
+2016-06-07 09:34:32 [-][-][-][error][yii\base\ErrorException:32] exception 'yii\base\ErrorException' with message 'PHP Startup: igbinary: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20121212
+These options need to match
+' in Unknown:0
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2016-06-07 09:34:31 [-][-][-][info][application] $_SERVER = [
+    '#envKKPRbc_Cmdilne' => ''
+    '#envTSLOGRBCShellExt4148' => '219648992'
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'APPDATA' => 'C:\\Users\\li\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'LIJUN'
+    'ComSpec' => 'C:\\Windows\\system32\\cmd.exe'
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\li'
+    'LOCALAPPDATA' => 'C:\\Users\\li\\AppData\\Local'
+    'LOGONSERVER' => '\\\\LIJUN'
+    'NUMBER_OF_PROCESSORS' => '4'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;c:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;E:\\server\\mysql\\bin;D:\\SVN1\\bin;E:\\phpStudy\\php55;E:\\phpStudy\\php55\\ext;C:\\ProgramData\\ComposerSetup\\bin;E:\\allserver\\git\\gittortoise\\bin'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PHPRC' => 'E:\\phpStudy\\php55'
+    'PHP_COMMAND' => 'php.exe'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 61 Stepping 4, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '3d04'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'SESSIONNAME' => 'Console'
+    'ShellLaunch{A81BA54B-CCFE-4204-8E79-A68C0FDFA5CF}' => 'ShellExt'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\Windows'
+    'TEMP' => 'C:\\Users\\li\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\li\\AppData\\Local\\Temp'
+    'USERDOMAIN' => 'lijun'
+    'USERDOMAIN_ROAMINGPROFILE' => 'lijun'
+    'USERNAME' => 'li'
+    'USERPROFILE' => 'C:\\Users\\li'
+    'windir' => 'C:\\Windows'
+    'YII_PATH' => 'E:\\phpStudy\\WWW\\collage1\\aichao\\'
+    'PHP_SELF' => 'E:\\phpStudy\\WWW\\collage1\\aichao\\yii'
+    'SCRIPT_NAME' => 'E:\\phpStudy\\WWW\\collage1\\aichao\\yii'
+    'SCRIPT_FILENAME' => 'E:\\phpStudy\\WWW\\collage1\\aichao\\yii'
+    'PATH_TRANSLATED' => 'E:\\phpStudy\\WWW\\collage1\\aichao\\yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1465263271.3512
+    'REQUEST_TIME' => 1465263271
+    'argv' => [
+        0 => 'E:\\phpStudy\\WWW\\collage1\\aichao\\yii'
+    ]
+    'argc' => 1
+]
+2016-06-07 09:34:42 [-][-][-][error][yii\base\ErrorException:32] exception 'yii\base\ErrorException' with message 'PHP Startup: igbinary: Unable to initialize module
+Module compiled with module API=20100525
+PHP    compiled with module API=20121212
+These options need to match
+' in Unknown:0
+Stack trace:
+#0 [internal function]: yii\base\ErrorHandler->handleFatalError()
+#1 {main}
+2016-06-07 09:34:41 [-][-][-][info][application] $_SERVER = [
+    '#envKKPRbc_Cmdilne' => ''
+    '#envTSLOGRBCShellExt4148' => '219648992'
+    'ALLUSERSPROFILE' => 'C:\\ProgramData'
+    'APPDATA' => 'C:\\Users\\li\\AppData\\Roaming'
+    'CommonProgramFiles' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramFiles(x86)' => 'C:\\Program Files (x86)\\Common Files'
+    'CommonProgramW6432' => 'C:\\Program Files\\Common Files'
+    'COMPUTERNAME' => 'LIJUN'
+    'ComSpec' => 'C:\\Windows\\system32\\cmd.exe'
+    'FP_NO_HOST_CHECK' => 'NO'
+    'HOMEDRIVE' => 'C:'
+    'HOMEPATH' => '\\Users\\li'
+    'LOCALAPPDATA' => 'C:\\Users\\li\\AppData\\Local'
+    'LOGONSERVER' => '\\\\LIJUN'
+    'NUMBER_OF_PROCESSORS' => '4'
+    'OS' => 'Windows_NT'
+    'Path' => 'C:\\Program Files (x86)\\Intel\\iCLS Client\\;C:\\Program Files\\Intel\\iCLS Client\\;C:\\Windows\\system32;C:\\Windows;C:\\Windows\\System32\\Wbem;C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\DAL;C:\\Program Files\\Intel\\Intel(R) Management Engine Components\\IPT;C:\\Program Files (x86)\\Intel\\Intel(R) Management Engine Components\\IPT;c:\\Program Files (x86)\\ATI Technologies\\ATI.ACE\\Core-Static;C:\\Program Files\\Intel\\WiFi\\bin\\;C:\\Program Files\\Common Files\\Intel\\WirelessCommon\\;E:\\server\\mysql\\bin;D:\\SVN1\\bin;E:\\phpStudy\\php55;E:\\phpStudy\\php55\\ext;C:\\ProgramData\\ComposerSetup\\bin;E:\\allserver\\git\\gittortoise\\bin'
+    'PATHEXT' => '.COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC'
+    'PHPRC' => 'E:\\phpStudy\\php55'
+    'PHP_COMMAND' => 'php.exe'
+    'PROCESSOR_ARCHITECTURE' => 'x86'
+    'PROCESSOR_ARCHITEW6432' => 'AMD64'
+    'PROCESSOR_IDENTIFIER' => 'Intel64 Family 6 Model 61 Stepping 4, GenuineIntel'
+    'PROCESSOR_LEVEL' => '6'
+    'PROCESSOR_REVISION' => '3d04'
+    'ProgramData' => 'C:\\ProgramData'
+    'ProgramFiles' => 'C:\\Program Files (x86)'
+    'ProgramFiles(x86)' => 'C:\\Program Files (x86)'
+    'ProgramW6432' => 'C:\\Program Files'
+    'PROMPT' => '$P$G'
+    'PSModulePath' => 'C:\\Windows\\system32\\WindowsPowerShell\\v1.0\\Modules\\'
+    'PUBLIC' => 'C:\\Users\\Public'
+    'SESSIONNAME' => 'Console'
+    'ShellLaunch{A81BA54B-CCFE-4204-8E79-A68C0FDFA5CF}' => 'ShellExt'
+    'SystemDrive' => 'C:'
+    'SystemRoot' => 'C:\\Windows'
+    'TEMP' => 'C:\\Users\\li\\AppData\\Local\\Temp'
+    'TMP' => 'C:\\Users\\li\\AppData\\Local\\Temp'
+    'USERDOMAIN' => 'lijun'
+    'USERDOMAIN_ROAMINGPROFILE' => 'lijun'
+    'USERNAME' => 'li'
+    'USERPROFILE' => 'C:\\Users\\li'
+    'windir' => 'C:\\Windows'
+    'YII_PATH' => 'E:\\phpStudy\\WWW\\collage1\\aichao\\'
+    'PHP_SELF' => 'E:\\phpStudy\\WWW\\collage1\\aichao\\yii'
+    'SCRIPT_NAME' => 'E:\\phpStudy\\WWW\\collage1\\aichao\\yii'
+    'SCRIPT_FILENAME' => 'E:\\phpStudy\\WWW\\collage1\\aichao\\yii'
+    'PATH_TRANSLATED' => 'E:\\phpStudy\\WWW\\collage1\\aichao\\yii'
+    'DOCUMENT_ROOT' => ''
+    'REQUEST_TIME_FLOAT' => 1465263281.7606
+    'REQUEST_TIME' => 1465263281
+    'argv' => [
+        0 => 'E:\\phpStudy\\WWW\\collage1\\aichao\\yii'
+    ]
+    'argc' => 1
+]
