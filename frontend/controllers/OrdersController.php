@@ -19,8 +19,8 @@ class OrdersController extends \yii\web\Controller
         $session = Yii::$app->session;
         $connection = Yii::$app->db;
         //session值有待慧娜记录
-        $username = $session->get('username','张三');
-        $user_id = $session->get('user_id','1');
+        $username = $session->get('name');
+        $user_id = $session->get('id');
         if($username==''){
         	$this->redirect('index.php?r=login/index');
         }
@@ -57,7 +57,7 @@ class OrdersController extends \yii\web\Controller
     	$total_money=0;
     	$request = Yii::$app->request;
     	$session = Yii::$app->session;
-    	$user_id = $session->get('user_id','1');
+    	$user_id = $session->get('id');
         $c_ids = $request->get('c_ids');
         $s_ids = $request->get('s_ids');
         $nums = $request->get('nums');
@@ -177,8 +177,8 @@ class OrdersController extends \yii\web\Controller
     	$session = Yii::$app->session;
         $connection = Yii::$app->db;
         //session值有待慧娜记录
-        $username = $session->get('username','张三');
-        $user_id = $session->get('id','1');
+        $username = $session->get('name');
+        $user_id = $session->get('id');
          if($username==''){
         	$this->redirect('index.php?r=login/index');
         }

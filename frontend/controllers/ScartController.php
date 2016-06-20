@@ -16,7 +16,7 @@ class ScartController extends \yii\web\Controller
     {	
         $connection = Yii::$app->db;
         $session = Yii::$app->session;
-        $username = $session->get('username','张三');
+        $username = $session->get('name');
         $cart_count =$connection->createCommand("SELECT count(*) as counts FROM cart WHERE user_name='$username'");
         $counts = $cart_count->queryOne();
         //print_r($counts);die;
