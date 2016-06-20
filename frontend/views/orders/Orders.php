@@ -28,7 +28,7 @@
 	<div class="hd_top_manu clearfix">
 	  <ul class="clearfix">
 	   <li class="hd_menu_tit zhuce" data-addclass="hd_menu_hover">欢迎光临本店！<a href="#" class="red">[请登录]</a> 新用户<a href="#" class="red">[免费注册]</a></li>
-	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">我的订单</a></li> 
+	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="index.php?r=orders/selorder&checkout=myorder">我的订单</a></li> 
 	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"> <a href="#">购物车(<b>0</b>)</a> </li>
 	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">联系我们</a></li>
 	   <li class="hd_menu_tit list_name" data-addclass="hd_menu_hover"><a href="#" class="hd_menu">客户服务</a>
@@ -126,47 +126,30 @@
   <div class="Orders_style clearfix">
      <div class="address clearfix">
        <div class="title">收货人信息</div>
-          <div class="adderss_list clearfix">
-            <div class="title_name">选择收货地址 <a href="#">+添加地址</a></div>
-             <!--<div class="list" id="select">
-            <ul class="confirm active">
+          <div class="adderss_list clearfix">       
+            <div class="title_name">选择收货地址 <a href="index.php?r=uaddress/index">+添加新的收获地址</a></div>
+             <div class="list" id="select" onclick="address2()">
+          <?php foreach ($address as $k=> $v) {?>          
+            <ul class="">
             <div class="default">默认地址</div>
             <div class="adderss_operating">
-             <div class="Operate"><a href="#" class="delete_btn"></a> <a href="#" class="modify_btn"></a></div>
+             <div class="Operate">
+             <a href="#" class="delete_btn"></a> 
+             <a href="#" class="modify_btn"></a>
+             </div>
             </div>
-            <div class="user_address">
-            <li>小张</li>
-            <li>四川成都高新区创业路10号3栋1单元1102式</li>
-            <li class="Postcode">610043</li>      
-            <li>18908269130</li>
-            </div>
-            </ul>
-             <ul class="">
-              <div class="adderss_operating">
-             <div class="Operate"><a href="#" class="delete_btn"></a> <a href="#" class="modify_btn"></a></div>
-            </div>
-             <div class="user_address">
-            <li>小张</li>
-            <li>四川成都高新区创业路10号3栋1单元1102式</li>
-            <li class="Postcode">610043</li>
-            <li>18908269130</li>
+            <div class="user_address">            
+            <li><?php echo $v['address_name']?></li>
+            <li><?php echo $v['address_place']?></li>
+            <li class="Postcode"><?php echo $v['address_num']?></li>      
+            <li><?php echo $v['address_phone']?></li>           
             </div>
             </ul>
-             <ul class="">
-              <div class="adderss_operating">
-             <div class="Operate"><a href="#" class="delete_btn"></a> <a href="#" class="modify_btn"></a></div>
-            </div>
-             <div class="user_address">
-            <li>小张</li>
-            <li>四川成都高新区创业路10号3栋1单元1102式</li>
-            <li class="Postcode">610043</li>
-            <li>18908269130</li>
-            </div>
-            </ul>
+          <?php }?>                    
             </div>
            </div>
--->        <!--收货地址样式-->
-     <div class="Shipping_address">
+        <!--收货地址样式-->
+    <!--  <div class="Shipping_address">
        <ul class="detailed">
         <li><label>收货人姓名</label><span>张晓</span></li>
         <li><label>电子邮件</label><span>4567454@qq.com</span></li>
@@ -175,9 +158,10 @@
         <li><label>移动电话</label><span></span></li> 
          <li><label>固定电话</label><span></span></li>        
        </ul>
-     </div>
+
+     </div> -->
      </div> 
-        
+      <!-- form提交订单   -->
      	<form class="form" method="post">  
 		<fieldset> 
      <!--快递选择-->
@@ -266,12 +250,11 @@
            <p class="Note">满68元包邮</p>
           </div>
         </li>
-        </ul>       
-      
+        </ul>            
      </div>
     
      <!--付款方式-->
-     <div class="payment">
+    <!--  <div class="payment">
       <div class="title_name">支付方式</div>
        <ul>
         <li><input type="radio" name="radio" data-labelauty="余额支付"></li>
@@ -280,9 +263,9 @@
         <li><input type="radio" name="radio" data-labelauty="银联支付"></li>
          <li><input type="radio" name="radio" data-labelauty="货到付款"></li>
        </ul>
-     </div>
+     </div> -->
       <!--发票样式-->
-     <div class="invoice_style">
+     <!-- <div class="invoice_style">
        <ul>
          <li class="invoice_left"><input name="" type="checkbox" value="" data-labelauty="是否开发票"/> </li>
          <li class="invoice_left"><select name="somename" class="SlectBox" onclick="console.log($(this).val())" onchange="console.log('change is firing')">
@@ -310,13 +293,14 @@
          
          </li>
         </ul>
-     </div>
+     </div> -->
      <!--产品列表-->
      <div class="Product_List">
-     <div class="envelopes">
+     <!--红包-->
+     <!-- <div class="envelopes">
      选择已有红包<select name="somename" class="SlectBox" onclick="console.log($(this).val())" onchange="console.log('change is firing')">
 			        <option disabled="disabled" selected="selected">选择红包金额</option>
-			        <!--placeholder-->
+			        
 			        <option value="5元红包">5元红包</option>
 			        <option value="10元红包">10元红包</option>
 			        <option value="20元红包">20元红包</option>
@@ -325,45 +309,55 @@
                     <option value="200元红包">200元红包</option>
 			    </select>
                 或者输入红包序列号<input name="" type="text" class="text_number" /><input type="submit"  class="verification_btn" value="验证序列号"/>
-     </div>
+     </div> -->
+    <!--红包结束-->
       <table>
-       <thead><tr class="title"><td class="name">商品名称</td><td class="price">商品价格</td><td class="Preferential">优惠价</td><td class="Quantity">购买数量</td><td class="Money">金额</td></tr></thead>
+       <thead>
+         <tr class="title">
+         <td class="name">商品名称</td>
+         <td class="price">商品属性</td>
+         <td class="Preferential">本店价</td>
+         <td class="Quantity">购买数量</td>
+         <td class="Money">总金额</td>
+         </tr>
+       </thead>
        <tbody>
+       <?php foreach($orderinfo as $v){?>
        <tr>
-        <td class="Product_info">
-         <a href="#"><img src="Products/11.jpg"  width="100px" height="100px"/></a>
-         <a href="#" class="product_name">麻阳冰糖橙子甜橙冰糖柑8斤新鲜水果甜过永兴冰糖橙赣南脐橙包邮</a>
-         </td>
-        <td><i>￥</i>123.00</td>
-        <td><i>￥</i>112.00</td>
-        <td>2</td>
-        <td class="Moneys"><i>￥</i>224.00</td>
+       <!-- 隐藏域 -->
+       <input type="hidden" name="hidsku" value="<?php echo $v['sku_id']?>"/>
+       <input type="hidden" name="hidcart" value="<?php echo $v['cart_id']?>"/>
+
+          <td class="Product_info">
+           <a href="index.php?r=pdetail/index&sku_id=<?php echo $v['sku_id']?>"><img src="public/images/<?php echo $v['sku_img']?>"  width="100px" height="100px"/></a>
+           <a href="index.php?r=pdetail/index&sku_id=<?php echo $v['sku_id']?>" class="product_name"><?php echo $v['goods_name']?></a>
+          </td>
+          <td><i></i><?php echo $v['cart_size']?>|<?php echo $v['cart_color']?></td>
+          <td><i>￥</i><?php echo $v['cart_goodsprice']?></td>
+          <td name="o_num"><?php echo $v['cart_num']?></td>
+          <td class="Moneys"><i>￥</i><span name="total"><?php echo $v['cart_total']?></span></td>
        </tr>
-        <tr>
-        <td class="Product_info">
-         <a href="#"><img src="Products/12.jpg"  width="100px" height="100px"/></a>
-         <a href="#" class="product_name">麻阳冰糖橙子甜橙冰糖柑8斤新鲜水果甜过永兴冰糖橙赣南脐橙包邮</a>
-         </td>
-        <td><i>￥</i>123.00</td>
-        <td><i>￥</i>112.00</td>
-        <td>2</td>
-        <td class="Moneys"><i>￥</i>224.00</td>
-       </tr>
+      <?php }?>
        </tbody>
       </table>
-      <div class="Pay_info">
+     
+
+     <!--  <div class="Pay_info">
        <label>订单留言</label><input name="" type="text"  onkeyup="checkLength(this);" class="text_name " />  <span class="wordage">剩余字数：<span id="sy" style="color:Red;">50</span></span>  
-      </div>
+      </div> -->
       <!--价格-->
       <div class="price_style">
       <div class="right_direction">
         <ul>
-         <li><label>商品总价</label><i>￥</i><span>448.00</span></li>
-         <li><label>优惠金额</label><i>￥</i><span>-23.00</span></li>
+         <li><label>商品总价</label><i>￥</i><span><?php echo $ordertotal['total']?></span></li>
+         <!-- <li><label>优惠金额</label><i>￥</i><span>-23.00</span></li>
          <li><label>配&nbsp;&nbsp;送&nbsp;&nbsp;费</label><i>￥</i><span>0</span></li>
-         <li class="shiji_price"><label>实&nbsp;&nbsp;付&nbsp;&nbsp;款</label><i>￥</i><span>425.00</span></li>    
+         <li class="shiji_price"><label>实&nbsp;&nbsp;付&nbsp;&nbsp;款</label><i>￥</i><span>425.00</span></li>   -->  
         </ul>   
-        <div class="btn"><input name="submit" type="submit" value="提交订单" class="submit_btn"/> <input name="" type="button" value="返回购物车"  class="return_btn"/></div>
+        <div class="btn">
+        <input name="submit" type="button" value="提交订单" class="submit_btn" onclick='sub_order()'/> 
+        <input name="" type="button" value="返回购物车"  onclick="return_cart()" class="return_btn"/>
+        </div>
          <div class="integral right">待订单确认后，你将获得<span>345</span>积分</div>
       </div>
       </div>
@@ -527,6 +521,77 @@ function checkLength(which) {
 $(function(){
 	$(':input').labelauty();
 });
+</script>
+<script>
+  function return_cart(){
+      location.href="index.php?r=scart/index";      
+  }
+  /**
+   * 选择收获地址
+   */
+  var addr='';
+  function address2(){
+    addr='1';
+  }
+  function sub_order(){
+    var idss=new Array();
+    var idcc=new Array();
+    var totals=new Array();
+    var num=new Array();
+    var j=0;
+    var k=0;
+    var p=0;
+    var q=0;
+    sku_id=document.getElementsByName('hidsku');
+    cart_id=document.getElementsByName('hidcart');
+    total_id=document.getElementsByName('total');
+    num_id=document.getElementsByName('o_num');
+    //获取所有sku的id(s_ids)
+    for(i=0;i<sku_id.length;i++){
+        idss[j]=sku_id[i].value;
+        j++;
+    }
+    s_ids=idss.join(',');
+    //获取所有cart的id(c_ids)
+    for(i=0;i<cart_id.length;i++){
+        idcc[k]=cart_id[i].value;
+        k++;
+    }
+    c_ids=idcc.join(',');
+    //订单总金额
+    for(i=0;i<total_id.length;i++){
+        totals[p]=total_id[i].innerHTML;
+        p++;
+    }
+    totals=totals.join(',');
+    //订单数量
+    for(i=0;i<num_id.length;i++){
+        num[q]=num_id[i].innerHTML;
+        q++;
+    }
+    nums=num.join(',');
+    order_num=num.length;
+    //alert(nums);
+      if(addr=='1'){
+           $.ajax({
+            url:"index.php?r=orders/suborder",
+            data:'c_ids='+c_ids+'&s_ids='+s_ids+'&totals='+totals+'&nums='+nums,
+            //dataType:'json',
+            success:function(msg){           
+              if(msg==1){
+                  location.href="index.php?r=orders/orderpay&order_num="+order_num+'&totals='+totals;
+              }else{
+
+              }
+          }
+          //location.href="https://openapi.alipay.com/gateway.do";
+      })
+     }
+      else{
+        alert('请选择您的收货地址!');
+      }
+  }
+  
 </script>
 </body>
 </html>
