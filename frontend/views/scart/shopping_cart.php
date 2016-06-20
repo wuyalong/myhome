@@ -161,9 +161,9 @@ $(document).ready(function () {
 	<td class="sl">
 	<!-- 数量加减 -->
 	    <div class="Numbers">
-		  <a href="javascript:void(0);" onclick="amount_reduce('')" class="jian">-</a>
+		  <a href="javascript:void(0);" class="jian">-</a>
 		  <input id="number" name="number" type="text" value="<?php echo $v['cart_num']?>" class="number_text">
-		  <a href="javascript:void(0);" onclick="amount_add('')" class="jia">+</a>
+		  <a href="javascript:void(0);" class="jia">+</a>
 		 </div>
 	</td>
 	<td class="xj" id="xj<?php echo $v['cart_id']?>">￥<?php echo $v['cart_total']?></td>
