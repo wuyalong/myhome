@@ -60,7 +60,7 @@ class PdetailController extends \yii\web\Controller
         $session = Yii::$app->session;
         $request = Yii::$app->request;
         $connection = Yii::$app->db;
-        $username = $session->get('username','张三');
+        $username = $session->get('name');
         //1.用户未登录时
         if($username==''){
             $cartinfo=$_GET;
