@@ -64,7 +64,7 @@ class Cart extends \yii\db\ActiveRecord
     public function sel_cart(){
         $connection = Yii::$app->db;
         $session = Yii::$app->session;
-        $username = $session->get('username','张三');
+        $username = $session->get('name');
         $command = $connection->createCommand("SELECT * FROM cart left join sku on sku.sku_id=cart.sku_id left join goods on goods.goods_id=sku.goods_id WHERE user_name='$username'");
         $cartinfos['info'] = $command->queryAll();
         $cart_count =$connection->createCommand("SELECT count(*) as counts FROM cart WHERE user_name='$username'");
