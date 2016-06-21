@@ -13,29 +13,29 @@
 
 <body>
 <!--顶部样式-->
-<div id="top">
-  <div class="top">
-    <div class="Collection"><em></em><a href="#">收藏我们</a></div>
-	<div class="hd_top_manu clearfix">
-	  <ul class="clearfix">
-	   <li class="hd_menu_tit zhuce" data-addclass="hd_menu_hover">欢迎光临本店！<a href="#" class="red">[请登录]</a> 新用户<a href="#" class="red">[免费注册]</a></li>
-	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">我的订单</a></li> 
-	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"> <a href="#">购物车(<b>0</b>)</a> </li>
-	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">联系我们</a></li>
-	   <li class="hd_menu_tit list_name" data-addclass="hd_menu_hover"><a href="#" class="hd_menu">客户服务</a>
-	    <div class="hd_menu_list">
-		   <ul>
-		    <li><a href="#">常见问题</a></li>
-			<li><a href="#">在线退换货</a></li>
-		    <li><a href="#">在线投诉</a></li>
-			<li><a href="#">配送范围</a></li>
-		   </ul>
-		</div>	   
-	   </li>
-	  </ul>
-	</div>
-  </div>
-</div>
+<!--<div id="top">-->
+<!--  <div class="top">-->
+<!--    <div class="Collection"><em></em><a href="#">收藏我们</a></div>-->
+<!--	<div class="hd_top_manu clearfix">-->
+<!--	  <ul class="clearfix">-->
+<!--	   <li class="hd_menu_tit zhuce" data-addclass="hd_menu_hover">欢迎光临本店！<a href="#" class="red">[请登录]</a> 新用户<a href="#" class="red">[免费注册]</a></li>-->
+<!--	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">我的订单</a></li> -->
+<!--	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"> <a href="#">购物车(<b>0</b>)</a> </li>-->
+<!--	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">联系我们</a></li>-->
+<!--	   <li class="hd_menu_tit list_name" data-addclass="hd_menu_hover"><a href="#" class="hd_menu">客户服务</a>-->
+<!--	    <div class="hd_menu_list">-->
+<!--		   <ul>-->
+<!--		    <li><a href="#">常见问题</a></li>-->
+<!--			<li><a href="#">在线退换货</a></li>-->
+<!--		    <li><a href="#">在线投诉</a></li>-->
+<!--			<li><a href="#">配送范围</a></li>-->
+<!--		   </ul>-->
+<!--		</div>	   -->
+<!--	   </li>-->
+<!--	  </ul>-->
+<!--	</div>-->
+<!--  </div>-->
+<!--</div>-->
 <!--logo和搜索样式-->
 <div id="header"  class="header">
   <div class="logo">
@@ -46,7 +46,11 @@
   </div>
   <div class="Search">
     <p><input name="" type="text"  class="text"/><input name="" type="submit" value=""  class="Search_btn"/></p>
-	<p class="Words"><a href="#">苹果</a><a href="#">香蕉</a><a href="#">菠萝</a><a href="#">西红柿</a><a href="#">橙子</a><a href="#">苹果</a></p>
+	<p class="Words">
+        <?php foreach($sort as $v){?>
+            <a href="index.php?r=plist/index&id=<?php echo $v['sort_id']?>"><?php echo $v['sort_name']?></a>
+        <?php }?>
+    </p>
 </div>
 </div>
 <!--导航栏样式-->
@@ -78,16 +82,12 @@
 	</div>
     <div class="Navigation" id="Navigation">
 		 <ul class="Navigation_name">
-			<li><a class="nav_on" id="mynav1"  href="index.html"><span>首页</span></a></li>
-			<li><a class="nav_on" id="mynav2"  href="#"><span>巴山雀舌</span></a></li>
-			<li><a class="nav_on" id="mynav3"  href="#"><span>贡茗</span></a></li>
-			<li><a class="nav_on" id="mynav4"  href="#"><span>冠茗</span></a></li>
-			<li><a class="nav_on" id="mynav5"  href="#"><span>臧芝堂（藏茶）</span></a></li>
-			<li><a class="nav_on" id="mynav6"  href="#"><span>大巴山（茗茶）</span></a></li>
-			<li><a class="nav_on" id="mynav7"  href="#"><span>达州（茶）</span></a></li>
-			<li><a class="nav_on" id="mynav8"  href="#"><span>活动</span></a></li>
-			<li><a class="nav_on" id="mynav8"  href="#"><span>联系我们</span></a></li>
-		 </ul>			 
+             <li><a class="nav_on" id="mynav1"  href="index.php?r=index/index"><span>首页</span></a></li>
+
+             <?php foreach($sorts as $v){?>
+             <li><a class="nav_on" id="mynav1"  href="index.php?r=plist/index&id=<?php echo $v['sort_id']?>"><span><?php echo $v['sort_name']?></span></a></li>
+<?php }?>
+         </ul>
 		</div>
 	<script>$("#Navigation").slide({titCell:".Navigation_name li"});</script>
     <!--购物车-->	
@@ -125,14 +125,13 @@
        <div class="user_name">用户蜜甘草<a href="#">[个人资料]</a></div>
       </div>
       <ul class="Section">
-       <li><a href="#"><em></em><span>我的特色馆</span></a></li>
-       <li><a href="#"><em></em><span>个人信息</span></a></li>
-       <li><a href="#"><em></em><span>修改密码</span></a></li>
-       <li><a href="#"><em></em><span>我的订单</span></a></li>
-       <li><a href="#"><em></em><span>我的评论</span></a></li>
-       <li><a href="#"><em></em><span>我的积分</span></a></li>
-       <li><a href="#"><em></em><span>我的收藏</span></a></li>
-       <li><a href="#"><em></em><span>收货地址管理</span></a></li>
+          <li><a href="index.php?r=ucenter/index"><em></em><span>我的特色馆</span></a></li>
+          <li><a href="index.php?r=uinfo/index"><em></em><span>个人信息</span></a></li>
+          <li><a href="index.php?r=upwd/index"><em></em><span>修改密码</span></a></li>
+          <li><a href="index.php?r=uscore/index"><em></em><span>我的订单</span></a></li>
+          <li><a href="index.php?r=ucollect/index"><em></em><span>我的收藏</span></a></li>
+          <li><a href="index.php?r=uaddress/index"><em></em><span>我的收货地址管理</span></a></li>
+
       </ul>
    </div>
  <!--右侧内容展示-->
@@ -144,20 +143,36 @@
 	     <div class="user_name_info">
           <ul>
 	       <li class="us_one">
-	        <div class="name left">用户名:<b>胡海天堂</b>,  欢迎你 [<a href="#">修改密码</a>]  </div>
-	        <div class="right time"> <span>上次访问时间：2015-5-21 10:23</span></div>
+	        <div class="name left">用户名:<b><?php      $session = Yii::$app->session;
+                    echo  $session->get('name');
+                    ?></b>,  欢迎你 [<a href="index.php?r=upwd/index">修改密码</a>]  </div>
+	        <div class="right time"> <span>上次访问时间： <?php
+                    if(isset($_COOKIE['login_now'])){
+
+                        echo $_COOKIE['login_now'];
+
+                    }
+                    ?>
+                </span></div>
 	      </li>
 	      <li class="us_two"> 
-	      <dl><dt class="left">账户余额：</dt><dd>￥<b>0</b>元</dd></dl>
-	   <dl><dt class="left">账户积分：</dt><dd><b>2355</b>分 &nbsp;<a href="#">[积分商城]</a></dd></dl>
-	   <dl><dt class="left">用户等级：</dt><dd><b>普通会员</b></dd></dl>
+
+	   <dl><dt class="left">账户积分：</dt><dd><b><?php echo $res['user_score']?></b>分 &nbsp;<a href="#">[积分商城]</a></dd></dl>
+	   <dl><dt class="left">用户等级：</dt><dd><b>
+                   <?php if($res['user_score']<=500){
+                       echo '普通会员';
+                   }elseif($res['user_score']>500){
+                       echo '高级会员';
+                   }?>
+
+               </b></dd></dl>
 	  </li>
 	  <li class="us_Order">
-	   <dl><dt class="left">未完成订单：</dt><dd><a href="#">0</a></dd></dl>
-	   <dl><dt class="left">完成订单：</dt><dd><a href="#">2</a></dd></dl>
+	   <dl><dt class="left">未完成订单：</dt><dd><a href="#"><?php echo $cart?></a></dd></dl>
+	   <dl><dt class="left">完成订单：</dt><dd><a href="#"><?php echo $order?></a></dd></dl>
 	  </li>
 	  <li class="us_four">
-	  <div class="Address"><em></em><a href="#">地址管理&gt;</a></div>
+	  <div class="Address"><em></em><a href="index.php?r=uaddress/index">地址管理&gt;</a></div>
 	  </li>
 	 </ul>
     </div>
@@ -184,27 +199,33 @@
    </tr>
   </thead>
   <tbody>
+  <?php foreach($lists as $v){?>
    <tr>
     <td class="img">
-<a href="#"><span class="left"><img src="common/public/images/cp-2.jpg"></span>
-	<span class="left">产品名称敬龙云</span></a>
+<a href="#"><span class="left"><img src="public/images/<?php echo $v['sku_img']?>"></span>
+	<span class="left"><?php echo $v['goods_name']?></span></a>
 	</td>
-	<td>2</td>
+	<td><?php
+        if($v['order_status']=1){
+            echo '已付款,未发货';
+
+            }elseif($v['order_status']=2){
+            echo '已付款、已发货';
+            }elseif($v['order_status']=3){
+            echo '已退款';
+        }else{
+            echo '已收货';
+        }
+
+        ?></td>
 	<td>完成</td>
-	<td><a href="#">查看</a></td>
+	<td><a href="index.php?r=orders/index">查看</a></td>
    </tr>
-    <tr>
-    <td class="img">
-<a href="#"><span class="left"><img src="common/public/images/cp-2.jpg"></span>
-	<span class="left">产品名称敬龙云</span></a>
-	</td>
-	<td>2</td>
-	<td>完成</td>
-	<td><a href="#">查看</a></td>
-   </tr>
+  <?php }?>
+
    </tbody>
   </table>
-   <div class="us_jls">共2条记录</div>
+   <div class="us_jls">共<?php echo $order?>条记录</div>
   </div>
     </div> 
     <!--右侧记录样式-->
@@ -220,69 +241,72 @@
 							<a class="prev">&gt;</a>						</div>
 						<div class="bd">
 						<ul >
+                            <?php foreach($old_goods as $v){?>
                         <li class="clone">
 							<div class="p_width">
-								<div class="pic"><a href=""><img src="Products/11.jpg"></a></div>	
-								<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>
-								<div class="Purchase_info"><span class="p_Price">￥32.50</span> <a href="#" class="Purchase">立即购买</a></div>
+								<div class="pic"><a href=""><img src="public/images/<?php echo $v['goods_img']?>"></a></div>
+								<div class="title"><a href="#"><?php echo $v['goods_name']?></a></div>
+								<div class="Purchase_info"><span class="p_Price">￥<?php echo $v['goods_price']?></span> <a href="index.php?r=orders/index" class="Purchase">立即购买</a></div>
 							</div>	
 								</li>
-							<li >
-							<div class="p_width">
-								<div class="pic"><a href=""><img src="Products/11.jpg"></a></div>	
-								<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>
-								<div class="Purchase_info"><span class="p_Price">￥32.50</span> <a href="#" class="Purchase">立即购买</a></div>
-							</div>		
-							</li>
-								<li >
-								<div class="p_width">
-								<div class="pic"><a href=""><img src="Products/9.jpg"></a></div>	
-								<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>
-								<div class="Purchase_info"><span class="p_Price">￥32.50</span> <a href="#" class="Purchase">立即购买</a></div>
-							</div>	
-								</li>
-								<li >
-									<div class="p_width">
-								<div class="pic"><a href=""><img src="Products/8.jpg"></a></div>	
-								<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>
-								<div class="Purchase_info"><span class="p_Price">￥32.50</span> <a href="#" class="Purchase">立即购买</a></div>
-							</div>							
-								</li>
-								<li >
-									<div class="p_width">
-								<div class="pic"><a href=""><img src="Products/7.jpg"></a></div>	
-								<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>
-								<div class="Purchase_info"><span class="p_Price">￥32.50</span> <a href="#" class="Purchase">立即购买</a></div>
-							</div>							
-								</li>
-                                	<li >
-									<div class="p_width">
-								<div class="pic"><a href=""><img src="Products/6.jpg"></a></div>	
-								<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>
-								<div class="Purchase_info"><span class="p_Price">￥32.50</span> <a href="#" class="Purchase">立即购买</a></div>
-							</div>				
-								</li>
-                                	<li >
-									<div class="p_width">
-								<div class="pic"><a href=""><img src="Products/5.jpg"></a></div>	
-								<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>
-								<div class="Purchase_info"><span class="p_Price">￥32.50</span> <a href="#" class="Purchase">立即购买</a></div>
-							</div>	
-								</li>
-                                	<li >
-									<div class="p_width">
-								<div class="pic"><a href=""><img src="Products/3.jpg"></a></div>	
-								<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>
-								<div class="Purchase_info"><span class="p_Price">￥32.50</span> <a href="#" class="Purchase">立即购买</a></div>
-							</div>	
-								</li>
-								<li class="clone" >
-							<div class="p_width">
-								<div class="pic"><a href=""><img src="Products/12.jpg"></a></div>	
-								<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>
-								<div class="Purchase_info"><span class="p_Price">￥32.50</span> <a href="#" class="Purchase">立即购买</a></div>
-							</div>		
-							</li></ul></div>
+                            <?php }?>
+                            <!--						<li >
+                        							<div class="p_width">-->
+<!--								<div class="pic"><a href=""><img src="Products/11.jpg"></a></div>	-->
+<!--								<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>-->
+<!--								<div class="Purchase_info"><span class="p_Price">￥32.50</span> <a href="#" class="Purchase">立即购买</a></div>-->
+<!--							</div>		-->
+<!--							</li>-->
+<!--								<li >-->
+<!--								<div class="p_width">-->
+<!--								<div class="pic"><a href=""><img src="Products/9.jpg"></a></div>	-->
+<!--								<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>-->
+<!--								<div class="Purchase_info"><span class="p_Price">￥32.50</span> <a href="#" class="Purchase">立即购买</a></div>-->
+<!--							</div>	-->
+<!--								</li>-->
+<!--								<li >-->
+<!--									<div class="p_width">-->
+<!--								<div class="pic"><a href=""><img src="Products/8.jpg"></a></div>	-->
+<!--								<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>-->
+<!--								<div class="Purchase_info"><span class="p_Price">￥32.50</span> <a href="#" class="Purchase">立即购买</a></div>-->
+<!--							</div>							-->
+<!--								</li>-->
+<!--								<li >-->
+<!--									<div class="p_width">-->
+<!--								<div class="pic"><a href=""><img src="Products/7.jpg"></a></div>	-->
+<!--								<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>-->
+<!--								<div class="Purchase_info"><span class="p_Price">￥32.50</span> <a href="#" class="Purchase">立即购买</a></div>-->
+<!--							</div>							-->
+<!--								</li>-->
+<!--                                	<li >-->
+<!--									<div class="p_width">-->
+<!--								<div class="pic"><a href=""><img src="Products/6.jpg"></a></div>	-->
+<!--								<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>-->
+<!--								<div class="Purchase_info"><span class="p_Price">￥32.50</span> <a href="#" class="Purchase">立即购买</a></div>-->
+<!--							</div>				-->
+<!--								</li>-->
+<!--                                	<li >-->
+<!--									<div class="p_width">-->
+<!--								<div class="pic"><a href=""><img src="Products/5.jpg"></a></div>	-->
+<!--								<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>-->
+<!--								<div class="Purchase_info"><span class="p_Price">￥32.50</span> <a href="#" class="Purchase">立即购买</a></div>-->
+<!--							</div>	-->
+<!--								</li>-->
+<!--                                	<li >-->
+<!--									<div class="p_width">-->
+<!--								<div class="pic"><a href=""><img src="Products/3.jpg"></a></div>	-->
+<!--								<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>-->
+<!--								<div class="Purchase_info"><span class="p_Price">￥32.50</span> <a href="#" class="Purchase">立即购买</a></div>-->
+<!--							</div>	-->
+<!--								</li>-->
+<!--								<li class="clone" >-->
+<!--							<div class="p_width">-->
+<!--								<div class="pic"><a href=""><img src="Products/12.jpg"></a></div>	-->
+<!--								<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>-->
+<!--								<div class="Purchase_info"><span class="p_Price">￥32.50</span> <a href="#" class="Purchase">立即购买</a></div>-->
+<!--							</div>		-->
+<!--							</li>-->
+</ul></div>
 						
 					</div>
 					<script type="text/javascript">jQuery("#Record_p").slide({ mainCell:".bd ul",effect:"leftLoop",vis:1,autoPlay:false });</script>
@@ -299,62 +323,65 @@
 						</div>
 						<div class="bd">
 							<ul >
+                                <?php foreach($data as $v){?>
                             <li class="clone" style="float: left; width: 160px;">
-							<div class="pic"><a href=""><img src="Products/11.jpg"></a></div>	
-						<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>
-									<div class="p_Price">￥32.50</div>		
+							<div class="pic"><a href=""><img src="public/images/<?php echo $v['sku_img']?>"></a></div>
+						<div class="title"><a href="index.php?r=pdetail/index&goods_id=<?php echo $v['goods_id']?>"><?php echo $v['goods_name']?></a></div>
+									<div class="p_Price">￥<?php echo $v['sku_price']?></div>
 								</li>
-								<li style="float: left; width: 160px;">
-									<div class="pic"><a href=""><img src="Products/12.jpg"></a></div>
-									<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>
-									<div class="p_Price">￥32.50</div>
-								</li>
-								<li style="float: left; width: 160px;">
-									<div class="pic"><a href=""><img src="Products/10.jpg"></a></div>	
-									<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>
-									<div class="p_Price">￥32.50</div>							
-								</li>
-								<li style="float: left; width: 160px;">
-										<div class="pic"><a href=""><img src="Products/9.jpg"></a></div>	
-									<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>
-									<div class="p_Price">￥32.50</div>								
-								</li>
-                                	<li style="float: left; width: 160px;">
-										<div class="pic"><a href=""><img src="Products/8.jpg"></a></div>	
-									<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>
-									<div class="p_Price">￥32.50</div>					
-								</li>
-                                	<li style="float: left; width: 160px;">
-										<div class="pic"><a href=""><img src="Products/1.jpg"></a></div>	
-									<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>
-									<div class="p_Price">￥32.50</div>		
-								</li>
-                                	<li style="float: left; width: 160px;">
-										<div class="pic"><a href=""><img src="Products/1.jpg"></a></div>	
-									<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>
-									<div class="p_Price">￥32.50</div>		
-								</li>
-							<li class="clone" style="float: left; width: 160px;">
-									<div class="pic"><a href=""><img src="Products/5.jpg"></a></div>
-									<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>
-									<div class="p_Price">￥32.50</div>
-								</li><li class="clone" style="float: left; width: 160px;">
-									<div class="pic"><a href=""><img src="Products/4.jpg"></a></div>	
-									<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>
-									<div class="p_Price">￥32.50</div>							
-								</li><li class="clone" style="float: left; width: 160px;">
-										<div class="pic"><a href=""><img src="Products/3.jpg"></a></div>	
-									<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>
-									<div class="p_Price">￥32.50</div>								
-								</li><li class="clone" style="float: left; width: 160px;">
-										<div class="pic"><a href=""><img src="Products/2.jpg"></a></div>	
-									<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>
-									<div class="p_Price">￥32.50</div>					
-								</li><li class="clone" style="float: left; width: 160px;">
-										<div class="pic"><a href=""><img src="Products/1.jpg"></a></div>	
-									<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>
-									<div class="p_Price">￥32.50</div>		
-								</li></ul></div>
+                                <?php }?>
+<!--								<li style="float: left; width: 160px;">-->
+<!--									<div class="pic"><a href=""><img src="Products/12.jpg"></a></div>-->
+<!--									<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>-->
+<!--									<div class="p_Price">￥32.50</div>-->
+<!--								</li>-->
+<!--								<li style="float: left; width: 160px;">-->
+<!--									<div class="pic"><a href=""><img src="Products/10.jpg"></a></div>	-->
+<!--									<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>-->
+<!--									<div class="p_Price">￥32.50</div>							-->
+<!--								</li>-->
+<!--								<li style="float: left; width: 160px;">-->
+<!--										<div class="pic"><a href=""><img src="Products/9.jpg"></a></div>	-->
+<!--									<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>-->
+<!--									<div class="p_Price">￥32.50</div>								-->
+<!--								</li>-->
+<!--                                	<li style="float: left; width: 160px;">-->
+<!--										<div class="pic"><a href=""><img src="Products/8.jpg"></a></div>	-->
+<!--									<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>-->
+<!--									<div class="p_Price">￥32.50</div>					-->
+<!--								</li>-->
+<!--                                	<li style="float: left; width: 160px;">-->
+<!--										<div class="pic"><a href=""><img src="Products/1.jpg"></a></div>	-->
+<!--									<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>-->
+<!--									<div class="p_Price">￥32.50</div>		-->
+<!--								</li>-->
+<!--                                	<li style="float: left; width: 160px;">-->
+<!--										<div class="pic"><a href=""><img src="Products/1.jpg"></a></div>	-->
+<!--									<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>-->
+<!--									<div class="p_Price">￥32.50</div>		-->
+<!--								</li>-->
+<!--							<li class="clone" style="float: left; width: 160px;">-->
+<!--									<div class="pic"><a href=""><img src="Products/5.jpg"></a></div>-->
+<!--									<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>-->
+<!--									<div class="p_Price">￥32.50</div>-->
+<!--								</li><li class="clone" style="float: left; width: 160px;">-->
+<!--									<div class="pic"><a href=""><img src="Products/4.jpg"></a></div>	-->
+<!--									<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>-->
+<!--									<div class="p_Price">￥32.50</div>							-->
+<!--								</li><li class="clone" style="float: left; width: 160px;">-->
+<!--										<div class="pic"><a href=""><img src="Products/3.jpg"></a></div>	-->
+<!--									<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>-->
+<!--									<div class="p_Price">￥32.50</div>								-->
+<!--								</li><li class="clone" style="float: left; width: 160px;">-->
+<!--										<div class="pic"><a href=""><img src="Products/2.jpg"></a></div>	-->
+<!--									<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>-->
+<!--									<div class="p_Price">￥32.50</div>					-->
+<!--								</li><li class="clone" style="float: left; width: 160px;">-->
+<!--										<div class="pic"><a href=""><img src="Products/1.jpg"></a></div>	-->
+<!--									<div class="title"><a href="#">金龙鱼 东北大米 蟹稻共生 盘锦大米5KG</a></div>-->
+<!--									<div class="p_Price">￥32.50</div>		-->
+<!--								</li>-->
+                            </ul></div>
 						</div>
 					
 	<script type="text/javascript">jQuery("#Collect_Products").slide({ mainCell:".bd ul",effect:"leftLoop",vis:5,autoPlay:false });</script>
@@ -370,134 +397,134 @@
        </div>
 </div>
 <!--底部样式-->
-<div class="footer">
- <div class="streak"></div>
- <div class="footerbox clearfix">
-  <div class="left_footer">
-   <div class="img"><img src="public/images/img_33.png" /></div>
-   <div class="phone">
-    <h2>服务咨询电话</h2>
-    <p class="Numbers">400-3455-334</p>
-   </div>
-  </div>
-  <div class="right_footer">
-   <dl>
-    <dt><em class="icon_img"></em>购物指南</dt>
-    <dd><a href="#">怎样购物</a></dd>
-    <dd><a href="#">积分政策</a></dd>
-    <dd><a href="#">会员优惠</a></dd>
-    <dd><a href="#">订单状态</a></dd>
-    <dd><a href="#">产品信息</a></dd>
-    <dd><a href="#">怎样购物</a></dd>
-   </dl>
-   <dl>
-    <dt><em class="icon_img"></em>配送方式</dt>
-    <dd><a href="#">快递资费及送达时间</a></dd>
-    <dd><a href="#">快递覆盖地区查询</a></dd>
-    <dd><a href="#">验货与签收</a></dd>
-    <dd><a href="#">订单状态</a></dd>
-    <dd><a href="#">产品信息</a></dd>
-    <dd><a href="#">怎样购物</a></dd>
-   </dl>
-   <dl>
-    <dt><em class="icon_img"></em>配送方式</dt>
-    <dd><a href="#">货到付款</a></dd>
-    <dd><a href="#">支付宝</a></dd>
-    <dd><a href="#">财付通</a></dd>
-    <dd><a href="#">网银支付</a></dd>
-    <dd><a href="#">银联支付</a></dd>
-   </dl>
-   <dl>
-    <dt><em class="icon_img"></em>售后服务</dt>
-    <dd><a href="#">退换货原则</a></dd>
-    <dd><a href="#">退换货要求与运费规则</a></dd>
-    <dd><a href="#">退换货流程</a></dd>
-   </dl>
-   <dl>
-    <dt><em class="icon_img"></em>关于我们</dt>
-    <dd><a href="#">关于我们</a></dd>
-    <dd><a href="#">友情链接</a></dd>
-    <dd><a href="#">媒体报道</a></dd>
-    <dd><a href="#">新闻动态</a></dd>
-    <dd><a href="#">企业文化</a></dd>
- 
-   </dl>
-  </div>
- </div>
- <div class="slogen">
-  <div class="footerbox clearfix ">
-  <ul class="wrap">
-	 <li>
-	  <a href="#"><img src="public/images/icon_img_02.png" data-bd-imgshare-binded="1"></a>
-	  <b>正品保证</b>
-	  <span>正品行货 放心选购</span>
-	 </li>
-	 <li><a href="#"><img src="public/images/icon_img_03.png" data-bd-imgshare-binded="2"></a>
-	  <b>满68元包邮</b>
-	  <span>购物满68元，免费快递</span>
-	 </li>
-	 <li>
-	  <a href="#"><img src="public/images/icon_img_04.png" data-bd-imgshare-binded="3"></a>
-	  <b>厂家直供</b>
-	  <span>价格更低，质量更可靠</span>
-	 </li>
-      <li>
-	  <a href="#"><img src="public/images/icon_img_05.png" data-bd-imgshare-binded="4"></a>
-	  <b>权威认证</b>
-	  <span>政府扶持单位，安全保证</span>
-	 </li>
-	</ul>
-  </div>
- </div>
- <div class="footerbox Copyright">
-  <p><a href="#">关于我们</a> | <a href="#">隐私申明</a> | <a href="#">成为供应商</a> | <a href="#">茶叶</a> | <a href="#">博客</a> |<a href="#">友情链接</a> | <a href="#">网站地图</a></p>
-  <p>Copyright 2010 - 2015 巴山雀舌 四川巴山雀舌茗茶实业有限公司 zuipin.cn All Rights Reserved </p>
-  <p>川ICP备10200063号-1</p>
-   <a href="#" class="return_img"></a>
- </div>
-</div>
+<!--<div class="footer">-->
+<!-- <div class="streak"></div>-->
+<!-- <div class="footerbox clearfix">-->
+<!--  <div class="left_footer">-->
+<!--   <div class="img"><img src="public/images/img_33.png" /></div>-->
+<!--   <div class="phone">-->
+<!--    <h2>服务咨询电话</h2>-->
+<!--    <p class="Numbers">400-3455-334</p>-->
+<!--   </div>-->
+<!--  </div>-->
+<!--  <div class="right_footer">-->
+<!--   <dl>-->
+<!--    <dt><em class="icon_img"></em>购物指南</dt>-->
+<!--    <dd><a href="#">怎样购物</a></dd>-->
+<!--    <dd><a href="#">积分政策</a></dd>-->
+<!--    <dd><a href="#">会员优惠</a></dd>-->
+<!--    <dd><a href="#">订单状态</a></dd>-->
+<!--    <dd><a href="#">产品信息</a></dd>-->
+<!--    <dd><a href="#">怎样购物</a></dd>-->
+<!--   </dl>-->
+<!--   <dl>-->
+<!--    <dt><em class="icon_img"></em>配送方式</dt>-->
+<!--    <dd><a href="#">快递资费及送达时间</a></dd>-->
+<!--    <dd><a href="#">快递覆盖地区查询</a></dd>-->
+<!--    <dd><a href="#">验货与签收</a></dd>-->
+<!--    <dd><a href="#">订单状态</a></dd>-->
+<!--    <dd><a href="#">产品信息</a></dd>-->
+<!--    <dd><a href="#">怎样购物</a></dd>-->
+<!--   </dl>-->
+<!--   <dl>-->
+<!--    <dt><em class="icon_img"></em>配送方式</dt>-->
+<!--    <dd><a href="#">货到付款</a></dd>-->
+<!--    <dd><a href="#">支付宝</a></dd>-->
+<!--    <dd><a href="#">财付通</a></dd>-->
+<!--    <dd><a href="#">网银支付</a></dd>-->
+<!--    <dd><a href="#">银联支付</a></dd>-->
+<!--   </dl>-->
+<!--   <dl>-->
+<!--    <dt><em class="icon_img"></em>售后服务</dt>-->
+<!--    <dd><a href="#">退换货原则</a></dd>-->
+<!--    <dd><a href="#">退换货要求与运费规则</a></dd>-->
+<!--    <dd><a href="#">退换货流程</a></dd>-->
+<!--   </dl>-->
+<!--   <dl>-->
+<!--    <dt><em class="icon_img"></em>关于我们</dt>-->
+<!--    <dd><a href="#">关于我们</a></dd>-->
+<!--    <dd><a href="#">友情链接</a></dd>-->
+<!--    <dd><a href="#">媒体报道</a></dd>-->
+<!--    <dd><a href="#">新闻动态</a></dd>-->
+<!--    <dd><a href="#">企业文化</a></dd>-->
+<!-- -->
+<!--   </dl>-->
+<!--  </div>-->
+<!-- </div>-->
+<!-- <div class="slogen">-->
+<!--  <div class="footerbox clearfix ">-->
+<!--  <ul class="wrap">-->
+<!--	 <li>-->
+<!--	  <a href="#"><img src="public/images/icon_img_02.png" data-bd-imgshare-binded="1"></a>-->
+<!--	  <b>正品保证</b>-->
+<!--	  <span>正品行货 放心选购</span>-->
+<!--	 </li>-->
+<!--	 <li><a href="#"><img src="public/images/icon_img_03.png" data-bd-imgshare-binded="2"></a>-->
+<!--	  <b>满68元包邮</b>-->
+<!--	  <span>购物满68元，免费快递</span>-->
+<!--	 </li>-->
+<!--	 <li>-->
+<!--	  <a href="#"><img src="public/images/icon_img_04.png" data-bd-imgshare-binded="3"></a>-->
+<!--	  <b>厂家直供</b>-->
+<!--	  <span>价格更低，质量更可靠</span>-->
+<!--	 </li>-->
+<!--      <li>-->
+<!--	  <a href="#"><img src="public/images/icon_img_05.png" data-bd-imgshare-binded="4"></a>-->
+<!--	  <b>权威认证</b>-->
+<!--	  <span>政府扶持单位，安全保证</span>-->
+<!--	 </li>-->
+<!--	</ul>-->
+<!--  </div>-->
+<!-- </div>-->
+<!-- <div class="footerbox Copyright">-->
+<!--  <p><a href="#">关于我们</a> | <a href="#">隐私申明</a> | <a href="#">成为供应商</a> | <a href="#">茶叶</a> | <a href="#">博客</a> |<a href="#">友情链接</a> | <a href="#">网站地图</a></p>-->
+<!--  <p>Copyright 2010 - 2015 巴山雀舌 四川巴山雀舌茗茶实业有限公司 zuipin.cn All Rights Reserved </p>-->
+<!--  <p>川ICP备10200063号-1</p>-->
+<!--   <a href="#" class="return_img"></a>-->
+<!-- </div>-->
+<!--</div>-->
  <!--右侧菜单栏购物车样式-->
-<div class="fixedBox">
-  <ul class="fixedBoxList">
-      <li class="fixeBoxLi user"><a href="#"> <span class="fixeBoxSpan"></span> <strong>用户</strong></a> </li>
-    <li class="fixeBoxLi cart_bd" style="display:block;" id="cartboxs">
-		<p class="good_cart">0</p>
-			<span class="fixeBoxSpan"></span> <strong>购物车</strong>
-			<div class="cartBox">
-       		<div class="bjfff"></div><div class="message">购物车内暂无商品，赶紧选购吧</div>    </div></li>
-    <li class="fixeBoxLi Service "> <span class="fixeBoxSpan"></span> <strong>客服</strong>
-      <div class="ServiceBox">
-        <div class="bjfffs"></div>
-        <dl onclick="javascript:;">
-		    <dt><img src="public/images/Service1.png"></dt>
-		       <dd><strong>QQ客服1</strong>
-		          <p class="p1">9:00-22:00</p>
-		           <p class="p2"><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=123456&amp;site=DGG三端同步&amp;menu=yes">点击交谈</a></p>
-		          </dd>
-		        </dl>
-				<dl onclick="javascript:;">
-		          <dt><img src="public/images/Service1.png"></dt>
-		          <dd> <strong>QQ客服1</strong>
-		            <p class="p1">9:00-22:00</p>
-		            <p class="p2"><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=123456&amp;site=DGG三端同步&amp;menu=yes">点击交谈</a></p>
-		          </dd>
-		        </dl>
-	          </div>
-     </li>
-	 <li class="fixeBoxLi code cart_bd " style="display:block;" id="cartboxs">
-			<span class="fixeBoxSpan"></span> <strong>微信</strong>
-			<div class="cartBox">
-       		<div class="bjfff"></div>
-			<div class="QR_code">
-			 <p><img src="public/images/erweim.jpg" width="150px" height="150px" style=" margin-top:10px;" /></p>
-			 <p>微信扫一扫，关注我们</p>
-			</div>		
-			</div>
-			</li>
-
-    <li class="fixeBoxLi Home"> <a href="./"> <span class="fixeBoxSpan"></span> <strong>收藏</strong> </a> </li>
-    <li class="fixeBoxLi BackToTop"> <span class="fixeBoxSpan"></span> <strong>返回顶部</strong> </li>
-  </ul>
-</div>
+<!--<div class="fixedBox">-->
+<!--  <ul class="fixedBoxList">-->
+<!--      <li class="fixeBoxLi user"><a href="#"> <span class="fixeBoxSpan"></span> <strong>用户</strong></a> </li>-->
+<!--    <li class="fixeBoxLi cart_bd" style="display:block;" id="cartboxs">-->
+<!--		<p class="good_cart">0</p>-->
+<!--			<span class="fixeBoxSpan"></span> <strong>购物车</strong>-->
+<!--			<div class="cartBox">-->
+<!--       		<div class="bjfff"></div><div class="message">购物车内暂无商品，赶紧选购吧</div>    </div></li>-->
+<!--    <li class="fixeBoxLi Service "> <span class="fixeBoxSpan"></span> <strong>客服</strong>-->
+<!--      <div class="ServiceBox">-->
+<!--        <div class="bjfffs"></div>-->
+<!--        <dl onclick="javascript:;">-->
+<!--		    <dt><img src="public/images/Service1.png"></dt>-->
+<!--		       <dd><strong>QQ客服1</strong>-->
+<!--		          <p class="p1">9:00-22:00</p>-->
+<!--		           <p class="p2"><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=123456&amp;site=DGG三端同步&amp;menu=yes">点击交谈</a></p>-->
+<!--		          </dd>-->
+<!--		        </dl>-->
+<!--				<dl onclick="javascript:;">-->
+<!--		          <dt><img src="public/images/Service1.png"></dt>-->
+<!--		          <dd> <strong>QQ客服1</strong>-->
+<!--		            <p class="p1">9:00-22:00</p>-->
+<!--		            <p class="p2"><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=123456&amp;site=DGG三端同步&amp;menu=yes">点击交谈</a></p>-->
+<!--		          </dd>-->
+<!--		        </dl>-->
+<!--	          </div>-->
+<!--     </li>-->
+<!--	 <li class="fixeBoxLi code cart_bd " style="display:block;" id="cartboxs">-->
+<!--			<span class="fixeBoxSpan"></span> <strong>微信</strong>-->
+<!--			<div class="cartBox">-->
+<!--       		<div class="bjfff"></div>-->
+<!--			<div class="QR_code">-->
+<!--			 <p><img src="public/images/erweim.jpg" width="150px" height="150px" style=" margin-top:10px;" /></p>-->
+<!--			 <p>微信扫一扫，关注我们</p>-->
+<!--			</div>		-->
+<!--			</div>-->
+<!--			</li>-->
+<!---->
+<!--    <li class="fixeBoxLi Home"> <a href="./"> <span class="fixeBoxSpan"></span> <strong>收藏</strong> </a> </li>-->
+<!--    <li class="fixeBoxLi BackToTop"> <span class="fixeBoxSpan"></span> <strong>返回顶部</strong> </li>-->
+<!--  </ul>-->
+<!--</div>-->
 </body>
 </html>
