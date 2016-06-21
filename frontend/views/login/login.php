@@ -28,18 +28,18 @@
 	  <!--提示信息-->
 	    <div class="Prompt">账号密码不能为空！ </div>
 	    <div class="form clearfix">
-	     <div class="item item-fore1"><label for="loginname" class="login-label name-label"></label><input name="" type="text"  class="text" placeholder="请输入用户"/>
+	     <div class="item item-fore1"><label for="loginname" class="login-label name-label"></label><input id="name" name="name" type="text"  class="text" placeholder="请输入用户"/>
 		 </div>
-		 <div class="item item-fore2"><label for="nloginpwd" class="login-label pwd-label" ></label><input name="" type="password"  class="text" placeholder="用户密码"/>
-	     </div> 
+		 <div class="item item-fore2"><label for="nloginpwd" class="login-label pwd-label" ></label><input id='pwd' name="pwd" type="password"  class="text" placeholder="用户密码"/>
+	     </div>
 	     <div class="Forgetpass"><a href="#">忘记密码？</a></div>
-	    </div>	
+	    </div>
 	    <div class="login-btn">
-	    <a href="javascript:;" class="btn_login">登&nbsp;&nbsp;&nbsp;&nbsp;录</a>
+	    <a href="javascript:sub()" class="btn_login">登&nbsp;&nbsp;&nbsp;&nbsp;录</a>
 	  </div>
     </div>
     <div class="Login_Method">
-     
+
     </div>
   </div>
 </div>
@@ -52,3 +52,31 @@
    </div>
 </body>
 </html>
+<script>
+    function sub(){
+        var name=$('#name').val()
+        var pwd=$('#pwd').val()
+        //alert(pwd)
+        $.ajax({
+            post:'get',
+            url:'index.php?r=login/login_list',
+            data:'name='+name+'&&pwd='+pwd,
+            success:function(data){
+                if(data==1){
+
+                    location.href="index.php?r=index/index";
+                }else if(data==0){
+                    alert('密码错误')
+                    location.href="index.php?r=login/index";
+                }else{
+                    alert('用户名错误')
+                    location.href="index.php?r=login/index";
+
+                }
+            }
+
+        })
+
+    }
+</script>
+
