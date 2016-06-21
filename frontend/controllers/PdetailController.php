@@ -9,7 +9,7 @@ class PdetailController extends \yii\web\Controller
     {
     	$request = Yii::$app->request;
         //首页传过来的商品id(有待慧娜解决)
-    	$goods_id = $request->get('goods_id');  
+    	$goods_id = $request->get('goods_id',1);  
         $sku_id = $request->get('sku_id');   
     	$connection = Yii::$app->db;
         if($goods_id){
@@ -44,7 +44,7 @@ class PdetailController extends \yii\web\Controller
     	$connection = Yii::$app->db;
     	$command = $connection->createCommand("SELECT * FROM sku WHERE sku_id='$sku_id' and goods_id='$goods_id'");
     	$skuinfo['infos'] = $command->queryAll();
-        $command2 = $connection->createCommand("SELECT * FROM sku WHERE sku_size='$sku_sc' and goods_id='$goods_id'");
+        $command2 = $connection->createCommand("SELECT * FROM sku WHERE sku_id='$sku_id' and goods_id='$goods_id'");
         $skuinfo['colors'] = $command2->queryAll();
         //单品库存
         $command3 = $connection->createCommand("SELECT * FROM sku WHERE sku_id='$sku_id'");
@@ -60,13 +60,13 @@ class PdetailController extends \yii\web\Controller
         $session = Yii::$app->session;
         $request = Yii::$app->request;
         $connection = Yii::$app->db;
-        $username = $session->get('name');
+        $username = $session->get('name','张三');
         //1.用户未登录时
         if($username==''){
-            $cartinfo=$_GET;
-            $cartinfo=serialize($cartinfo);
+            $cartinfo1=$_GET;
+            $cartinfo=serialize($cartinfo1);
             setcookie('cartinfo',$cartinfo,time()+120);
-            //print($_COOKIE['cartinfo']);
+            //print($_COOKIE['cartinfo']);die;
         }
         else{
             $sku_id=$_GET['sku_id'];
@@ -108,6 +108,7 @@ class PdetailController extends \yii\web\Controller
                     
                 }
             }
+            //cookie无值
             else{
                 if(!empty($skuinfo)){
                     echo "exist";
@@ -136,8 +137,8 @@ class PdetailController extends \yii\web\Controller
                         echo '0';
                     }
                 }
-            }                                   
-        }
+            }//无值结束                                   
+        }//用户村子结束
 
     }
     /**
