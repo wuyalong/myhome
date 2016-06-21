@@ -252,7 +252,7 @@ box-shadow: 0 0 2px 2px #F8F8F8;}
 #goodsInfo .textInfo .title p{ color:#FF9900}
 .mod_detailInfo_priceSales {border-top: 1px solid #ddd;background: url(../images/bg_07.png) repeat-y #E9E9E9; background-position:center}
 .mod_detailInfo_priceSales .Size a { margin-top:5px;  border:1px solid  #999; color: #666; text-align:center; margin-right:10px; background:#FFF;padding: 4px 6px;}
-.mod_detailInfo_priceSales .Size a:hover{ border:2px solid #C30; color:#C30;padding: 3px 5px}
+.mod_detailInfo_priceSales .Size a:hover{ border:2px solid #C30;color:#C30;padding: 3px 5px}
 .mod_detailInfo_priceSales .weight{ font-size:14px;}
 .mod_detailInfo_priceSales .text_name{ width:560px; display:block; height:42px; line-height:40px; padding-left:10px;}
 .mod_detailInfo_priceSales .Price span h4{ float:left; font-size:18px; margin-right:10px; color:#F00}
