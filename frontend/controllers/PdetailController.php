@@ -9,7 +9,7 @@ class PdetailController extends \yii\web\Controller
     {
     	$request = Yii::$app->request;
         //首页传过来的商品id(有待慧娜解决)
-    	$goods_id = $request->get('goods_id',1);  
+    	$goods_id = $request->get('goods_id');  
         $sku_id = $request->get('sku_id');   
     	$connection = Yii::$app->db;
         if($goods_id){
@@ -60,7 +60,7 @@ class PdetailController extends \yii\web\Controller
         $session = Yii::$app->session;
         $request = Yii::$app->request;
         $connection = Yii::$app->db;
-        $username = $session->get('name','张三');
+        $username = $session->get('name');
         //1.用户未登录时
         if($username==''){
             $cartinfo1=$_GET;
