@@ -751,7 +751,7 @@ function submitComment(frm)
 		cart_price=$('#jg'+size).html();
 		goods_price=$('#yj').html();
 		now_price=parseInt(goods_price)+parseInt(cart_price);
-		//alert(buy_num);
+		//alert(cart_color);
 		//alert(now_price);
 		//alert(cart_size+cart_color+cart_price+buy_num);
 		if(size==''||colors==''){
