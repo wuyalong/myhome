@@ -14,7 +14,7 @@ class OrdersController extends \yii\web\Controller
     public function actionSelorder()
     {
     	$request = Yii::$app->request;
-        $cart_id = $request->get('cart_id',1);
+        $cart_id = $request->get('cart_id');
         $checkout = $request->get('checkout');
         $session = Yii::$app->session;
         $connection = Yii::$app->db;
