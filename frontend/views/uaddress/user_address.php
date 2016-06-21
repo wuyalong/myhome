@@ -14,29 +14,29 @@
 
 <body>
 <!--顶部样式-->
-<div id="top">
-  <div class="top">
-    <div class="Collection"><em></em><a href="#">收藏我们</a></div>
-	<div class="hd_top_manu clearfix">
-	  <ul class="clearfix">
-	   <li class="hd_menu_tit zhuce" data-addclass="hd_menu_hover">欢迎光临本店！<a href="#" class="red">[请登录]</a> 新用户<a href="#" class="red">[免费注册]</a></li>
-	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">我的订单</a></li> 
-	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"> <a href="#">购物车(<b>0</b>)</a> </li>
-	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">联系我们</a></li>
-	   <li class="hd_menu_tit list_name" data-addclass="hd_menu_hover"><a href="#" class="hd_menu">客户服务</a>
-	    <div class="hd_menu_list">
-		   <ul>
-		    <li><a href="#">常见问题</a></li>
-			<li><a href="#">在线退换货</a></li>
-		    <li><a href="#">在线投诉</a></li>
-			<li><a href="#">配送范围</a></li>
-		   </ul>
-		</div>	   
-	   </li>
-	  </ul>
-	</div>
-  </div>
-</div>
+<!--<div id="top">-->
+<!--  <div class="top">-->
+<!--    <div class="Collection"><em></em><a href="#">收藏我们</a></div>-->
+<!--	<div class="hd_top_manu clearfix">-->
+<!--	  <ul class="clearfix">-->
+<!--	   <li class="hd_menu_tit zhuce" data-addclass="hd_menu_hover">欢迎光临本店！<a href="#" class="red">[请登录]</a> 新用户<a href="#" class="red">[免费注册]</a></li>-->
+<!--	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">我的订单</a></li> -->
+<!--	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"> <a href="#">购物车(<b>0</b>)</a> </li>-->
+<!--	   <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">联系我们</a></li>-->
+<!--	   <li class="hd_menu_tit list_name" data-addclass="hd_menu_hover"><a href="#" class="hd_menu">客户服务</a>-->
+<!--	    <div class="hd_menu_list">-->
+<!--		   <ul>-->
+<!--		    <li><a href="#">常见问题</a></li>-->
+<!--			<li><a href="#">在线退换货</a></li>-->
+<!--		    <li><a href="#">在线投诉</a></li>-->
+<!--			<li><a href="#">配送范围</a></li>-->
+<!--		   </ul>-->
+<!--		</div>	   -->
+<!--	   </li>-->
+<!--	  </ul>-->
+<!--	</div>-->
+<!--  </div>-->
+<!--</div>-->
 <!--logo和搜索样式-->
 <div id="header"  class="header">
   <div class="logo">
@@ -47,7 +47,11 @@
   </div>
   <div class="Search">
     <p><input name="" type="text"  class="text"/><input name="" type="submit" value=""  class="Search_btn"/></p>
-	<p class="Words"><a href="#">苹果</a><a href="#">香蕉</a><a href="#">菠萝</a><a href="#">西红柿</a><a href="#">橙子</a><a href="#">苹果</a></p>
+	<p class="Words">
+        <?php foreach($sort as $v){?>
+            <a href="index.php?r=plist/index&id=<?php echo $v['sort_id']?>"><?php echo $v['sort_name']?></a>
+        <?php }?>
+    </p>
 </div>
 </div>
 <!--导航栏样式-->
@@ -79,15 +83,12 @@
 	</div>
     <div class="Navigation" id="Navigation">
 		 <ul class="Navigation_name">
-			<li><a class="nav_on" id="mynav1"  href="index.html"><span>首页</span></a></li>
-			<li><a class="nav_on" id="mynav2"  href="#"><span>巴山雀舌</span></a></li>
-			<li><a class="nav_on" id="mynav3"  href="#"><span>贡茗</span></a></li>
-			<li><a class="nav_on" id="mynav4"  href="#"><span>冠茗</span></a></li>
-			<li><a class="nav_on" id="mynav5"  href="#"><span>臧芝堂（藏茶）</span></a></li>
-			<li><a class="nav_on" id="mynav6"  href="#"><span>大巴山（茗茶）</span></a></li>
-			<li><a class="nav_on" id="mynav7"  href="#"><span>达州（茶）</span></a></li>
-			<li><a class="nav_on" id="mynav8"  href="#"><span>活动</span></a></li>
-			<li><a class="nav_on" id="mynav8"  href="#"><span>联系我们</span></a></li>
+             <li><a class="nav_on" id="mynav1"  href="index.php?r=index/index"><span>首页</span></a></li>
+
+             <?php foreach($sorts as $v){?>
+                 <li><a class="nav_on" id="mynav1"  href="index.php?r=plist/index&id=<?php echo $v['sort_id']?>"><span><?php echo $v['sort_name']?></span></a></li>
+
+             <?php }?>
 		 </ul>			 
 		</div>
 	<script>$("#Navigation").slide({titCell:".Navigation_name li"});</script>
@@ -126,14 +127,13 @@
        <div class="user_name">用户蜜甘草<a href="#">[个人资料]</a></div>
       </div>
       <ul class="Section">
-       <li><a href="#"><em></em><span>我的特色馆</span></a></li>
-       <li><a href="#"><em></em><span>个人信息</span></a></li>
-       <li><a href="#"><em></em><span>修改密码</span></a></li>
-       <li><a href="#"><em></em><span>我的订单</span></a></li>
-       <li><a href="#"><em></em><span>我的评论</span></a></li>
-       <li><a href="#"><em></em><span>我的积分</span></a></li>
-       <li><a href="#"><em></em><span>我的收藏</span></a></li>
-       <li><a href="#"><em></em><span>收货地址管理</span></a></li>
+          <li><a href="index.php?r=ucenter/index"><em></em><span>我的特色馆</span></a></li>
+          <li><a href="index.php?r=uinfo/index"><em></em><span>个人信息</span></a></li>
+          <li><a href="index.php?r=upwd/index"><em></em><span>修改密码</span></a></li>
+          <li><a href="index.php?r=uscore/index"><em></em><span>我的订单</span></a></li>
+          <li><a href="index.php?r=ucollect/index"><em></em><span>我的收藏</span></a></li>
+          <li><a href="index.php?r=uaddress/index"><em></em><span>我的收货地址管理</span></a></li>
+
       </ul>
     </div>
     <script src="Threelinkage/kit.js"></script>
@@ -171,44 +171,64 @@
         <span class="name">地址管理</span>
        </div>
        <div class="about_user_info">
-         <form id="form1" name="form1" method="post" action="">   
+         <form id="form1"  method="post" action="<?= Yii::$app->UrlManager->createUrl(['uaddress/add_address'])?>">
        <div class="user_layout">
          <ul>
-          <li class="li"><label class="user_title_name">收件人姓名：</label><input name="" type="text" class="add_text"><i>*</i></li>
-          <li class="li">
-          <div class="select">
-          <span class="select_adderss"><label> 省份 </label><select class="kitjs-form-suggestselect " ></select></span>
-          <span class="select_adderss"><label> 市/县 </label><select class="kitjs-form-suggestselect "></select></span>
-          <span class="select_adderss"><label> 区/县 </label><select class="kitjs-form-suggestselect"></select></span>
-            <i>*</i>
-		</div>   
-        </li >
-          <li class="li"><label class="user_title_name">收货地址：</label><input name="" type="text" class="add_text"><i*</i></li>
-          <li class="li"><label class="user_title_name">邮&nbsp;&nbsp;&nbsp;&nbsp;编：</label><input name="" type="text" class="add_text"><i>*</i></li>
-          <li class="li"><label class="user_title_name">手&nbsp;机&nbsp;号：</label><input name="" type="text" class="add_text"><i>*</i></li>
-          <li class="li"><label class="user_title_name">固定电话：</label><input name="" type="text" class="add_text"></li>         
+          <li class="li"><label class="user_title_name">收件人姓名：</label><input name="name" type="text" class="add_text" required><i>*</i></li>
+<!--          <li class="li">-->
+<!--          <div class="select">-->
+<!--          <span class="select_adderss"><label> 省份 </label><select name="provice" id="city" onchange="c_list('city','area')">-->
+<!--                  <option  value="">请选择</option>-->
+<!--                  --><?php //foreach($data as $v){?>
+<!--                      <option value="--><?php //echo $v['region_id']?><!--">--><?php //echo $v['region_name']?><!--</option>-->
+<!--                  --><?php //}?>
+<!--              </select></span>-->
+<!--          <span class="select_adderss"><label> 市/县 </label><select name="city" id="area" onchange="c_list('area','village')" >-->
+<!--                  <option value="">请选择</option>-->
+<!---->
+<!--              </select></span>-->
+<!--          <span class="select_adderss"><label> 区/县 </label><select name="area" id="village">-->
+<!--                  <option  value="">请选择</option>-->
+<!---->
+<!--              </select></span>-->
+<!--            <i>*</i>-->
+<!--		</div>   -->
+<!--        </li >-->
+          <li class="li"><label class="user_title_name">收货地址：</label><input  type="text" name="address" class="add_text" required ><i*</i></li>
+          <li class="li"><label class="user_title_name">邮&nbsp;&nbsp;&nbsp;&nbsp;编：</label><input name="address_email" type="text" class="add_text" required name="address_num"><i>*</i></li>
+          <li class="li"><label class="user_title_name">手&nbsp;机&nbsp;号：</label><input name="phone" type="text" class="add_text" required autocomplete="off" pattern="^1[345678][0-9]{9}$" ><i>*</i></li>
+          <li class="li"><label class="user_title_name">固定电话：</label><input name="address_tel" type="text" class="add_text" required ></li>
          </ul>
-         <div class="operating_btn"><input name="name" type="submit" value="确认" class="submit—btn"></div>
+         <div class="operating_btn"><input  type="submit" value="确认" class="submit—btn" ></div>
          </div>
-          </form>       
+          </form>
        </div>
        <!--地址列表-->
        <div class="Address_List">
-        <div class="title_name"><span class="name">用户地址列表</span></div>
-        <div class="list">
-         <table>
-         <thead>
-          <td class="list_name_title0">收件人姓名</td>
-          <td class="list_name_title1">地区</td>
-          <td class="list_name_title2">邮编</td>
-          <td class="list_name_title3">电话</td>
-          <td class="list_name_title4">收货地址</td>
-          <td class="list_name_title5">操作</td>
-         </thead>        
-        
-          <tr><td>小组</td><td>四川成都五华区</td><td>601022</td><td>12345678909</td><td>产业业务宝贵机会</td><td><a href="#">修改</a><a href="#">删除</a></td></tr>
-            <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-         </table>
+
+        <div class="title_name"><span class="name"><a href="javascript:hit()">用户地址列表</a></span></div>
+        <div class="list" id="list1">
+            <table>
+                <thead>
+                <td class="list_name_title0">收件人姓名</td>
+                <td class="list_name_title1">地区</td>
+                <td class="list_name_title2">邮编</td>
+                <td class="list_name_title3">电话</td>
+
+                <td class="list_name_title5">操作</td>
+                </thead>
+                <?php foreach($data as $v){?>
+                    <tr><td><?php echo $v['address_name']?></td>
+                        <td><?php echo $v['address_place']?></td>
+                        <td><?php echo $v['address_num']?></td>
+                        <td><?php echo $v['address_phone']?></td>
+
+                        <td><a href="index.php?r=uaddress/del&id=<?php echo $v['address_id']?>">删除</a></td>
+                    </tr>
+                <?php }?>
+
+            </table>
+
         </div>
        </div>
       </div>
@@ -223,135 +243,135 @@
        </div>
 </div>
 <!--底部样式-->
-<div class="footer">
- <div class="streak"></div>
- <div class="footerbox clearfix">
-  <div class="left_footer">
-   <div class="img"><img src="public/images/img_33.png" /></div>
-   <div class="phone">
-    <h2>服务咨询电话</h2>
-    <p class="Numbers">400-3455-334</p>
-   </div>
-  </div>
-  <div class="right_footer">
-   <dl>
-    <dt><em class="icon_img"></em>购物指南</dt>
-    <dd><a href="#">怎样购物</a></dd>
-    <dd><a href="#">积分政策</a></dd>
-    <dd><a href="#">会员优惠</a></dd>
-    <dd><a href="#">订单状态</a></dd>
-    <dd><a href="#">产品信息</a></dd>
-    <dd><a href="#">怎样购物</a></dd>
-   </dl>
-   <dl>
-    <dt><em class="icon_img"></em>配送方式</dt>
-    <dd><a href="#">快递资费及送达时间</a></dd>
-    <dd><a href="#">快递覆盖地区查询</a></dd>
-    <dd><a href="#">验货与签收</a></dd>
-    <dd><a href="#">订单状态</a></dd>
-    <dd><a href="#">产品信息</a></dd>
-    <dd><a href="#">怎样购物</a></dd>
-   </dl>
-   <dl>
-    <dt><em class="icon_img"></em>配送方式</dt>
-    <dd><a href="#">货到付款</a></dd>
-    <dd><a href="#">支付宝</a></dd>
-    <dd><a href="#">财付通</a></dd>
-    <dd><a href="#">网银支付</a></dd>
-    <dd><a href="#">银联支付</a></dd>
-   </dl>
-   <dl>
-    <dt><em class="icon_img"></em>售后服务</dt>
-    <dd><a href="#">退换货原则</a></dd>
-    <dd><a href="#">退换货要求与运费规则</a></dd>
-    <dd><a href="#">退换货流程</a></dd>
-   </dl>
-   <dl>
-    <dt><em class="icon_img"></em>关于我们</dt>
-    <dd><a href="#">关于我们</a></dd>
-    <dd><a href="#">友情链接</a></dd>
-    <dd><a href="#">媒体报道</a></dd>
-    <dd><a href="#">新闻动态</a></dd>
-    <dd><a href="#">企业文化</a></dd>
- 
-   </dl>
-  </div>
- </div>
- <div class="slogen">
-  <div class="footerbox clearfix ">
-  <ul class="wrap">
-	 <li>
-	  <a href="#"><img src="public/images/icon_img_02.png" data-bd-imgshare-binded="1"></a>
-	  <b>正品保证</b>
-	  <span>正品行货 放心选购</span>
-	 </li>
-	 <li><a href="#"><img src="public/images/icon_img_03.png" data-bd-imgshare-binded="2"></a>
-	  <b>满68元包邮</b>
-	  <span>购物满68元，免费快递</span>
-	 </li>
-	 <li>
-	  <a href="#"><img src="public/images/icon_img_04.png" data-bd-imgshare-binded="3"></a>
-	  <b>厂家直供</b>
-	  <span>价格更低，质量更可靠</span>
-	 </li>
-      <li>
-	  <a href="#"><img src="public/images/icon_img_05.png" data-bd-imgshare-binded="4"></a>
-	  <b>权威认证</b>
-	  <span>政府扶持单位，安全保证</span>
-	 </li>
-	</ul>
-  </div>
- </div>
- <div class="footerbox Copyright">
-  <p><a href="#">关于我们</a> | <a href="#">隐私申明</a> | <a href="#">成为供应商</a> | <a href="#">茶叶</a> | <a href="#">博客</a> |<a href="#">友情链接</a> | <a href="#">网站地图</a></p>
-  <p>Copyright 2010 - 2015 巴山雀舌 四川巴山雀舌茗茶实业有限公司 zuipin.cn All Rights Reserved </p>
-  <p>川ICP备10200063号-1</p>
-   <a href="#" class="return_img"></a>
- </div>
-</div>
+<!--<div class="footer">-->
+<!-- <div class="streak"></div>-->
+<!-- <div class="footerbox clearfix">-->
+<!--  <div class="left_footer">-->
+<!--   <div class="img"><img src="public/images/img_33.png" /></div>-->
+<!--   <div class="phone">-->
+<!--    <h2>服务咨询电话</h2>-->
+<!--    <p class="Numbers">400-3455-334</p>-->
+<!--   </div>-->
+<!--  </div>-->
+<!--  <div class="right_footer">-->
+<!--   <dl>-->
+<!--    <dt><em class="icon_img"></em>购物指南</dt>-->
+<!--    <dd><a href="#">怎样购物</a></dd>-->
+<!--    <dd><a href="#">积分政策</a></dd>-->
+<!--    <dd><a href="#">会员优惠</a></dd>-->
+<!--    <dd><a href="#">订单状态</a></dd>-->
+<!--    <dd><a href="#">产品信息</a></dd>-->
+<!--    <dd><a href="#">怎样购物</a></dd>-->
+<!--   </dl>-->
+<!--   <dl>-->
+<!--    <dt><em class="icon_img"></em>配送方式</dt>-->
+<!--    <dd><a href="#">快递资费及送达时间</a></dd>-->
+<!--    <dd><a href="#">快递覆盖地区查询</a></dd>-->
+<!--    <dd><a href="#">验货与签收</a></dd>-->
+<!--    <dd><a href="#">订单状态</a></dd>-->
+<!--    <dd><a href="#">产品信息</a></dd>-->
+<!--    <dd><a href="#">怎样购物</a></dd>-->
+<!--   </dl>-->
+<!--   <dl>-->
+<!--    <dt><em class="icon_img"></em>配送方式</dt>-->
+<!--    <dd><a href="#">货到付款</a></dd>-->
+<!--    <dd><a href="#">支付宝</a></dd>-->
+<!--    <dd><a href="#">财付通</a></dd>-->
+<!--    <dd><a href="#">网银支付</a></dd>-->
+<!--    <dd><a href="#">银联支付</a></dd>-->
+<!--   </dl>-->
+<!--   <dl>-->
+<!--    <dt><em class="icon_img"></em>售后服务</dt>-->
+<!--    <dd><a href="#">退换货原则</a></dd>-->
+<!--    <dd><a href="#">退换货要求与运费规则</a></dd>-->
+<!--    <dd><a href="#">退换货流程</a></dd>-->
+<!--   </dl>-->
+<!--   <dl>-->
+<!--    <dt><em class="icon_img"></em>关于我们</dt>-->
+<!--    <dd><a href="#">关于我们</a></dd>-->
+<!--    <dd><a href="#">友情链接</a></dd>-->
+<!--    <dd><a href="#">媒体报道</a></dd>-->
+<!--    <dd><a href="#">新闻动态</a></dd>-->
+<!--    <dd><a href="#">企业文化</a></dd>-->
+<!-- -->
+<!--   </dl>-->
+<!--  </div>-->
+<!-- </div>-->
+<!-- <div class="slogen">-->
+<!--  <div class="footerbox clearfix ">-->
+<!--  <ul class="wrap">-->
+<!--	 <li>-->
+<!--	  <a href="#"><img src="public/images/icon_img_02.png" data-bd-imgshare-binded="1"></a>-->
+<!--	  <b>正品保证</b>-->
+<!--	  <span>正品行货 放心选购</span>-->
+<!--	 </li>-->
+<!--	 <li><a href="#"><img src="public/images/icon_img_03.png" data-bd-imgshare-binded="2"></a>-->
+<!--	  <b>满68元包邮</b>-->
+<!--	  <span>购物满68元，免费快递</span>-->
+<!--	 </li>-->
+<!--	 <li>-->
+<!--	  <a href="#"><img src="public/images/icon_img_04.png" data-bd-imgshare-binded="3"></a>-->
+<!--	  <b>厂家直供</b>-->
+<!--	  <span>价格更低，质量更可靠</span>-->
+<!--	 </li>-->
+<!--      <li>-->
+<!--	  <a href="#"><img src="public/images/icon_img_05.png" data-bd-imgshare-binded="4"></a>-->
+<!--	  <b>权威认证</b>-->
+<!--	  <span>政府扶持单位，安全保证</span>-->
+<!--	 </li>-->
+<!--	</ul>-->
+<!--  </div>-->
+<!-- </div>-->
+<!-- <div class="footerbox Copyright">-->
+<!--  <p><a href="#">关于我们</a> | <a href="#">隐私申明</a> | <a href="#">成为供应商</a> | <a href="#">茶叶</a> | <a href="#">博客</a> |<a href="#">友情链接</a> | <a href="#">网站地图</a></p>-->
+<!--  <p>Copyright 2010 - 2015 巴山雀舌 四川巴山雀舌茗茶实业有限公司 zuipin.cn All Rights Reserved </p>-->
+<!--  <p>川ICP备10200063号-1</p>-->
+<!--   <a href="#" class="return_img"></a>-->
+<!-- </div>-->
+<!--</div>-->
  <!--右侧菜单栏购物车样式-->
-<div class="fixedBox">
-  <ul class="fixedBoxList">
-      <li class="fixeBoxLi user"><a href="#"> <span class="fixeBoxSpan"></span> <strong>用户</strong></a> </li>
-    <li class="fixeBoxLi cart_bd" style="display:block;" id="cartboxs">
-		<p class="good_cart">0</p>
-			<span class="fixeBoxSpan"></span> <strong>购物车</strong>
-			<div class="cartBox">
-       		<div class="bjfff"></div><div class="message">购物车内暂无商品，赶紧选购吧</div>    </div></li>
-    <li class="fixeBoxLi Service "> <span class="fixeBoxSpan"></span> <strong>客服</strong>
-      <div class="ServiceBox">
-        <div class="bjfffs"></div>
-        <dl onclick="javascript:;">
-		    <dt><img src="public/images/Service1.png"></dt>
-		       <dd><strong>QQ客服1</strong>
-		          <p class="p1">9:00-22:00</p>
-		           <p class="p2"><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=123456&amp;site=DGG三端同步&amp;menu=yes">点击交谈</a></p>
-		          </dd>
-		        </dl>
-				<dl onclick="javascript:;">
-		          <dt><img src="public/images/Service1.png"></dt>
-		          <dd> <strong>QQ客服1</strong>
-		            <p class="p1">9:00-22:00</p>
-		            <p class="p2"><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=123456&amp;site=DGG三端同步&amp;menu=yes">点击交谈</a></p>
-		          </dd>
-		        </dl>
-	          </div>
-     </li>
-	 <li class="fixeBoxLi code cart_bd " style="display:block;" id="cartboxs">
-			<span class="fixeBoxSpan"></span> <strong>微信</strong>
-			<div class="cartBox">
-       		<div class="bjfff"></div>
-			<div class="QR_code">
-			 <p><img src="public/images/erweim.jpg" width="150px" height="150px" style=" margin-top:10px;" /></p>
-			 <p>微信扫一扫，关注我们</p>
-			</div>		
-			</div>
-			</li>
-
-    <li class="fixeBoxLi Home"> <a href="./"> <span class="fixeBoxSpan"></span> <strong>收藏</strong> </a> </li>
-    <li class="fixeBoxLi BackToTop"> <span class="fixeBoxSpan"></span> <strong>返回顶部</strong> </li>
-  </ul>
-</div>
+<!--<div class="fixedBox">-->
+<!--  <ul class="fixedBoxList">-->
+<!--      <li class="fixeBoxLi user"><a href="#"> <span class="fixeBoxSpan"></span> <strong>用户</strong></a> </li>-->
+<!--    <li class="fixeBoxLi cart_bd" style="display:block;" id="cartboxs">-->
+<!--		<p class="good_cart">0</p>-->
+<!--			<span class="fixeBoxSpan"></span> <strong>购物车</strong>-->
+<!--			<div class="cartBox">-->
+<!--       		<div class="bjfff"></div><div class="message">购物车内暂无商品，赶紧选购吧</div>    </div></li>-->
+<!--    <li class="fixeBoxLi Service "> <span class="fixeBoxSpan"></span> <strong>客服</strong>-->
+<!--      <div class="ServiceBox">-->
+<!--        <div class="bjfffs"></div>-->
+<!--        <dl onclick="javascript:;">-->
+<!--		    <dt><img src="public/images/Service1.png"></dt>-->
+<!--		       <dd><strong>QQ客服1</strong>-->
+<!--		          <p class="p1">9:00-22:00</p>-->
+<!--		           <p class="p2"><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=123456&amp;site=DGG三端同步&amp;menu=yes">点击交谈</a></p>-->
+<!--		          </dd>-->
+<!--		        </dl>-->
+<!--				<dl onclick="javascript:;">-->
+<!--		          <dt><img src="public/images/Service1.png"></dt>-->
+<!--		          <dd> <strong>QQ客服1</strong>-->
+<!--		            <p class="p1">9:00-22:00</p>-->
+<!--		            <p class="p2"><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=123456&amp;site=DGG三端同步&amp;menu=yes">点击交谈</a></p>-->
+<!--		          </dd>-->
+<!--		        </dl>-->
+<!--	          </div>-->
+<!--     </li>-->
+<!--	 <li class="fixeBoxLi code cart_bd " style="display:block;" id="cartboxs">-->
+<!--			<span class="fixeBoxSpan"></span> <strong>微信</strong>-->
+<!--			<div class="cartBox">-->
+<!--       		<div class="bjfff"></div>-->
+<!--			<div class="QR_code">-->
+<!--			 <p><img src="public/images/erweim.jpg" width="150px" height="150px" style=" margin-top:10px;" /></p>-->
+<!--			 <p>微信扫一扫，关注我们</p>-->
+<!--			</div>		-->
+<!--			</div>-->
+<!--			</li>-->
+<!---->
+<!--    <li class="fixeBoxLi Home"> <a href="./"> <span class="fixeBoxSpan"></span> <strong>收藏</strong> </a> </li>-->
+<!--    <li class="fixeBoxLi BackToTop"> <span class="fixeBoxSpan"></span> <strong>返回顶部</strong> </li>-->
+<!--  </ul>-->
+<!--</div>-->
 </body>
 </html>
 <script>
@@ -417,3 +437,44 @@
 			b3.transform();
 
 		</script>
+<script>
+    $(function(){
+        c_list('country','city')
+
+    })
+    function c_list(c_city,n_city){
+        var p_id=(c_city=='country')?1:$('#'+c_city).val();
+        // alert(p_id)
+        $.ajax({
+            type:'get',
+            url:'index.php?r=uaddress/city_list',
+            data:'p_id='+p_id,
+            success:function(data){
+                //alert(data)
+                var list=eval("("+data+")")
+                //alert(list);
+                //console.log(list)
+                var str="<option value=''>请选择</option>"
+                for(i in list){
+                    str+="<option value='"+list[i].region_id+"'>"+list[i].region_name+"</option>"
+                }
+                $("#"+n_city).html(str)
+            }
+        })
+
+    }
+//    function hit(){
+//        var id=$('#address_list').val();
+//        //alert(id)
+//        $.ajax({
+//            type:'get',
+//            url:'index.php?r=uaddress/index',
+//            data:'id='+id,
+//            success:function(msg){
+//                $('#list1').html(msg)
+//
+//
+//            }
+//        })
+//    }
+</script>
