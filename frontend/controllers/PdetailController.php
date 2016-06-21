@@ -38,8 +38,8 @@ class PdetailController extends \yii\web\Controller
     {
 
     	$request = Yii::$app->request;
-        $goods_id = $request->get('goods_id',1);  
-    	$sku_id = $request->get('sku_id',1);  
+        $goods_id = $request->get('goods_id');  
+    	$sku_id = $request->get('sku_id');  
         $sku_sc = $request->get('sku_sc');  
     	$connection = Yii::$app->db;
     	$command = $connection->createCommand("SELECT * FROM sku WHERE sku_id='$sku_id' and goods_id='$goods_id'");
