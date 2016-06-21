@@ -42,9 +42,9 @@ class PdetailController extends \yii\web\Controller
     	$sku_id = $request->get('sku_id');  
         $sku_sc = $request->get('sku_sc');  
     	$connection = Yii::$app->db;
-    	$command = $connection->createCommand("SELECT * FROM sku WHERE sku_id='$sku_id' and goods_id='$goods_id'");
+    	$command = $connection->createCommand("SELECT * FROM sku WHERE sku_id='$sku_id'");
     	$skuinfo['infos'] = $command->queryAll();
-        $command2 = $connection->createCommand("SELECT * FROM sku WHERE sku_id='$sku_id' and goods_id='$goods_id'");
+        $command2 = $connection->createCommand("SELECT * FROM sku WHERE sku_id='$sku_id'");
         $skuinfo['colors'] = $command2->queryAll();
         //单品库存
         $command3 = $connection->createCommand("SELECT * FROM sku WHERE sku_id='$sku_id'");
