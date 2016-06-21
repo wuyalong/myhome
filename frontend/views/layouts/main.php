@@ -3,9 +3,11 @@
         <div class="Collection"><em></em><a href="#">收藏我们</a></div>
         <div class="hd_top_manu clearfix">
             <ul class="clearfix">
-                <li class="hd_menu_tit zhuce" data-addclass="hd_menu_hover">欢迎光临本店！<a href="#" class="red">[请登录]</a> 新用户<a href="#" class="red">[免费注册]</a></li>
-                <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">我的订单</a></li>
-                <li class="hd_menu_tit" data-addclass="hd_menu_hover"> <a href="#">购物车(<b>0</b>)</a> </li>
+                <li class="hd_menu_tit zhuce" data-addclass="hd_menu_hover"><b><?php      $session = Yii::$app->session;
+                    echo  $session->get('name');
+                    ?></b></span>欢迎光临本店！<a href="index.php?r=login/index" class="red">[请登录]</a> 新用户<a href="index.php?r=register/index" class="red">[免费注册]</a></li>
+                <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="index.php?r=orders/index">我的订单</a></li>
+                <li class="hd_menu_tit" data-addclass="hd_menu_hover"> <a href="index.php?r=scart/index">购物车(<b>0</b>)</a> </li>
                 <li class="hd_menu_tit" data-addclass="hd_menu_hover"><a href="#">联系我们</a></li>
                 <li class="hd_menu_tit list_name" data-addclass="hd_menu_hover"><a href="#" class="hd_menu">客户服务</a>
                     <div class="hd_menu_list">
@@ -110,3 +112,50 @@
         <a href="#" class="return_img"></a>
     </div>
 </div>
+<div class="fixedBox">-->
+      <ul class="fixedBoxList">
+          <li class="fixeBoxLi user">
+
+    <input type="hidden" value="<?php $session = Yii::$app->session;echo $session->get('id')?>" id="u_id">
+                  <a href="javascript:ucenter()" > <span class="fixeBoxSpan"></span> <strong>用户</strong></a>
+
+               </li>
+        <li class="fixeBoxLi cart_bd" style="display:block;" id="cartboxs">
+    		<p class="good_cart">0</p>
+    			<span class="fixeBoxSpan"></span> <strong>购物车</strong>
+    			<div class="cartBox">
+           		<div class="bjfff"></div><div class="message">购物车内暂无商品，赶紧选购吧</div>    </div></li>
+        <li class="fixeBoxLi Service "> <span class="fixeBoxSpan"></span> <strong>客服</strong>
+          <div class="ServiceBox">
+            <div class="bjfffs"></div>
+            <dl onclick="javascript:;">
+    		    <dt><img src="public/images/Service1.png"></dt>
+    		       <dd><strong>QQ客服1</strong>
+    		          <p class="p1">9:00-22:00</p>
+    		           <p class="p2"><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=123456&amp;site=DGG三端同步&amp;menu=yes">点击交谈</a></p>
+    		          </dd>
+    		        </dl>
+    				<dl onclick="javascript:;">
+    		          <dt><img src="public/images/Service1.png"></dt>
+    		          <dd> <strong>QQ客服1</strong>
+    		            <p class="p1">9:00-22:00</p>
+    		            <p class="p2"><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=123456&amp;site=DGG三端同步&amp;menu=yes">点击交谈</a></p>
+    		          </dd>
+    		        </dl>
+    	          </div>
+         </li>
+    	 <li class="fixeBoxLi code cart_bd " style="display:block;" id="cartboxs">
+    			<span class="fixeBoxSpan"></span> <strong>微信</strong>
+    			<div class="cartBox">
+           		<div class="bjfff"></div>
+    			<div class="QR_code">
+    			 <p><img src="public/images/erweim.jpg" width="150px" height="150px" style=" margin-top:10px;" /></p>
+    			 <p>微信扫一扫，关注我们</p>
+    			</div>
+    			</div>
+    			</li>
+
+        <li class="fixeBoxLi Home"> <a href="javascript:collect()> <span class="fixeBoxSpan"></span> <strong>收藏</strong> </a> </li>
+        <li class="fixeBoxLi BackToTop"> <span class="fixeBoxSpan"></span> <strong>返回顶部</strong> </li>
+      </ul>
+    </div>

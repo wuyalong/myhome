@@ -31,40 +31,44 @@
        </div>
        <div class="bd">
         <ul>
-         <form id="form1" name="form1" method="post" action=""> 
-	   <div class="form clearfix">	
-        <div class="item"><label class="rgister-label">手&nbsp;&nbsp;机&nbsp;&nbsp;号：</label><input name="" type="text"  class="text" /></div>
-        <div class="item"><label class="rgister-label" >验&nbsp;&nbsp;证&nbsp;&nbsp;码：</label><input name="" type="text"  class="text" /><a class="phone_verification">获取验证码</a></div> 
+         <form id="form1" name="form1" method="post" action="">
+	   <div class="form clearfix">
+        <div class="item"><label class="rgister-label">手&nbsp;&nbsp;机&nbsp;&nbsp;号：</label><input name="phone" id="phone" type="text"  class="text" /></div>
+        <div class="item">
+            <li><label class="rgister-label" >验&nbsp;&nbsp;证&nbsp;&nbsp;码：</label><input name="" type="text"  class="text" /><input style="height: 30px;width: 130px;margin-left:5px" id="bun" href="javascript:" onclick="mes_es(this)"  value="验证码" type="button">
+
+        </div>
         <div class="item-ifo">
                     <input type="checkbox" class="checkbox left" checked="checked" id="readme" onclick="agreeonProtocol();">
                     <label for="protocol" class="left">我已阅读并同意<a href="#" class="blue" id="protocol">《福际商城用户注册协议》</a></label>
                 </div>
        </div>
        <div class="rgister-btn">
-	  <a href="javascript:;" class="btn_rgister">注&nbsp;&nbsp;&nbsp;&nbsp;册</a>
+	  <a href="javascript:;"  class="btn_rgister">注&nbsp;&nbsp;&nbsp;&nbsp;册</a>
 	  </div>
-	  <div class="Note"><span class="login_link">已是会员<a href="login.html">请登录</a></span></div>	  
+	  <div class="Note"><span class="login_link">已是会员<a href="login.html">请登录</a></span></div>
        </form>
         </ul>
         <ul>
-            <form id="form1" name="form1" method="post" action=""> 
-	   <div class="form clearfix">	
-	    <div class="item"><label class="rgister-label">用&nbsp;&nbsp;户&nbsp;&nbsp;名：</label><input name="" type="text"  class="text" /><b>*</b></div>
-		<div class="item"><label class="rgister-label" >密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</label><input name="" type="password"  class="text" p/><b>*</b></div> 
-	    <div class="Password_qd"><ul><li class="r">弱</li><li class="z">中</li><li class="q">强</li></ul></div>
-		<div class="item"><label class="rgister-label " >确认密码：</label><input name="" type="password"  class="text" /><b>*</b></div>
-	    <div class="item"><label class="rgister-label" >电子邮箱：</label><input name="" type="text"  class="text" /><b>*</b></div> 
-	 
-	    <div class="item "><label  class="rgister-label ">验&nbsp;证&nbsp;码：</label><input name="" type="text"  class="Recommend_text" /></div>
+            <form id="form1" name="form1" method="post" action="">
+	   <div class="form clearfix">
+	    <div class="item"><label class="rgister-label">用&nbsp;&nbsp;户&nbsp;&nbsp;名：</label><input  id='name' name="name" type="text"  class="text" /><b>*</b></div>
+           <div class="item"><label class="rgister-label" >昵&nbsp;&nbsp;&nbsp;称：</label><input id="nickname" type="text" id="email"  class="text" /><b>*</b></div>
+		<div class="item"><label class="rgister-label" >密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</label><input id='pwd' name="pwd" type="password"  class="text" p/><b>*</b></div>
+	    <!--<div class="Password_qd"><ul><li class="r">弱</li><li class="z">中</li><li class="q">强</li></ul></div>-->
+		<div class="item"><label class="rgister-label " >确认密码：</label><input name="" type="password" id="qpwd"  class="text" /><b>*</b></div>
+	    <div class="item"><label class="rgister-label" >电子邮箱：</label><input name="" type="text" id="email"  class="text" /><b>*</b></div>
+
+
 		<div class="item-ifo">
                     <input type="checkbox" class="checkbox left" checked="checked" id="readme" onclick="agreeonProtocol();">
                     <label for="protocol" class="left">我已阅读并同意<a href="#" class="blue" id="protocol">《福际商城用户注册协议》</a></label>
                 </div>
-	  </div>	
-	  <div class="rgister-btn">
-	  <a href="javascript:;" class="btn_rgister">注&nbsp;&nbsp;&nbsp;&nbsp;册</a>
 	  </div>
-	  <div class="Note"><span class="login_link">已是会员<a href="login.html">请登录</a></span></div>	  
+	  <div class="rgister-btn">
+	  <a href="javascript:;" onclick="hit()" class="btn_rgister">注&nbsp;&nbsp;&nbsp;&nbsp;册</a>
+	  </div>
+	  <div class="Note"><span class="login_link">已是会员<a href="login.html">请登录</a></span></div>
 	  </form>
         </ul>
        </div>
@@ -80,3 +84,79 @@
    </div>
 </body>
 </html>
+<script>
+    var wait = 60;
+    function mes_es(btn){
+        //alert(btn); //[object HTMLInputElement]
+        //alert(btn.id); //myinput
+        //alert(btn.value); //javascript中onclick中的this
+
+        var phone=$('#phone').val();
+        //alert(phone);
+        var partent=/^\d{10,13}$/;
+        if (!partent.test(phone)) {
+            alert('手机号码格式不正确，请确认后在输入');
+            return;
+        };
+        btn.removeAttribute("disabled");
+        if (wait == 60) {
+            $.ajax({
+                post:'get',
+                url:'index.php?r=register/code',
+                data:'phone='+phone,
+                success:function(msg){
+                    alert(msg)
+
+                }
+
+            })
+
+
+        }
+
+        if (wait == 0) {
+            btn.removeAttribute("disabled");
+            btn.value = "免费获取验证码";
+            wait = 60;
+
+        } else {
+            btn.setAttribute("disabled", true);
+            btn.value = wait + "秒后重新获取验证码";
+            wait--;
+            setTimeout(function () {
+                mes_es(btn);
+            }, 1000)
+
+        }
+    }
+    function hit(){
+        var name=$('#name').val();
+        //alert(name);
+        var pwd=$('#pwd').val();
+       // alert(pwd);
+        var rpwd=$('#qpwd').val();
+        //alert(rpwd)
+        var email=$('#email').val();
+        //alert(email)
+        var nickname=$('#nickname').val();
+        //alert(nickname);
+
+        $.ajax({
+            post:'get',
+            url:'index.php?r=register/zhuce',
+            data:'name='+name+'&pwd='+pwd+'&rpwd='+pwd+'&email='+email+'&&nickname='+nickname,
+            success:function(msg){
+                if(msg==1){
+                    alert('注册成功');
+                    location.href="index.php?r=login/index";
+                }
+
+            }
+
+        })
+
+
+
+
+    }
+</script>

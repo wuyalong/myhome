@@ -4,6 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="public/css/css.css" rel="stylesheet" type="text/css" />
 <link href="public/css/common.css" rel="stylesheet" tyle="text/css" />
+ <link href="public/css/lanrenzhijia.css" type="text/css" rel="stylesheet" />
 <script src="public/js/jquery.min.1.8.2.js" type="text/javascript"></script>
 <script src="public/js/jquery.SuperSlide.2.1.1.js" type="text/javascript"></script>
 <script src="public/js/common_js.js" type="text/javascript"></script>
@@ -12,6 +13,7 @@
 </head>
 
 <body>
+
 <!--顶部样式-->
 <!--<div id="top">-->
 <!--  <div class="top">-->
@@ -46,7 +48,11 @@
   </div>
   <div class="Search">
     <p><input name="" type="text"  class="text"/><input name="" type="submit" value=""  class="Search_btn"/></p>
-	<p class="Words"><a href="#">苹果</a><a href="#">香蕉</a><a href="#">菠萝</a><a href="#">西红柿</a><a href="#">橙子</a><a href="#">苹果</a></p>
+	<p class="Words">
+        <?php foreach($sorts as $v){?>
+        <a href="index.php?r=plist/index&id=<?php echo $v['sort_id']?>"><?php echo $v['sort_name']?></a>
+    <?php }?>
+    </p>
 </div>
 </div>
 <!--菜单栏样式-->
@@ -57,43 +63,43 @@
     <div class="Category"><a href="#" class="Menu_img"><em></em></a></div>
     <div class="hd_allsort_out_box_new">
 	 <!--左侧栏目开始-->
-	 <div class="Menu_list">	
-	    <div class="menu_title">茶叶品种</div>
-        <a href="Product_List.html">贡茗茶</a>
-        <a href="Product_List.html">冠茗茶</a>
-        <a href="Product_List.html">佳茗茶</a>
-        <a href="Product_List.html">珍茗茶</a>
-        <a href="Product_List.html">绿茶</a>
-        <a href="Product_List.html">毛尖茶</a>
-	</div>	
-    <div class="Menu_list">	
-	    <div class="menu_title">茶叶价格</div>
-        <a href="#">100以下</a><a href="#">100-200</a><a href="#">200-400</a><a href="#">400-600</a><a href="#">600-900</a><a href="#">1000以上</a>
-	</div>	
-     <div class="Menu_list">	
-	    <div class="menu_title">推荐茶叶</div>
-        <ul class="recommend">
-         <li><a href="#" title="[2015年新茶]巴山雀舌毛尖茶新茶，含硒">[2015年新茶]巴山雀舌...</a></li>
-         <li><a href="#" title="[2015年新茶]巴山雀舌毛尖茶新茶，含硒">[2015年新茶]巴山雀舌...</a></li>
-         <li><a href="#" title="[2015年新茶]巴山雀舌毛尖茶新茶，含硒">[2015年新茶]巴山雀舌...</a></li>
-         <li><a href="#" title="[2015年新茶]巴山雀舌毛尖茶新茶，含硒">[2015年新茶]巴山雀舌...</a></li>
-         <li><a href="#" title="[2015年新茶]巴山雀舌毛尖茶新茶，含硒">[2015年新茶]巴山雀舌...</a></li>
-        </ul>
-	</div>	
-	</div>		
+
+        <div class="left_nav">
+            <dl>
+       <?php foreach($data as $v){?>
+                <dd><a href="" class="nav_left"><?php echo $v['t_name']?></a>
+
+                    <div class="nav_right">
+                        <?php foreach($v['son'] as $type1){?>
+                        <a href="javascript:"><?php echo $type1['t_name']?></a>
+                        <?php }?>
+<!--                        <div class="nav_right">-->
+<!--                           --><?php // if(array_key_exists('son', $type1)){?>
+<!--                            --><?php //foreach($type1['son'] as $val){?>
+<!--                                <a href="javascript:">--><?php //echo $val['t_name']?><!--</a>-->
+<!--                            --><?php //}?>
+<!--                            --><?php //}?>
+<!--                        </div>-->
+                    </div>
+
+                </dd>
+               <?php }?>
+
+            </dl>
+        </div>
+
+
+	</div>
 	</div>
 	<!--菜单栏-->
 	<div class="Navigation" id="Navigation">
 		 <ul class="Navigation_name">
-			<li><a class="nav_on" id="mynav1"  href="index.html"><span>首页</span></a></li>
-			<li><a class="nav_on" id="mynav2"  href="Product_List.html"><span>家具城</span></a></li>
-			<li><a class="nav_on" id="mynav3"  href="#"><span>建材城</span></a></li>
-			<li><a class="nav_on" id="mynav4"  href="#"><span>家居家饰</span></a></li>
-			<li><a class="nav_on" id="mynav5"  href="#"><span>布艺织物</span></a></li>
-			<li><a class="nav_on" id="mynav6"  href="#"><span>家居饰品</span></a></li>
-			<li><a class="nav_on" id="mynav7"  href="#"><span>灯饰照明</span></a></li>
-			<li><a class="nav_on" id="mynav8"  href="Group_buy.htm"><span>促销中心</span></a></li>
-			<li><a class="nav_on" id="mynav8"  href="#"><span>联系我们</span></a></li>
+             <li><a class="nav_on" id="mynav1"  href="index.php?r=index/index"><span>首页</span></a></li>
+
+             <?php foreach($sort as $v){?>
+			<li><a class="nav_on" id="mynav1"  href="index.php?r=plist/index&id=<?php echo $v['sort_id']?>"><span><?php echo $v['sort_name']?></span></a></li>
+
+			<?php }?>
 		 </ul>			 
 		</div>
 	<script>$("#Navigation").slide({titCell:".Navigation_name li"});</script>
@@ -132,9 +138,9 @@
 			</div>
 			<div class="bd">
 				<ul>
-					<li><a href="#" target="_blank"><img src="public/images/ad-1.jpg" /></a></li>
-			        <li><a href="#" target="_blank"><img src="public/images/luobo1.jpg" /></a></li>
-                    <li><a href="#" target="_blank"><img src="public/images/luobo2.jpg" /></a></li>
+					<li><a href="" target="_blank"><img src="public/images/ad-1.jpg" /></a></li>
+			        <li><a href="" target="_blank"><img src="public/images/luobo1.jpg" /></a></li>
+                    <li><a href="" target="_blank"><img src="public/images/luobo2.jpg" /></a></li>
 				</ul>
 			</div>
 			<a class="prev" href="javascript:void(0)"></a>
@@ -158,8 +164,8 @@
                  <?php foreach($goods_hot as $v){?>
              <li class="s_Products">
               <div class="Products_list_name">
-					   <div class="img center"><a href="index.php?r=pdetail/index"><img src="public/images/<?php echo $v['goods_img'] ?>" /></a></div>
-					   <div class="title_name"><a href="index.php?r=pdetail/index"><?php echo $v['goods_name']?></a></div>
+					   <div class="img center"><a href="index.php?r=pdetail/index&goods_id=<?php echo $v['goods_id']?>" onclick="look(<?php echo $v['goods_id']?>)"><img src="public/images/<?php echo $v['goods_img'] ?>" /></a></div>
+					   <div class="title_name"><a href="javascript:;"><?php echo $v['goods_name']?></a></div>
 					   <div class="s_Price clearfix">
                        <span class="Current_price">商城价<em>￥<?php echo $v['goods_price']?></em></span>
                        <span class="Original_Price">原价&nbsp;<em><?php echo $v['goods_marketprice']?></em></span>
@@ -351,15 +357,15 @@
          </div>
          <div class="Area_list clearfix">
           <div class="Area_ad">
-            <a href="#"><img src="public/images/bbed1.jpg" /></a>
-            <a href="#"><img src="public/images/bbed2.jpg" /></a>
+            <a href="index.php?r=pdetail/index.php&goods_id=4"><img src="public/images/bbed1.jpg" /></a>
+            <a href="index.php?r=pdetail/index.php&goods_id=5"><img src="public/images/bbed2.jpg" /></a>
           </div>
           <div class="Area_p_list">
           <ul>
           <?php foreach($goods_lamp as $v){?>
            <li class="s_Products">
             <div class="Area_product_c">
-              <div class="img center"><a href="index.php?r=pdetail/index"><img src="public/images/<?php echo $v['goods_img'] ?>" /></a></div>
+              <div class="img center"><a href="index.php?r=pdetail/index&goods_id=<?php echo $v['goods_id']?>" onclick="look(<?php echo $v['goods_id']?>)"><img src="public/images/<?php echo $v['goods_img'] ?>" /></a></div>
 					   <div class="title_name"><a href="index.php?r=pdetail/index"><?php echo $v['goods_name']?></a></div>
 					   <div class="s_Price clearfix">
                        <span class="Current_price">商城价<em>￥<?php echo $v['goods_price']?></em></span>
@@ -454,15 +460,15 @@
          </div>
          <div class="Area_list clearfix">
           <div class="Area_ad">
-            <a href="#"><img src="public/images/sbed1.jpg" /></a>
-            <a href="#"><img src="public/images/sbed4.jpg" /></a>
+            <a href="index.php?r=pdetail/index.php&goods_id=4"><img src="public/images/sbed1.jpg" /></a>
+            <a href="index.php?r=pdetail/index.php&goods_id=4"><img src="public/images/sbed4.jpg" /></a>
           </div>
           <div class="Area_p_list">
           <ul>
               <?php foreach($goods_bed as $v){?>
            <li class="s_Products">
             <div class="Area_product_c">
-              <div class="img center"><a href="#"><img src="public/images/<?php echo $v['goods_img']?>" /></a></div>
+              <div class="img center"><a href="index.php?r=pdetail/index&goods_id=<?php echo $v['goods_id']?>" onclick="look(<?php echo $v['goods_id']?>)"><img src="public/images/<?php echo $v['goods_img']?>" /></a></div>
 					   <div class="title_name"><a href="#"><?php echo $v['goods_name']?></a></div>
 					   <div class="s_Price clearfix">
                        <span class="Current_price">商城价<em>￥<?php echo $v['goods_price']?></em></span>
@@ -556,15 +562,15 @@
          </div>
          <div class="Area_list clearfix">
           <div class="Area_ad">
-            <a href="#"><img src="public/images/tao2.jpg" /></a>
-            <a href="#"><img src="public/images/tao4.jpg" /></a>
+            <a href="index.php?r=pdetail/index.php&goods_id=4"><img src="public/images/tao2.jpg" /></a>
+            <a href="index.php?r=pdetail/index.php&goods_id=4"><img src="public/images/tao4.jpg" /></a>
           </div>
           <div class="Area_p_list">
           <ul>
               <?php foreach($goods_all as $v){?>
            <li class="s_Products">
             <div class="Area_product_c">
-              <div class="img center"><a href="#"><img src="public/images/<?php echo $v['goods_img']?>" /></a></div>
+              <div class="img center"><a href="index.php?r=pdetail/index&goods_id=<?php echo $v['goods_id']?>" onclick="look(<?php echo $v['goods_id']?>)"><img src="public/images/<?php echo $v['goods_img']?>" /></a></div>
 					   <div class="title_name"><a href="#"><?php echo $v['goods_name']?></a></div>
 					   <div class="s_Price clearfix">
                        <span class="Current_price">商城价<em>￥<?php echo $v['goods_price']?></em></span>
@@ -788,47 +794,93 @@
 <!-- </div>-->
 <!--</div>-->
  <!--右侧菜单栏购物车样式-->
-<div class="fixedBox">
-  <ul class="fixedBoxList">
-      <li class="fixeBoxLi user"><a href="#"> <span class="fixeBoxSpan"></span> <strong>用户</strong></a> </li>
-    <li class="fixeBoxLi cart_bd" style="display:block;" id="cartboxs">
-		<p class="good_cart">0</p>
-			<span class="fixeBoxSpan"></span> <strong>购物车</strong>
-			<div class="cartBox">
-       		<div class="bjfff"></div><div class="message">购物车内暂无商品，赶紧选购吧</div>    </div></li>
-    <li class="fixeBoxLi Service "> <span class="fixeBoxSpan"></span> <strong>客服</strong>
-      <div class="ServiceBox">
-        <div class="bjfffs"></div>
-        <dl onclick="javascript:;">
-		    <dt><img src="public/images/Service1.png"></dt>
-		       <dd><strong>QQ客服1</strong>
-		          <p class="p1">9:00-22:00</p>
-		           <p class="p2"><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=123456&amp;site=DGG三端同步&amp;menu=yes">点击交谈</a></p>
-		          </dd>
-		        </dl>
-				<dl onclick="javascript:;">
-		          <dt><img src="public/images/Service1.png"></dt>
-		          <dd> <strong>QQ客服1</strong>
-		            <p class="p1">9:00-22:00</p>
-		            <p class="p2"><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=123456&amp;site=DGG三端同步&amp;menu=yes">点击交谈</a></p>
-		          </dd>
-		        </dl>
-	          </div>
-     </li>
-	 <li class="fixeBoxLi code cart_bd " style="display:block;" id="cartboxs">
-			<span class="fixeBoxSpan"></span> <strong>微信</strong>
-			<div class="cartBox">
-       		<div class="bjfff"></div>
-			<div class="QR_code">
-			 <p><img src="public/images/erweim.jpg" width="150px" height="150px" style=" margin-top:10px;" /></p>
-			 <p>微信扫一扫，关注我们</p>
-			</div>		
-			</div>
-			</li>
-
-    <li class="fixeBoxLi Home"> <a href="./"> <span class="fixeBoxSpan"></span> <strong>收藏</strong> </a> </li>
-    <li class="fixeBoxLi BackToTop"> <span class="fixeBoxSpan"></span> <strong>返回顶部</strong> </li>
-  </ul>
-</div>
+<!--<div class="fixedBox">-->
+<!--  <ul class="fixedBoxList">-->
+<!--      <li class="fixeBoxLi user">-->
+<!---->
+<!--<input type="hidden" value="--><?php //$session = Yii::$app->session;echo $session->get('id')?><!--" id="u_id">-->
+<!--              <a href="javascript:ucenter()" > <span class="fixeBoxSpan"></span> <strong>用户</strong></a>-->
+<!---->
+<!--           </li>-->
+<!--    <li class="fixeBoxLi cart_bd" style="display:block;" id="cartboxs">-->
+<!--		<p class="good_cart">0</p>-->
+<!--			<span class="fixeBoxSpan"></span> <strong>购物车</strong>-->
+<!--			<div class="cartBox">-->
+<!--       		<div class="bjfff"></div><div class="message">购物车内暂无商品，赶紧选购吧</div>    </div></li>-->
+<!--    <li class="fixeBoxLi Service "> <span class="fixeBoxSpan"></span> <strong>客服</strong>-->
+<!--      <div class="ServiceBox">-->
+<!--        <div class="bjfffs"></div>-->
+<!--        <dl onclick="javascript:;">-->
+<!--		    <dt><img src="public/images/Service1.png"></dt>-->
+<!--		       <dd><strong>QQ客服1</strong>-->
+<!--		          <p class="p1">9:00-22:00</p>-->
+<!--		           <p class="p2"><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=123456&amp;site=DGG三端同步&amp;menu=yes">点击交谈</a></p>-->
+<!--		          </dd>-->
+<!--		        </dl>-->
+<!--				<dl onclick="javascript:;">-->
+<!--		          <dt><img src="public/images/Service1.png"></dt>-->
+<!--		          <dd> <strong>QQ客服1</strong>-->
+<!--		            <p class="p1">9:00-22:00</p>-->
+<!--		            <p class="p2"><a href="http://wpa.qq.com/msgrd?v=3&amp;uin=123456&amp;site=DGG三端同步&amp;menu=yes">点击交谈</a></p>-->
+<!--		          </dd>-->
+<!--		        </dl>-->
+<!--	          </div>-->
+<!--     </li>-->
+<!--	 <li class="fixeBoxLi code cart_bd " style="display:block;" id="cartboxs">-->
+<!--			<span class="fixeBoxSpan"></span> <strong>微信</strong>-->
+<!--			<div class="cartBox">-->
+<!--       		<div class="bjfff"></div>-->
+<!--			<div class="QR_code">-->
+<!--			 <p><img src="public/images/erweim.jpg" width="150px" height="150px" style=" margin-top:10px;" /></p>-->
+<!--			 <p>微信扫一扫，关注我们</p>-->
+<!--			</div>		-->
+<!--			</div>-->
+<!--			</li>-->
+<!---->
+<!--    <li class="fixeBoxLi Home"> <a href="./"> <span class="fixeBoxSpan"></span> <strong>收藏</strong> </a> </li>-->
+<!--    <li class="fixeBoxLi BackToTop"> <span class="fixeBoxSpan"></span> <strong>返回顶部</strong> </li>-->
+<!--  </ul>-->
+<!--</div>-->
 </body>
 </html>
+<script>
+    $(function (){
+        $(".left_nav dd").hover(function(){
+            $(".nav_right",this).show();
+        });
+        $(".left_nav dd").mouseleave(function(){
+            $(".nav_right",this).hide();
+        });
+    });
+    function ucenter(){
+        var id=$('#u_id').val();
+       if(id==''){
+           alert('请先登录');
+           location.href="index.php?r=login/index";
+       }else{
+           location.href="index.php?r=ucenter/index";
+       }
+
+    }
+    function collect(){
+        var id=$('#u_id').val();
+        if(id==''){
+            alert('请先登录');
+            location.href="index.php?r=login/index";
+        }else{
+            location.href="index.php?r=ucenter/index";
+        }
+
+    }
+    function look(id){
+        $.ajax({
+            type:'get',
+            url:'index.php?r=index/old_sel',
+            data:'id='+id,
+            success:function(msg){
+                //alert(msg)
+            }
+        })
+
+    }
+</script>
