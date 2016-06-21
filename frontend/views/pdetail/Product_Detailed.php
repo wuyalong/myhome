@@ -15,7 +15,6 @@
 <![endif]-->
 <title>产品名称详细介绍购买</title>
 </head>
-
 <body>
 <!--顶部样式-->
 <div id="top">
@@ -131,25 +130,32 @@
   <div class="mod_picfold clearfix">
     <div class="clearfix" id="detail_main_img">
 	 <div class="layout_wrap preview">
+	 <!--商品大图-->
+	 <?php foreach($goodsdetail2 as $k=>$v){?>
      <div id="vertical" class="bigImg">
-		<img src="public/mid/01.jpg" width="" height="" alt="" id="midimg" />
+     	<p id='big1'>
+     	<?php if(isset($v['goods_img'])){?>
+     		<img src="public/images/<?php echo $v['goods_img'];?>" width="" height="" alt="" id="midimg" />
+     	<?php }?>
+     	<?php if(isset($v['sku_img'])){?>
+     		<img src="public/images/<?php echo $v['sku_img'];?>" width="" height="" alt="" id="midimg" />
+     	<?php }?>
+		</p>
 		<div style="display:none;" id="winSelector"></div>
 	</div>
+	<?php }?>
+	<!-- sku单品图片 -->
      <div class="smallImg">
 		<div class="scrollbutton smallImgUp disabled">&lt;</div>
 		<div id="imageMenu">
-			<ul>
-				<li><img src="public/small/01.jpg" width="68" height="68" alt="洋妞"/></li>
-				<li><img src="public/small/02.jpg" width="68" height="68" alt="洋妞"/></li>
-				<li><img src="public/small/03.jpg" width="68" height="68" alt="洋妞"/></li>
-				<li><img src="public/small/04.jpg" width="68" height="68" alt="洋妞"/></li>
-				<li><img src="public/small/05.jpg" width="68" height="68" alt="洋妞"/></li>
-				<li><img src="public/small/06.jpg" width="68" height="68" alt="洋妞"/></li>
-                <li><img src="public/small/07.jpg" width="68" height="68" alt="洋妞"/></li>
+			<ul>			
+			 <?php foreach($goodsdetail as $k=>$v){?>
+				<li><img src="public/images/<?php echo $v['sku_img'];?>" width="68" height="68" alt="洋妞"/></li>
+			 <?php }?>				
 			</ul>
 		</div>
 		<div class="scrollbutton smallImgDown">&gt;</div>
-	</div><!--smallImg end-->	
+	</div><!--smallImg end单品结束-->	
 	<div id="bigView" style="display:none;"><div><img width="800" height="800" alt="" src="" /></div></div>
 	 </div>
   
@@ -164,16 +170,43 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
 	 </div>
    </div> 
    <!--信息样式-->
+    
     <div class="textInfo">
     <form action="javascript:addToCart(97)" name="ECS_FORMBUY" id="ECS_FORMBUY">
-	  <div class="title"><h1>Mixx 炼乳奶酪饼干 600g 马来西亚进口</h1><p>进口饼干糕点 西式糕点 休闲轻松</p></div>
+	 <?php foreach($goods_name as $k=>$v){?>
+	  <div class="title"><h1><?php echo $v['goods_name']?></h1><p>进口家具 休闲轻松</p></div>
 	  <div class="mod_detailInfo_priceSales">
+	  <?php }?>
 	  <div class="margins">
-	  <div class="Price clearfix text_name"><label>价格</label><span class="Prices"><h4>¥10.9</h4> <b>34.00</b></span></div>
-	  <div class="Activity clearfix text_name"><label>重量</label><span class="weight">345克</span></div>
-      <div class="Size clearfix text_name"><label>规格</label><a href="#">袋装</a><a href="#">礼盒装</a><a href="#">铁盒</a></div>
+		  <div class="Price clearfix text_name">
+			  <label>价格</label>			  
+			  <?php foreach($goods_name as $k=>$v){?>
+			  <span class="Prices"><h4>¥</h4><h4 id='yj'><?php echo $v['goods_price']?></h4> <b><?php echo $v['goods_marketprice']?></b></span>
+			  <?php }?>
+		  </div>
+	   <div class="Size clearfix text_name">
+		      <label>尺寸</label>
+		      <div id='ccc'>
+		      <?php foreach($goodsdetail as $k=>$v){?>
+  			  <a id="jg<?php echo $v['sku_id']?>" style="display:none"><?php echo $v['sku_price']?></a>
+		      <a id="cc<?php echo $v['sku_id']?>" href="javascript:chgimg(<?php echo $v['sku_id']?>,'<?php echo $v['sku_size']?>')"><?php echo $v['sku_size']?></a>
+		      <?php }?>
+		      </div>
+	      </div>
+	      <?php //echo $v['sku_id']?>
+	      <div class="Size clearfix text_name">
+		      <label>颜色</label>
+		       <div id='ys'>
+		      <?php foreach($goodsdetail as $k=>$v){?>		    
+		      <a id="yy<?php echo $v['sku_id']?>" href="javascript:chgimg_ys('<?php echo $v['sku_id']?>')"><?php echo $v['sku_color']?></a>
+		      <?php }?>
+		       </div>
+	      </div>
       <div class="Sales_volume">
-       <div class="Sales_info"><h5>销量</h5><b>2345</b></div>
+       <div class="Sales_info">
+       <h5>库存</h5>
+         <b id='kc'><?php echo $goods_counts['counts']?></b>     
+       </div>
       </div>
 	  </div>
 	  <div class="s_Review">
@@ -183,17 +216,22 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
 	 <div class="buyinfo" id="detail_buyinfo">
 		<dl>
         <dt>数量</dt>
-        <dd>
+        <dd>       
 		  <div class="choose-amount left">
-			<a class="btn-reduce" href="javascript:;" onclick="setAmount.reduce('#buy-num')">-</a>
-			<a class="btn-add" href="javascript:;" onclick="setAmount.add('#buy-num')">+</a>
+			<a class="btn-reduce" href="javascript:void(0);" onclick="amount_reduce('')">-</a>
+			<a class="btn-add" href="javascript:void(0);" onclick="amount_add('')">+</a>
 			<input class="text" id="buy-num" value="1" onkeyup="setAmount.modify('#buy-num');">		
 		 </div>
-		 <div class="P_Quantity">剩余：50000件</div>        
+		 <!-- 单品sku库存	 -->
+		 <div class="P_Quantity" id='skc' style="display:none">剩余：<span id='sku_num'>50000</span>件</div>        
         </dd>
 	  <dd>
-	    <div class="wrap_btn"> <a href="javascript:addToCart_bak(92)" class="wrap_btn1" title="加入购物车"></a> 
-		  <a href="javascript:addToCart(92)" class="wrap_btn2" title="立即购买"></a> </div>
+	  <!-- 加入购物车-->
+	  
+	    <div class="wrap_btn"> <a href="javascript:;" class="wrap_btn1" onclick="addToCart_bak()" title="加入购物车"></a> 
+		  <a href="javascript:;" class="wrap_btn2" title="立即购买" onclick="nowbuy()"></a> 
+		</div>
+	  
 		  </dd>
 	  </dl>
 	  </div>
@@ -205,6 +243,8 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
 	  </dd></dl></div>	  
 	</form>
   </div>
+ 
+  <!--  信息样式结束 -->
   </div> 
  </div>
  <!---->
@@ -616,5 +656,131 @@ function submitComment(frm)
     <li class="fixeBoxLi BackToTop"> <span class="fixeBoxSpan"></span> <strong>返回顶部</strong> </li>
   </ul>
 </div>
+<!-- <script src="jquery-1.9.1.min.js"></script> -->
+<script>
+	var size = '';
+	var colors = '';
+	/**
+	 * 根据单品尺寸查询单品的颜色
+	 */
+	function chgimg(sku_id,sku_sc){		
+			$("#ccc a").css('border','none');
+			$("#cc"+sku_id).css('border','2px solid #C30');
+			size = sku_id;
+			//alert(size);				
+		$.ajax({		   
+		   url: "index.php?r=pdetail/skuinfo",
+		   data: "sku_sc="+sku_sc+'&sku_id='+sku_id,
+		   dataType:'json',
+		   success: function(msg){
+		   	//console.log(msg.colors);
+		   		str ='';
+		   		$.each(msg.colors,function(i,item){
+		   			c=item['sku_color'];
+		   			id=item['sku_id'];
+		   			yy='yy';
+		   			str +="<a id='"+yy+id+"' href='javascript:chgimg_ys("+id+")'>"+item['sku_color']+'</a>';
+		   		})
+		   		$("#ys").html(str);
+		   	}
+		   }
+		);
+	}
+
+	/**
+	 * 点击颜色切换图片
+	 */
+	function chgimg_ys(sku_id){
+		$("#ys a").css('border','none');
+		$("#yy"+sku_id).css('border','2px solid #C30');
+		colors = sku_id;
+		//alert(colors);
+
+		$.ajax({		   
+		   url: "index.php?r=pdetail/skuinfo",
+		   data: 'sku_id='+sku_id,
+		   dataType:'json',
+		   success: function(msg){
+		   	//console.log(msg.skunum[0]['sku_num']);
+		   	sku_num=msg.skunum[0]['sku_num'];
+		   	sku_img=msg.infos[0].sku_img;
+		   	sku_price=msg.infos[0].sku_price;
+		   		document.getElementById('midimg').src = "public/images/"+sku_img;
+		   		$("#skc").css('display','block');
+		   		$("#sku_num").html(sku_num);
+		   		yj=$("#yj").html();
+		   		$("#yj").html(parseInt(yj)+parseInt(sku_price));
+		   }
+		})
+	}
+	/**
+	 * 数量加减
+	 */
+	//定义一个全局数量
+	var buy_num=$("#buy-num").val();
+	//数量递减
+	 function amount_reduce(){
+	 	if(buy_num<=1){
+	 		buy_num=1;
+	 		//alert(buy_num);
+	 	}
+	 	else{
+	 		buy_num=parseInt(buy_num)-1;
+	 		$("#buy-num").val(buy_num);
+	 	}
+	 }
+	//数量递增
+	 function amount_add(){
+	 	sku_num=$("#sku_num").html();
+	 	if(buy_num>=sku_num){
+	 		buy_num=sku_num;
+	 	}
+	 	else{
+	 		buy_num=parseInt(buy_num)+1;
+	 		$("#buy-num").val(buy_num);
+	 	}	 	
+	 }
+
+
+	/*
+	 *@加入购物车
+	 */
+	function addToCart_bak(){
+		cart_size=$("#cc"+size).html();
+		cart_color=$('#yy'+size).html();
+		cart_price=$('#jg'+size).html();
+		goods_price=$('#yj').html();
+		now_price=parseInt(goods_price)+parseInt(cart_price);
+		//alert(cart_color);
+		//alert(now_price);
+		//alert(cart_size+cart_color+cart_price+buy_num);
+		if(size==''||colors==''){
+			alert('请勾选您所选商品的所有信息');
+		}
+		else{
+			$.ajax({
+	 			url:"index.php?r=pdetail/addtocart",
+				data:'cart_color='+cart_color+'&cart_size='+cart_size+'&cart_price='+now_price+'&cart_num='+buy_num+'&sku_id='+colors,
+				//dataType:'json',
+				success:function(msg){
+					if(msg=='exist'){
+						alert('您的购物车已经有此商品');
+					}
+					if(msg==1){
+						location.href="index.php?r=scart/index";
+					}					
+		   		}
+	 		})
+			
+		}
+	}
+	/**
+	 * 立即购买
+	 */
+	function nowbuy(){
+		location.href="index.php?r=orders/selorder&checkout="+'checkout'+'&sku_id='+colors;
+	}
+</script>
 </body>
 </html>
+
