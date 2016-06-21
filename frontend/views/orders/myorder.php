@@ -124,223 +124,64 @@
 </div>
 <div id="Orders" class="Inside_pages  clearfix">
   <div class="Orders_style clearfix">
-     <div class="address clearfix">
-       <div class="title">收货人信息</div>
-          <div class="adderss_list clearfix">       
-            <div class="title_name">选择收货地址 <a href="index.php?r=uaddress/index">+添加新的收获地址</a></div>
-             <div class="list" id="select" onclick="address2()">
-          <?php foreach ($address as $k=> $v) {?>          
-            <ul class="">
-            <div class="default">默认地址</div>
-            <div class="adderss_operating">
-             <div class="Operate">
-             <a href="#" class="delete_btn"></a> 
-             <a href="#" class="modify_btn"></a>
-             </div>
-            </div>
-            <div class="user_address">            
-            <li><?php echo $v['address_name']?></li>
-            <li><?php echo $v['address_place']?></li>
-            <li class="Postcode"><?php echo $v['address_num']?></li>      
-            <li><?php echo $v['address_phone']?></li>           
-            </div>
-            </ul>
-          <?php }?>                    
-            </div>
-           </div>
-        <!--收货地址样式-->
-    <!--  <div class="Shipping_address">
-       <ul class="detailed">
-        <li><label>收货人姓名</label><span>张晓</span></li>
-        <li><label>电子邮件</label><span>4567454@qq.com</span></li>
-        <li><label>详细地址</label><span>四川成都武侯区簇景西路20号3栋1单元302号</span></li>
-        <li><label>邮政编码</label><span></span></li>
-        <li><label>移动电话</label><span></span></li> 
-         <li><label>固定电话</label><span></span></li>        
-       </ul>
-
-     </div> -->
-     </div> 
-      <!-- form提交订单   -->
+   
      	<form class="form" method="post">  
 		<fieldset> 
-     <!--快递选择-->
-     <div class="express_delivery">
-       <div class="title_name">选择快递方式</div>
-    
-        <ul class="dowebok">
-	    <li><input type="radio" name="radio" data-labelauty="圆通快递">
-          <div class="description">
-           <em class="arrow"></em>
-           <p>到付价格=现付价格*1.25 ，不足1元按1元收取，到付最低15元起。此价格供参考，详情请咨询圆通当地营业网点</p>
-           <p>资费：15元</p>
-           <p class="Note">满68元包邮</p>
-           <p><a href="#">点击查看是否在配送范围内</a></p>
-          </div>
-        </li>
-	    <li><input type="radio" name="radio" data-labelauty="中通快递">
-         <div class="description">
-           <em class="arrow"></em>
-           <p>到付价格=现付价格*1.25 ，不足1元按1元收取，到付最低15元起。此价格供参考，详情请咨询圆通当地营业网点</p>
-           <p>资费：15元</p>
-           <p class="Note">满68元包邮</p>
-          </div>
-        </li>
-	    <li><input type="radio" name="radio" data-labelauty="申通快递">
-         <div class="description">
-           <em class="arrow"></em>
-           <p>到付价格=现付价格*1.25 ，不足1元按1元收取，到付最低15元起。此价格供参考，详情请咨询圆通当地营业网点</p>
-           <p>资费：15元</p>
-           <p class="Note">满68元包邮</p>
-          </div>
-        </li>
-	    <li><input type="radio" name="radio" data-labelauty="邮政EMS">
-         <div class="description">
-           <em class="arrow"></em>
-           <p>到付价格=现付价格*1.25 ，不足1元按1元收取，到付最低15元起。此价格供参考，详情请咨询圆通当地营业网点</p>
-           <p>资费：15元</p>
-           <p class="Note">满68元包邮</p>
-          </div>
-        </li>
-        <li><input type="radio" name="radio" data-labelauty="城际快递">
-         <div class="description">
-           <em class="arrow"></em>
-           <p>到付价格=现付价格*1.25 ，不足1元按1元收取，到付最低15元起。此价格供参考，详情请咨询圆通当地营业网点</p>
-           <p>资费：同城包邮</p>
    
-          </div>
-        </li>
-        <li><input type="radio" name="radio" data-labelauty="韵达快递">
-         <div class="description">
-           <em class="arrow"></em>
-           <p>到付价格=现付价格*1.25 ，不足1元按1元收取，到付最低15元起。此价格供参考，详情请咨询圆通当地营业网点</p>
-           <p>资费：15元</p>
-           <p class="Note">满68元包邮</p>
-          </div>
-        </li>
-	    <li><input type="radio" name="radio" data-labelauty="国通快递">
-         <div class="description">
-           <em class="arrow"></em>
-           <p>到付价格=现付价格*1.25 ，不足1元按1元收取，到付最低15元起。此价格供参考，详情请咨询圆通当地营业网点</p>
-           <p>资费：15元</p>
-           <p class="Note">满68元包邮</p>
-          </div>
-        </li>
-	    <li><input type="radio" name="radio" data-labelauty="顺丰快递">
-         <div class="description">
-           <em class="arrow"></em>
-           <p>到付价格=现付价格*1.25 ，不足1元按1元收取，到付最低15元起。此价格供参考，详情请咨询圆通当地营业网点</p>
-           <p>资费：15元</p>
-           <p class="Note">满88元包邮</p>
-          </div>
-        </li>
-	    <li><input type="radio" name="radio" data-labelauty="邮政小包">
-         <div class="description">
-           <em class="arrow"></em>
-           <p>到付价格=现付价格*1.25 ，不足1元按1元收取，到付最低15元起。此价格供参考，详情请咨询圆通当地营业网点</p>
-           <p>资费：15元</p>
-           <p class="Note">满68元包邮</p>
-          </div>
-        </li>
-        <li><input type="radio" name="radio" data-labelauty="天天快递">
-         <div class="description">
-           <em class="arrow"></em>
-           <p>到付价格=现付价格*1.25 ，不足1元按1元收取，到付最低15元起。此价格供参考，详情请咨询圆通当地营业网点</p>
-           <p>资费：15元</p>
-           <p class="Note">满68元包邮</p>
-          </div>
-        </li>
-        </ul>            
-     </div>
     
-     <!--付款方式-->
-    <!--  <div class="payment">
-      <div class="title_name">支付方式</div>
-       <ul>
-        <li><input type="radio" name="radio" data-labelauty="余额支付"></li>
-        <li><input type="radio" name="radio" data-labelauty="支付宝"></li>
-        <li><input type="radio" name="radio" data-labelauty="财付通"></li>
-        <li><input type="radio" name="radio" data-labelauty="银联支付"></li>
-         <li><input type="radio" name="radio" data-labelauty="货到付款"></li>
-       </ul>
-     </div> -->
-      <!--发票样式-->
-     <!-- <div class="invoice_style">
-       <ul>
-         <li class="invoice_left"><input name="" type="checkbox" value="" data-labelauty="是否开发票"/> </li>
-         <li class="invoice_left"><select name="somename" class="SlectBox" onclick="console.log($(this).val())" onchange="console.log('change is firing')">
-              <option disabled="disabled" selected="selected">发票类型</option>
-              <option value="办公用品">办公用品</option>
-              <option value="食品">食品</option>
-              <option value="20元红包">20元红包</option>
-              <option value="50元红包">50元红包</option>
-              <option value="100元红包">100元红包</option>
-              <option value="200元红包">200元红包</option>
-            </select>
-         </li>
-         <li class="invoice_left">发票抬头
-         <input name="" type="text" class="text_info" /></li>
-         <li class="invoice_left">
-         <select name="somename" class="SlectBox" onclick="console.log($(this).val())" onchange="console.log('change is firing')">
-              <option disabled="disabled" selected="selected">发票内容</option>
-              <option value="办公用品">办公用品</option>
-              <option value="食品">食品</option>
-              <option value="数码配件">数码配件</option>
-              <option value="电脑">电脑</option>
-              <option value="手机">手机</option>
-              <option value="200元红包">200元红包</option>
-            </select>
-         
-         </li>
-        </ul>
-     </div> -->
+    
      <!--产品列表-->
      <div class="Product_List">
-     <!--红包-->
-     <!-- <div class="envelopes">
-     选择已有红包<select name="somename" class="SlectBox" onclick="console.log($(this).val())" onchange="console.log('change is firing')">
-			        <option disabled="disabled" selected="selected">选择红包金额</option>
-			        
-			        <option value="5元红包">5元红包</option>
-			        <option value="10元红包">10元红包</option>
-			        <option value="20元红包">20元红包</option>
-			        <option value="50元红包">50元红包</option>
-                    <option value="100元红包">100元红包</option>
-                    <option value="200元红包">200元红包</option>
-			    </select>
-                或者输入红包序列号<input name="" type="text" class="text_number" /><input type="submit"  class="verification_btn" value="验证序列号"/>
-     </div> -->
-    <!--红包结束-->
+     
       <table>
        <thead>
          <tr class="title">
          <td class="name">商品名称</td>
-         <td class="price">商品属性</td>
-         <td class="Preferential">本店价</td>
+         <!-- <td class="price">商品属性</td> -->
+         
          <td class="Quantity">购买数量</td>
-         <td class="Money">总金额</td>
+         <td class="Preferential">价格</td>
+         <td class="Money">状态</td>
+         <td class="Money">操作</td>
          </tr>
        </thead>
        <tbody>
        <?php foreach($orderinfo as $v){?>
        <tr>
-       <!-- 隐藏域 -->
-       <input type="hidden" name="hidsku" value="<?php echo $v['sku_id']?>"/>
-       <input type="hidden" name="hidcart" value="<?php echo $v['cart_id']?>"/>
+    
 
           <td class="Product_info">
-           <a href="index.php?r=pdetail/index&sku_id=<?php echo $v['sku_id']?>"><img src="public/images/<?php echo $v['sku_img']?>"  width="100px" height="100px"/></a>
-           <a href="index.php?r=pdetail/index&sku_id=<?php echo $v['sku_id']?>" class="product_name"><?php echo $v['goods_name']?></a>
+           <a href="index.php?r=pdetail/index&order_id=<?php echo $v['order_id']?>"><img src="public/images/<?php echo $v['sku_img']?>"  width="100px" height="100px"/></a>
+           <a href="index.php?r=pdetail/index&order_id=<?php echo $v['order_id']?>" class="product_name"><?php echo $v['goods_name']?>
+           <?php echo $v['sku_size']?>|<?php echo $v['sku_color']?>
+           </a>
           </td>
-          <td><i></i><?php echo $v['cart_size']?>|<?php echo $v['cart_color']?></td>
-          <td><i>￥</i><?php echo $v['cart_goodsprice']?></td>
-          <td name="o_num"><?php echo $v['cart_num']?></td>
-          <td class="Moneys"><i>￥</i><span name="total"><?php echo $v['cart_total']?></span></td>
+         <!--  <td><i></i><?php //echo $v['cart_size']?>|<?php //echo $v['cart_color']?></td> -->
+          <!-- <td><i>￥</i><?php //echo $v['order_numbers']?></td> -->
+          <td name="o_num"><?php echo $v['order_numbers']?></td>
+          <td><?php echo $v['order_money']?></td>          
+          
+          <td class="Moneys"><i></i><span name="total">
+          <?php if($v['order_status']==1){
+              echo '已付款,未发货';
+            }?>
+         
+         </span></td>
+         <td>
+             <a href="index.php?r=orders/delorder&order_id=<?php echo $v['order_id']?>" class="">删除
+           </a>
+          </td>
        </tr>
       <?php }?>
        </tbody>
       </table>
-     
+     <div class="Paging_style" style="margin-top:24px;">
+   <?php echo $data['first']?>
+     <?php echo $data['up_page']?>
+   <?php echo $data['down_page']?>
+   <?php echo $data['last']?>
+   <span class="f_l f6" style="margin-right:10px;">共 <b><?php echo $data['page_num']?></b> 页</span>
+    </div>
 
      <!--  <div class="Pay_info">
        <label>订单留言</label><input name="" type="text"  onkeyup="checkLength(this);" class="text_name " />  <span class="wordage">剩余字数：<span id="sy" style="color:Red;">50</span></span>  
