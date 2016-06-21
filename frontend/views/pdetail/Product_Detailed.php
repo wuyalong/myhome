@@ -673,7 +673,7 @@ function submitComment(frm)
 		   data: "sku_sc="+sku_sc+'&sku_id='+sku_id,
 		   dataType:'json',
 		   success: function(msg){
-		   	//console.log(msg.colors);
+		   	console.log(msg.colors);
 		   		str ='';
 		   		$.each(msg.colors,function(i,item){
 		   			c=item['sku_color'];
