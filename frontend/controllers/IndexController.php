@@ -12,6 +12,15 @@ class IndexController extends \yii\web\Controller
     public $layout="main";
     public function actionIndex()
     {
+        $session=yii::$app->session;
+        $name=$session->get('name');
+        //购物车
+        $cart=yii::$app->db->createCommand("select * from cart where user_name='$name'")->queryAll();
+        $cart_num=count($cart);
+       // echo $cart_num;
+        $session=yii::$app->session;
+        $session->set('num',"$cart_num");
+
         $goods_hot=yii::$app->db->createCommand("select * from goods as g inner join sort as s on g.sort_id=s.sort_id where goods_hot=1 limit 5")->queryAll();
         $goods_lamp=yii::$app->db->createCommand("select * from goods as g inner join sort as s on g.sort_id=s.sort_id where s.sort_id=4 limit 8")->queryAll();
         $goods_bed=yii::$app->db->createCommand("select * from goods as g inner join sort as s on g.sort_id=s.sort_id where s.sort_id=3 limit 8")->queryAll();
@@ -85,6 +94,36 @@ class IndexController extends \yii\web\Controller
         }
         $st=substr($str,0,-1);
         setcookie('old',$st,time()+60*24*3600);
+
+    }
+    /**
+     * 退出
+     */
+    public function actionLayout(){
+        $session=yii::$app->session;
+        unset($session['id']);
+        unset($session['name']);
+        $this->redirect("index.php?r=index/index");
+
+    }
+    /**
+     * 搜索
+     */
+    public $enableCsrfValidation = false;
+
+    function actionSou_list(){
+        $name=yii::$app->request->post('name');
+        if(empty($name)){
+            $sql=yii::$app->db->createCommand("select * from goods")->queryAll();
+        }else{
+            $sql=yii::$app->db->createCommand("select * from goods where goods_name like '%$name%'")->queryAll();
+        }
+        //print_r($sql);die;
+        $sorts=yii::$app->db->createCommand("select * from sort where sort_type=1")->queryAll();
+        $sort=yii::$app->db->createCommand("select * from sort where sort_type=0")->queryAll();
+
+        return $this->render('Product_List',['arr'=>$sql,'sorts'=>$sorts,'sort'=>$sort]);
+
 
     }
 

@@ -244,8 +244,8 @@
                             <?php foreach($old_goods as $v){?>
                         <li class="clone">
 							<div class="p_width">
-								<div class="pic"><a href=""><img src="public/images/<?php echo $v['goods_img']?>"></a></div>
-								<div class="title"><a href="#"><?php echo $v['goods_name']?></a></div>
+								<div class="pic"><a href="index.php?r=pdetail/index&goods_id=<?php echo $v['goods_id']?>"><img src="public/images/<?php echo $v['goods_img']?>"></a></div>
+								<div class="title"><a href="index.php?r=pdetail/index&goods_id=<?php echo $v['goods_id']?>"><?php echo $v['goods_name']?></a></div>
 								<div class="Purchase_info"><span class="p_Price">￥<?php echo $v['goods_price']?></span> <a href="index.php?r=orders/index" class="Purchase">立即购买</a></div>
 							</div>	
 								</li>
@@ -325,7 +325,7 @@
 							<ul >
                                 <?php foreach($data as $v){?>
                             <li class="clone" style="float: left; width: 160px;">
-							<div class="pic"><a href=""><img src="public/images/<?php echo $v['sku_img']?>"></a></div>
+							<div class="pic"><a href="index.php?r=pdetail/index&goods_id=<?php echo $v['goods_id']?>"><img src="public/images/<?php echo $v['sku_img']?>"></a></div>
 						<div class="title"><a href="index.php?r=pdetail/index&goods_id=<?php echo $v['goods_id']?>"><?php echo $v['goods_name']?></a></div>
 									<div class="p_Price">￥<?php echo $v['sku_price']?></div>
 								</li>
