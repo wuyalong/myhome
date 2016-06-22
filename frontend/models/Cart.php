@@ -75,14 +75,28 @@ class Cart extends \yii\db\ActiveRecord
      * 购物车单删商品
      */
     function del_cart($cart_id){
-        //echo $cart_id;die;
-        $connection = Yii::$app->db;
-        $del_com = $connection->createCommand("delete from cart WHERE cart_id in ($cart_id)")->execute();
-        if($del_com){
+        $session = Yii::$app->session;
+        $username = $session->get('name');        
+        //如果cookie中有值时
+        if($username==''&&isset($_COOKIE['cartinfo'])){
+            $cartinfo=unserialize($_COOKIE['cartinfo']);
+            unset($cartinfo[$cart_id]);
+            if(count($cartinfo)!=0){
+                setcookie('cartinfo',serialize($cartinfo),time()+1200);
+            }else{
+                 setcookie('cartinfo','',time()-1); 
+            }                       
             return 1;
         }else{
-            return 0;
+            $connection = Yii::$app->db;
+            $del_com = $connection->createCommand("delete from cart WHERE sku_id in ($cart_id)")->execute();
+            if($del_com){
+                return 1;
+            }else{
+                return 0;
+            }
         }
+        
         //$max_com = $connection->createCommand("select max(cart_id) from cart")->queryAll();        
     }
 

@@ -21,8 +21,8 @@
         });
     </script>
 <body>
-<!--顶部样式-->
-<div id="top">
+<!--顶部样式************************************-->
+<!-- <div id="top">
   <div class="top">
     <div class="Collection"><em></em><a href="#">收藏我们</a></div>
 	<div class="hd_top_manu clearfix">
@@ -44,7 +44,7 @@
 	  </ul>
 	</div>
   </div>
-</div>
+</div> -->
 <!--logo和搜索样式-->
 <div id="header"  class="header">
   <div class="logo">
@@ -335,7 +335,7 @@
           <td><i></i><?php echo $v['cart_size']?>|<?php echo $v['cart_color']?></td>
           <td><i>￥</i><?php echo $v['cart_goodsprice']?></td>
           <td name="o_num"><?php echo $v['cart_num']?></td>
-          <td class="Moneys"><i>￥</i><span name="total"><?php echo $v['cart_total']?></span></td>
+          <td class="Moneys"><i>￥</i><span name="total"><?php echo $v['cart_goodsprice']?></span></td>
        </tr>
       <?php }?>
        </tbody>
@@ -372,8 +372,8 @@
         <div class="link_address"><a href="#">四川茶叶协会</a>  <a href="#">链接地址</a>  <a href="#">链接地址</a>  <a href="#">链接地址 </a>   <a href="#">链接地址</a> <a href="#">链接地址</a> <a href="#">链接地址</a></div>
        </div>
 </div>
-<!--底部样式-->
-<div class="footer">
+<!--底部样式****************-->
+<!-- <div class="footer">
  <div class="streak"></div>
  <div class="footerbox clearfix">
   <div class="left_footer">
@@ -451,16 +451,16 @@
 	 </li>
 	</ul>
   </div>
- </div>
+ </div> 
  <div class="footerbox Copyright">
   <p><a href="#">关于我们</a> | <a href="#">隐私申明</a> | <a href="#">成为供应商</a> | <a href="#">茶叶</a> | <a href="#">博客</a> |<a href="#">友情链接</a> | <a href="#">网站地图</a></p>
   <p>Copyright 2010 - 2015 巴山雀舌 四川巴山雀舌茗茶实业有限公司 zuipin.cn All Rights Reserved </p>
   <p>川ICP备10200063号-1</p>
    <a href="#" class="return_img"></a>
  </div>
-</div>
+</div>-->
  <!--右侧菜单栏购物车样式-->
-<div class="fixedBox">
+<!-- <div class="fixedBox">
   <ul class="fixedBoxList">
       <li class="fixeBoxLi user"><a href="#"> <span class="fixeBoxSpan"></span> <strong>用户</strong></a> </li>
     <li class="fixeBoxLi cart_bd" style="display:block;" id="cartboxs">
@@ -501,7 +501,7 @@
     <li class="fixeBoxLi Home"> <a href="./"> <span class="fixeBoxSpan"></span> <strong>收藏</strong> </a> </li>
     <li class="fixeBoxLi BackToTop"> <span class="fixeBoxSpan"></span> <strong>返回顶部</strong> </li>
   </ul>
-</div>
+</div> -->
 <script type="text/javascript">
 function checkLength(which) {
 	var maxChars = 50; //

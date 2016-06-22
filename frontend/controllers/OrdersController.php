@@ -4,17 +4,22 @@ namespace frontend\controllers;
 use yii;
 class OrdersController extends \yii\web\Controller
 {
-	public $layout=false;
+	public $layout='main';
     public function actionIndex()
     {
     	$request = Yii::$app->request;
         $cart_id = $request->get('cart_id');
         echo 1;
     }
+    /**
+     * 订单列表展示
+     * @return [type] [description]
+     */
     public function actionSelorder()
     {
     	$request = Yii::$app->request;
-        $cart_id = $request->get('cart_id');
+        //$cart_id = $request->get('cart_id');
+        $sku_id = $request->get('sku_id');
         $checkout = $request->get('checkout');
         $session = Yii::$app->session;
         $connection = Yii::$app->db;
@@ -32,7 +37,8 @@ class OrdersController extends \yii\web\Controller
 	        	$total =$connection->createCommand("select sum(cart_total) as total from cart where user_name='$username'")->queryOne();
 	        }
 	         if($checkout=='checkout'){
-	        	$where.="cart.cart_id in ($cart_id)";
+	         	//$where.="cart.cart_id in ($cart_id)";
+	        	$where.="cart.sku_id in ($sku_id)";
 	        	//订单总金额
 	        	$total =$connection->createCommand("select sum(cart_total) as total from cart where $where and user_name='$username'")->queryOne();
 	        }
@@ -176,7 +182,7 @@ class OrdersController extends \yii\web\Controller
     public function actionMyorder(){
     	$session = Yii::$app->session;
         $connection = Yii::$app->db;
-        //session值有待慧娜记录
+        //session值
         $username = $session->get('name');
         $user_id = $session->get('id');
          if($username==''){
@@ -187,7 +193,7 @@ class OrdersController extends \yii\web\Controller
         	$counts = $cart_count->queryOne();
         	$count=$counts['counts'];
 	        $page=isset($_GET['page'])?$_GET['page']:1;
-	        $pages = 10;
+	        $pages = 100;
 	        $page_size = ceil($count/$pages);
 	        $prev = $page<=1?1:$page-1;
 	        $next = $page>=$page_size?$page:$page+1;
@@ -212,7 +218,7 @@ class OrdersController extends \yii\web\Controller
         }
     	
     }
-    //删除订单
+    //单删除订单
     public function actionDelorder(){
     	$request = Yii::$app->request;
     	$order_id=$request->get('order_id');
