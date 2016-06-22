@@ -40,8 +40,6 @@ class UpwdController extends \yii\web\Controller
         $res=yii::$app->db->createCommand("update user  set user_password='$npwd' where user_id='$id' ")->execute();
         if($res){
             echo "<script>alert('修改成功');location.href='index.php?r=login/index'</script>";
-
-
         }else{
             echo "<script>alert('修改失败');location.href='index.php?r=upwd/index'</script>";
         }

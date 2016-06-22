@@ -15,8 +15,6 @@ class UinfoController extends \yii\web\Controller
         $sort_list=$model->sel_sort();
         $lists=new Sort();
         $sorts=$lists->sel_sorts();
-
-
         return $this->render('user_info',['sort'=>$sort_list,'sorts'=>$sorts]);
     }
     public function actionUpuser(){

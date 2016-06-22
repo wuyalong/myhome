@@ -14,10 +14,11 @@ class RegisterController extends \yii\web\Controller
     /**
      * 注册
      */
+    public $enableCsrfValidation = false;
     public function actionZhuce()
     {
-        $arr = yii::$app->request->get();
-        //print_r($arr);
+        $arr = yii::$app->request->post();
+        //print_r($arr);die;
         $name=$arr['name'];
         $pwd=$arr['pwd'];
         $nickname=$arr['nickname'];
@@ -25,9 +26,7 @@ class RegisterController extends \yii\web\Controller
         //echo $email;die;
         $sql=yii::$app->db->createCommand("insert into user (user_name,user_password,user_nickname,user_email) values('$name','$pwd','$nickname','$email')")->query();
         if($sql){
-            echo 1;
-        }else{
-            echo 0;
+            $this->redirect("index.php?r=login/index");
         }
 
 
@@ -43,6 +42,16 @@ class RegisterController extends \yii\web\Controller
         http://api.k780.com:88/?app=sms.send&tempid=你创建的模板ID&param=替换参数&phone=手机号码&appkey=您申请的APPKEY&sign=您申请的SIGN&format=json
         print_r($content);
 
+    }
+    public function actionCheck_one(){
+        $name=yii::$app->request->get('name');
+        //echo $name;
+        $sql=yii::$app->db->createCommand("select * from user where user_name='$name'")->queryAll();
+        if(count($sql)>0){
+            echo 1;
+        }else{
+            echo 0;
+        }
     }
 
 
