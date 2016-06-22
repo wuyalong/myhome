@@ -15,7 +15,7 @@
 <title>购物车</title>
 <script type="text/javascript">
 //页面加载事件
-$(document).ready(function () {
+$(document).ready(function () {	
    //全选
    $("#CheckedAll").click(function () {
 	   if (this.checked) {                 //如果当前点击的多选框被选中
@@ -78,7 +78,7 @@ $(document).ready(function () {
 </head>
 <!--宽度1000的购物车样式-->
 <body>
-<div id="top">
+<!-- <div id="top">
   <div class="carts">
     <div class="Collection"><em></em><a href="#">收藏我们</a></div>
 	<div class="hd_top_manu clearfix">
@@ -100,7 +100,7 @@ $(document).ready(function () {
 	  </ul>
 	</div>
   </div>
-</div>
+</div> -->
 <div id="shop_cart">
  <div id="header">
   <div class="logo">
@@ -138,10 +138,14 @@ $(document).ready(function () {
   <form  method="post" action="">
  <table class="table_list">
  <!-- 开始 -->
- <?php foreach($cartinfo as $v){?>
-   <tr class="tr" id="c<?php echo $v['cart_id']?>">
-   
-   <td class="checkbox"><input name="checkitems" type="checkbox" value="<?php echo $v['cart_id']?>"/><?php echo $v['cart_id']?></td>
+ <?php if(!empty($cartinfo)){?>
+ <?php foreach($cartinfo as $k=>$v){?>
+ <?php if(isset($_COOKIE['cartinfo'])){?>
+   <tr class="tr" id="c<?php echo $k?>">
+   <?php }else{?>
+   <tr class="tr" id="c<?php echo $v['sku_id']?>">
+   <?php }?>
+   <td class="checkbox"><input name="checkitems" type="checkbox" value="<?php echo $v['sku_id']?>"/><?php echo $v['sku_id']?></td>
   
     <td class="name">
 	  <div class="img"><a href="index.php?r=pdetail/index&sku_id=<?php echo $v['sku_id']?>"><img src="public/images/<?php echo $v['sku_img']?>"/></a>
@@ -157,22 +161,28 @@ $(document).ready(function () {
 	|
 	<?php echo $v['cart_color']?>
 	</td>
-	<td class="bgj sp">￥<?php echo $v['cart_goodsprice']?></td>
+	<td class="bgj sp">￥<span id="cp<?php echo $v['sku_id']?>"><?php echo $v['cart_goodsprice']?></span></td>
 	<td class="sl">
 	<!-- 数量加减 -->
 	    <div class="Numbers">
-		  <a href="javascript:void(0);" class="jian">-</a>
-		  <input id="number" name="number" type="text" value="<?php echo $v['cart_num']?>" class="number_text">
-		  <a href="javascript:void(0);" class="jia">+</a>
+		  <a href="javascript:void(0);" class="jian" onclick="amount_reduce(<?php echo $v['sku_id']?>)">-</a>
+		  <input id="number<?php echo $v['sku_id']?>" name="number" type="text" value="<?php echo $v['cart_num']?>" class="number_text">
+		  <a href="javascript:void(0);" class="jia" onclick="amount_add(<?php echo $v['sku_id']?>)">+</a>
 		 </div>
 	</td>
-	<td class="xj" id="xj<?php echo $v['cart_id']?>">￥<?php echo $v['cart_total']?></td>
+	<td class="xj" id="xj<?php echo $v['sku_id']?>">￥<span id='xj'><span id='x<?php echo $v['sku_id']?>'><?php echo $v['cart_total']?></span></span></td>
 	<td class="cz">
-	 <p><a href="javascript:;" onclick="delcart(<?php echo $v['cart_id']?>)">删除</a><P>
+	<?php if(isset($_COOKIE['cartinfo'])){?>
+	 <p><a href="javascript:;" onclick="delcart(<?php echo $k?>)">删除</a><P>
 	<!--  <p><a href="#">收藏该商品</a></p> -->
+	<?php }else{?>
+	 <p><a href="javascript:;" onclick="delcart(<?php echo $v['sku_id']?>)">删除</a><P>
+	<!--  <p><a href="#">收藏该商品</a></p> -->
+	<?php }?>
 	</td>
    </tr>
   <?php }?>  
+   <?php }?>  
   <!-- 结束  -->
  </table>
  <!-- 分页 -->
@@ -197,8 +207,8 @@ $(document).ready(function () {
 	 <!--结算-->
 	<div class="toolbar_right">
     <div class="p_Total">
-<!-- 	  <span class="text">商品总价：</span><span class="price sumPrice" id='zj'>0.00元</span>
- -->	</div>
+	  <span class="text">商品总价：￥</span><span class="price sumPrice" id='zj'>0.00元</span>
+	</div>
 <!-- 	<div class="Discount"><span class="text">以节省：</span><span class="price">5.1</span></div>
  --><div class="btn">
  <!-- 结算 -->
@@ -212,7 +222,7 @@ $(document).ready(function () {
 
 </div>
 <!--底部样式-->
- <div class="footer help-box  clearfix">
+ <!-- <div class="footer help-box  clearfix">
    <div class="right_footer clearfix">
    <dl>
     <dt><em class="icon_img"></em>购物指南</dt>
@@ -263,7 +273,7 @@ $(document).ready(function () {
    <a href="#" class="return_img"></a>
  </div>
  </div>
-
+ -->
 <!--结束-->
 </div>
 </body>
@@ -306,7 +316,7 @@ $(document).ready(function () {
 		 	alert(str);
 		}
 		else{
-			location.href="index.php?r=orders/selorder&cart_id="+id+'&checkout='+checkout;			
+			location.href="index.php?r=orders/selorder&sku_id="+id+'&checkout='+checkout;			
 		}
 	}
 </script>
@@ -315,30 +325,119 @@ $(document).ready(function () {
 	 * 数量加减
 	 */
 	//定义一个全局数量
-	// var buy_num=$("#buy-num").val();
-	// //数量递减
-	//  function amount_reduce(){
-	//  	if(buy_num<=1){
-	//  		buy_num=1;
-	//  		//alert(buy_num);
-	//  	}
-	//  	else{
-	//  		buy_num=parseInt(buy_num)-1;
-	//  		$("#buy-num").val(buy_num);
-	//  	}
-	//  }
-	// //数量递增
-	//  function amount_add(){
-	//  	sku_num=$("#sku_num").html();
-	//  	if(buy_num>=sku_num){
-	//  		buy_num=sku_num;
-	//  	}
-	//  	else{
-	//  		buy_num=parseInt(buy_num)+1;
-	//  		$("#buy-num").val(buy_num);
-	//  	}	 	
-	//  }
+	
+	//数量递减
+	 function amount_reduce(sku_id){
+	 	var buy_num=$("#number"+sku_id).val();
+	 	if(buy_num<=1){
+	 		buy_num=1;
+	 		//alert(buy_num);
+	 	}
+	 	else{
+	 		buy_num=parseInt(buy_num)-1;
+	 		$("#number"+sku_id).val(buy_num);
+	 	}
+	 	price=$("#cp"+sku_id).html();
+	 	tot=parseInt(buy_num)*parseInt(price);
+	 	$("#x"+sku_id).html(tot);
+	 }
+	//数量递增
+	 function amount_add(sku_id){	
+	 var buy_num=$("#number"+sku_id).val(); 	
+	 	if(buy_num>=100){
+	 		buy_num=100;	 		
+	 	}
+	 	else{
+	 		buy_num=parseInt(buy_num)+1;
+	 		num=$("#number"+sku_id).val(buy_num);
+	 	}
+	 	price=$("#cp"+sku_id).html();
+	 	tot=parseInt(buy_num)*parseInt(price);
+	 	$("#x"+sku_id).html(tot);	 	 	
+	 }
+</script>
+<script>
+/**
+ * 点击复选框计算总金额
+ */
+$('input[type=checkbox][name=checkitems]').click(function(){
+	var item=document.getElementsByName('checkitems');		
+	var ids=new Array();
+	var j=0;
+		for(i in item){
+			if(item[i].checked==true){
+				ids[j]=item[i].value;
+				j++;	
+			}									
+		}
+		ids=ids.join(',');
+		$.ajax({
+ 			url:"index.php?r=scart/cartzj",
+			data:'ids='+ids,
+			dataType:'json',
+			success:function(msg){
+				if(msg.num==1){
+					var zj=0;
+					zj=parseInt($("#x"+ids).html());
+					//alert($("#x"+ids).html());
+					$("#zj").html(zj);
+				}
+				if(msg.num==0){
+					$("#zj").html('0.00');
+				}
+				if(msg.num!=1&&msg.num!=0){
+					var zj=0;
+					for($k=0;$k<msg.num;$k++){
+						zj+=parseInt($("#x"+msg.infos[$k]).html());						
+					}
+					$("#zj").html(zj);
+				}
 
+			}
+		})
+	})
+//点全选计算总金额
+	$("#CheckedAll").click(function () {
+		var item=document.getElementsByName('checkitems');		
+		var ids=new Array();
+		var j=0;
+		if (this.checked==false){
+			$('input[type=checkbox][name=checkitems]').attr("checked", false);
+			$("#zj").html('0.00');
+		}
+		else{
+			for(i=0;i<item.length;i++){
+					ids[j]=item[i].value;
+					j++;	
+			}
+			ids=ids.join(',');
+			$.ajax({
+ 			url:"index.php?r=scart/cartzj",
+			data:'ids='+ids,
+			dataType:'json',
+			success:function(msg){
+				if(msg.num==1){
+					var zj=0;
+					zj=parseInt($("#x"+ids).html());
+					//alert($("#x"+ids).html());
+					$("#zj").html(zj);
+				}
+				if(msg.num==0){
+					$("#zj").html('0.00');
+				}
+				if(msg.num!=1&&msg.num!=0){
+					var zj=0;
+					for($k=0;$k<msg.num;$k++){
+						zj+=parseInt($("#x"+msg.infos[$k]).html());						
+					}
+					$("#zj").html(zj);
+				}
 
+			}
+		})
+
+		}
+		
+	})				
 </script>
 </html>
