@@ -34,8 +34,7 @@ class ScartController extends \yii\web\Controller
             }
         }
         //print_r($counts);die;
-        //分页
-        
+        //分页        
         $page=isset($_GET['page'])?$_GET['page']:1;
         $pages = 100;
         $page_size = ceil($count/$pages);
@@ -52,7 +51,6 @@ class ScartController extends \yii\web\Controller
         $data['first'] = $first1;
         $data['last'] = $last1;
         $data['page_num'] = $page_size;
-
         if($username==''){
             if(isset($_COOKIE['cartinfo'])){                
                 $cartinfo=unserialize($_COOKIE['cartinfo']);

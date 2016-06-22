@@ -171,7 +171,6 @@ class PdetailController extends \yii\web\Controller
      * 立即购买
      */
     public function actionNowbuy(){
-
     }
 
 

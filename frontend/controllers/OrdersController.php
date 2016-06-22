@@ -182,7 +182,7 @@ class OrdersController extends \yii\web\Controller
     public function actionMyorder(){
     	$session = Yii::$app->session;
         $connection = Yii::$app->db;
-        //session值有待慧娜记录
+        //session值
         $username = $session->get('name');
         $user_id = $session->get('id');
          if($username==''){
@@ -218,7 +218,7 @@ class OrdersController extends \yii\web\Controller
         }
     	
     }
-    //删除订单
+    //单删除订单
     public function actionDelorder(){
     	$request = Yii::$app->request;
     	$order_id=$request->get('order_id');
