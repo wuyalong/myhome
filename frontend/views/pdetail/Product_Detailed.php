@@ -17,7 +17,7 @@
 </head>
 <body>
 <!--顶部样式-->
-<div id="top">
+<!-- <div id="top">
   <div class="top">
     <div class="Collection"><em></em><a href="#">收藏我们</a></div>
 	<div class="hd_top_manu clearfix">
@@ -39,7 +39,7 @@
 	  </ul>
 	</div>
   </div>
-</div>
+</div> -->
 <!--logo和搜索样式-->
 <div id="header"  class="header">
   <div class="logo">
@@ -174,7 +174,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
     <div class="textInfo">
     <form action="javascript:addToCart(97)" name="ECS_FORMBUY" id="ECS_FORMBUY">
 	 <?php foreach($goods_name as $k=>$v){?>
-	  <div class="title"><h1><?php echo $v['goods_name']?></h1><p>进口家具 休闲轻松</p></div>
+	  <div class="title"><h1 id="gn"><?php echo $v['goods_name']?></h1><p>进口家具 休闲轻松</p></div>
 	  <div class="mod_detailInfo_priceSales">
 	  <?php }?>
 	  <div class="margins">
@@ -210,7 +210,7 @@ window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMin
       </div>
 	  </div>
 	  <div class="s_Review">
-	   <a href="#">好评率<b>95%</b>[评论<b>87653</b>条]</a>
+	   <!-- <a href="#">好评率<b>95%</b>[评论<b>87653</b>条]</a> -->
 	  </div>
 	  </div>
 	 <div class="buyinfo" id="detail_buyinfo">
@@ -526,8 +526,8 @@ function submitComment(frm)
         <div class="link_address"><a href="#">四川茶叶协会</a>  <a href="#">链接地址</a>  <a href="#">链接地址</a>  <a href="#">链接地址 </a>   <a href="#">链接地址</a> <a href="#">链接地址</a> <a href="#">链接地址</a></div>
        </div>
 </div>
-<!--底部样式-->
-<div class="footer">
+<!--底部样式*******************************-->
+<!-- <div class="footer">
  <div class="streak"></div>
  <div class="footerbox clearfix">
   <div class="left_footer">
@@ -612,9 +612,9 @@ function submitComment(frm)
   <p>川ICP备10200063号-1</p>
    <a href="#" class="return_img"></a>
  </div>
-</div>
- <!--右侧菜单栏购物车样式-->
-<div class="fixedBox">
+</div> -->
+ <!--右侧菜单栏购物车样式***********************-->
+<!-- <div class="fixedBox">
   <ul class="fixedBoxList">
       <li class="fixeBoxLi user"><a href="#"> <span class="fixeBoxSpan"></span> <strong>用户</strong></a> </li>
     <li class="fixeBoxLi cart_bd" style="display:block;" id="cartboxs">
@@ -655,7 +655,7 @@ function submitComment(frm)
     <li class="fixeBoxLi Home"> <a href="./"> <span class="fixeBoxSpan"></span> <strong>收藏</strong> </a> </li>
     <li class="fixeBoxLi BackToTop"> <span class="fixeBoxSpan"></span> <strong>返回顶部</strong> </li>
   </ul>
-</div>
+</div> -->
 <!-- <script src="jquery-1.9.1.min.js"></script> -->
 <script>
 	var size = '';
@@ -709,7 +709,7 @@ function submitComment(frm)
 		   		$("#skc").css('display','block');
 		   		$("#sku_num").html(sku_num);
 		   		yj=$("#yj").html();
-		   		$("#yj").html(parseInt(yj)+parseInt(sku_price));
+		   		$("#yj").html(parseInt(sku_price));
 		   }
 		})
 	}
@@ -751,7 +751,12 @@ function submitComment(frm)
 		cart_price=$('#jg'+size).html();
 		goods_price=$('#yj').html();
 		now_price=parseInt(goods_price)+parseInt(cart_price);
-		//alert(cart_color);
+		midimg=$("#midimg").attr('src');
+		sku_img=midimg.substr(14);
+		goods_name=$("#gn").html();
+		cart_num=$("#buy-num").val();
+		totals=parseInt(goods_price)*parseInt(cart_num);
+		//alert(totals);
 		//alert(now_price);
 		//alert(cart_size+cart_color+cart_price+buy_num);
 		if(size==''||colors==''){
@@ -760,11 +765,15 @@ function submitComment(frm)
 		else{
 			$.ajax({
 	 			url:"index.php?r=pdetail/addtocart",
-				data:'cart_color='+cart_color+'&cart_size='+cart_size+'&cart_price='+now_price+'&cart_num='+buy_num+'&sku_id='+colors,
+				data:'cart_color='+cart_color+'&cart_size='+cart_size+'&cart_goodsprice='+cart_price+'&cart_num='+cart_num+'&sku_id='+colors+'&sku_img='+sku_img+'&goods_name='+goods_name+'&cart_price='+cart_price+'&cart_total='+totals,
 				//dataType:'json',
 				success:function(msg){
+					if(msg=='nouser'){
+						location.href="index.php?r=scart/index";
+					}
 					if(msg=='exist'){
 						alert('您的购物车已经有此商品');
+						location.href="index.php?r=scart/index";
 					}
 					if(msg==1){
 						location.href="index.php?r=scart/index";
@@ -778,7 +787,12 @@ function submitComment(frm)
 	 * 立即购买
 	 */
 	function nowbuy(){
-		location.href="index.php?r=orders/selorder&checkout="+'checkout'+'&sku_id='+colors;
+		cart_size=$("#cc"+size).html();
+		cart_color=$('#yy'+size).html();
+		cart_price=$('#jg'+size).html();
+		goods_name=$("#gn").html();
+		cart_num=$("#buy-num").val();
+		location.href="index.php?r=orders/selorder&checkout="+'checkout'+'&sku_id='+colors+'cart_size='+cart_size+'cart_color='+cart_color+'cart_price='+cart_price+'cart_num='+cart_num+'goods_name='+goods_name;
 	}
 </script>
 </body>
