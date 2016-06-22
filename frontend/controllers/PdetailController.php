@@ -4,7 +4,11 @@ use yii;
 header('content-type:text/html;charset=utf-8');
 class PdetailController extends \yii\web\Controller
 {
-	public $layout=false;
+	public $layout='main';
+    /**
+     * 商品详情页展示
+     * @return [type] [description]
+     */
     public function actionIndex()
     {
     	$request = Yii::$app->request;
@@ -61,11 +65,33 @@ class PdetailController extends \yii\web\Controller
         $request = Yii::$app->request;
         $connection = Yii::$app->db;
         $username = $session->get('name');
+        //$totals=$request->get('totals');
         //1.用户未登录时
         if($username==''){
             $cartinfo1=$_GET;
-            $cartinfo=serialize($cartinfo1);
-            setcookie('cartinfo',$cartinfo,time()+120);
+            //$cartinfo=serialize($cartinfo1);
+            //setcookie('cartinfo',$cartinfo,time()+1200);
+            if(isset($_COOKIE['cartinfo'])){
+                
+                $cartinfo=unserialize($_COOKIE['cartinfo']);
+                
+                foreach($cartinfo as $v){
+                    if(in_array($cartinfo1['sku_id'],$v)){
+                         echo "exist";die;
+                    }
+                }
+                $cartinfo[]=$cartinfo1;
+                $cartinfo=serialize($cartinfo);
+                setcookie('cartinfo',$cartinfo,time()+1200);
+            }
+            else{
+                $cartinfo2=array();
+                $cartinfo2[]=$cartinfo1;
+                $cartinfo=serialize($cartinfo2);
+                setcookie('cartinfo',$cartinfo,time()+1200);
+            }            
+            echo 'nouser';
+            //$this->redirect('index.php?r=scart/index');
             //print($_COOKIE['cartinfo']);die;
         }
         else{
@@ -100,12 +126,11 @@ class PdetailController extends \yii\web\Controller
                                 ])->execute();
                     if($ins_sql){
                         echo '1';
+                        setcookie('cartinfo','',time()-1);
                     }
                     else{
                         echo '0';
-                    }
-
-                    
+                    }                   
                 }
             }
             //cookie无值
@@ -132,6 +157,7 @@ class PdetailController extends \yii\web\Controller
                                 ])->execute();
                     if($ins_sql){
                         echo '1';
+                        setcookie('cartinfo','',time()-1);
                     }
                     else{
                         echo '0';
