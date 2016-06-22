@@ -76,15 +76,15 @@
    <div class="Filter_title"><span>品牌：</span></div>
    <div class="Filter_Entire"><a href="#">全部</a></div>
    <div class="p_f_name">
-    <a href="#" title="莱家/Loacker">莱家/Loacker </a>  
-	<a href="#" title="">丽芝士/Richeese</a>  
-	<a href="#" title="白色恋人/SHIROI KOIBITO ">白色恋人/SHIROI KOIBITO </a> 
-	<a href="#">爱时乐/Astick </a> 
-	<a href="#">利葡/LiPO </a> 
-	<a href="#">友谊牌/Tipo </a> 
-	<a href="#"> 三立/SANRITSU  </a>  
-	<a href="#"> 皇冠/Danisa </a>  
-	<a href="#">丹麦蓝罐/Kjeldsens</a>  
+    <a href="#" title="莱家/Loacker">莱家/Loacker </a>
+	<a href="#" title="">丽芝士/Richeese</a>
+	<a href="#" title="白色恋人/SHIROI KOIBITO ">白色恋人/SHIROI KOIBITO </a>
+	<a href="#">爱时乐/Astick </a>
+	<a href="#">利葡/LiPO </a>
+	<a href="#">友谊牌/Tipo </a>
+	<a href="#"> 三立/SANRITSU  </a>
+	<a href="#"> 皇冠/Danisa </a>
+	<a href="#">丹麦蓝罐/Kjeldsens</a>
    </div>
   </div>
   <div class="Filter_list clearfix">
@@ -125,8 +125,8 @@
        <?php foreach($sel as $v){?>
     <li class="gl-item">
 	<div class="Borders">
-	 <div class="img"><a href="Product_Detailed.html"><img src="public/images/<?php echo $v['goods_img'] ?>" style="width:220px;height:220px"/></a></div>
-	 <div class="name"><a href="Product_Detailed.html"><?php echo $v['goods_name']?></a></div>
+	 <div class="img"><a href="index.php?r=pdetail/index&goods_id=<?php echo $v['goods_id']?>"><img src="public/images/<?php echo $v['goods_img'] ?>" style="width:220px;height:220px"/></a></div>
+	 <div class="name"><a href="index.php?r=pdetail/index&goods_id=<?php echo $v['goods_id']?>"><?php echo $v['goods_name']?></a></div>
      <div class="Price">商城价：<b>¥<?php echo $v['goods_price']?></b><span>原价：<em>123</em></span></div>
 	 <div class="Review">已有<a href="#">2345</a>评论</div>
 	 <div class="p-operate">
@@ -306,23 +306,14 @@
 <!--	 </div>-->
 <!--	</li>-->
 </ul>
-   <div class="Paging_style">
-     <a href="#" class="pn-prev disabled">&lt;上一页</a>
-	 <a href="#" class="on">1</a>
-	 <a href="#">2</a>
-	 <a href="#">3</a>
-	 <a href="#">4</a>
-	 <a href="#">下一页&gt;</a>
-	 <a href="#">尾页</a>
-	<span class="p-skip"><em>共<b>232</b>页&nbsp;&nbsp;到第</em><input id="page_jump_num" value="1" onkeydown="javascript:if(event.keyCode==13){page_jump();return false;}" class="input-txt"><em>页</em><a href="javascript:page_jump();" class="btn btn-default">确定</a></span>
-   </div>
+
  </div>
       </div>
       <!--分页样式-->
     <div class="Paging marginbottom">
-    
+
     </div>
-    </div>    
+    </div>
       <!--友情链接-->
        <div class="Links">
         <div class="link_title">友情链接</div>
@@ -416,7 +407,7 @@
 <!--   <a href="#" class="return_img"></a>-->
 <!-- </div>-->
 <!--</div>-->
-<!-- <!--右侧菜单栏购物车样式-->-->
+ <!--右侧菜单栏购物车样式-->
 <!--<div class="fixedBox">-->
 <!--  <ul class="fixedBoxList">-->
 <!--      <li class="fixeBoxLi user"><a href="#"> <span class="fixeBoxSpan"></span> <strong>用户</strong></a> </li>-->

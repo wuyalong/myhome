@@ -47,8 +47,10 @@
   </div>
   </div>
   <div class="Search">
-    <p><input name="" type="text"  class="text"/><input name="" type="submit" value=""  class="Search_btn"/></p>
-	<p class="Words">
+      <form action="<?= Yii::$app->UrlManager->createUrl(['index/sou_list'])?>" method="post">
+    <p><input name="name" type="text"  class="text"/><input name="" type="submit" value=""  class="Search_btn"/></p>
+      </form>
+          <p class="Words">
         <?php foreach($sorts as $v){?>
         <a href="index.php?r=plist/index&id=<?php echo $v['sort_id']?>"><?php echo $v['sort_name']?></a>
     <?php }?>
@@ -70,9 +72,11 @@
                 <dd><a href="" class="nav_left"><?php echo $v['t_name']?></a>
 
                     <div class="nav_right">
+
                         <?php foreach($v['son'] as $type1){?>
-                        <a href="javascript:"><?php echo $type1['t_name']?></a>
+                        <a href="index.php?r=pdetail/index&id=<?php echo $type1['t_id']?>"><?php echo $type1['t_name']?></a>
                         <?php }?>
+
 <!--                        <div class="nav_right">-->
 <!--                           --><?php // if(array_key_exists('son', $type1)){?>
 <!--                            --><?php //foreach($type1['son'] as $val){?>
@@ -165,7 +169,7 @@
              <li class="s_Products">
               <div class="Products_list_name">
 					   <div class="img center"><a href="index.php?r=pdetail/index&goods_id=<?php echo $v['goods_id']?>" onclick="look(<?php echo $v['goods_id']?>)"><img src="public/images/<?php echo $v['goods_img'] ?>" /></a></div>
-					   <div class="title_name"><a href="javascript:;"><?php echo $v['goods_name']?></a></div>
+					   <div class="title_name"><a href="index.php?r=pdetail/index&goods_id=<?php echo $v['goods_id']?>"><?php echo $v['goods_name']?></a></div>
 					   <div class="s_Price clearfix">
                        <span class="Current_price">商城价<em>￥<?php echo $v['goods_price']?></em></span>
                        <span class="Original_Price">原价&nbsp;<em><?php echo $v['goods_marketprice']?></em></span>
@@ -469,7 +473,7 @@
            <li class="s_Products">
             <div class="Area_product_c">
               <div class="img center"><a href="index.php?r=pdetail/index&goods_id=<?php echo $v['goods_id']?>" onclick="look(<?php echo $v['goods_id']?>)"><img src="public/images/<?php echo $v['goods_img']?>" /></a></div>
-					   <div class="title_name"><a href="#"><?php echo $v['goods_name']?></a></div>
+					   <div class="title_name"><a href="index.php?r=pdetail/index&goods_id=<?php echo $v['goods_id']?>"><?php echo $v['goods_name']?></a></div>
 					   <div class="s_Price clearfix">
                        <span class="Current_price">商城价<em>￥<?php echo $v['goods_price']?></em></span>
                        <span class="Original_Price">原价&nbsp;<em><?php echo $v['goods_marketprice']?></em></span>
@@ -571,7 +575,7 @@
            <li class="s_Products">
             <div class="Area_product_c">
               <div class="img center"><a href="index.php?r=pdetail/index&goods_id=<?php echo $v['goods_id']?>" onclick="look(<?php echo $v['goods_id']?>)"><img src="public/images/<?php echo $v['goods_img']?>" /></a></div>
-					   <div class="title_name"><a href="#"><?php echo $v['goods_name']?></a></div>
+					   <div class="title_name"><a href="index.php?r=pdetail/index&goods_id=<?php echo $v['goods_id']?>"><?php echo $v['goods_name']?></a></div>
 					   <div class="s_Price clearfix">
                        <span class="Current_price">商城价<em>￥<?php echo $v['goods_price']?></em></span>
                        <span class="Original_Price">原价&nbsp;<em><?php echo $v['goods_marketprice']?></em></span>
@@ -872,6 +876,16 @@
         }
 
     }
+    function order(){
+        var id=$('#u_id').val();
+        if(id==''){
+            alert('请先登录');
+            location.href="index.php?r=login/index";
+        }else{
+            location.href="index.php?r=score/index";
+        }
+
+    }
     function look(id){
         $.ajax({
             type:'get',
@@ -883,4 +897,29 @@
         })
 
     }
+    function sou(){
+
+        var name=$('#name').val();
+        //alert(name)
+        $.ajax({
+            type:'get',
+            url:'index.php?r=index/sou_list',
+            data:'name='+name,
+            success:function(msg){
+               alert(msg)
+
+            }
+        })
+    }
+    function cart(){
+        //alert(11)
+        var name=$('#users').val();
+        if(name==''){
+            location.href="index.php?r=login/index";
+        }else{
+            location.href="index.php?r=scart/index";
+        }
+
+    }
+
 </script>

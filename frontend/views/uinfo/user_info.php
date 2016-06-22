@@ -316,7 +316,7 @@
             success:function(msg){
                 if(msg==1){
                     alert('用户信息设置成功 ')
-                    location.href="index.php?r="
+                    location.href="index.php?r=ucenter/index"
                 }
 
             }

@@ -21,18 +21,18 @@
 </div>
 <div class="login_bg">
 <div class="login Narrow">
-   <div class="login_advertising"><img src="public/images/bg_03.png" /></div>
+   <div class="login_advertising"><img src="public/images/img3.jpg" /></div>
   <div class="login_frame">
    <div class="login-form">
-     <div class="login-name"><h1 class="name">用户登录</h1><span class="login_link"><a href="registered.html"><b></b>用户注册</a></span></div>
+     <div class="login-name"><h1 class="name">用户登录</h1><span class="login_link"><a href="index.php?r=register/index"><b></b>用户注册</a></span></div>
 	  <!--提示信息-->
-	    <div class="Prompt">账号密码不能为空！ </div>
+
 	    <div class="form clearfix">
 	     <div class="item item-fore1"><label for="loginname" class="login-label name-label"></label><input id="name" name="name" type="text"  class="text" placeholder="请输入用户"/>
 		 </div>
 		 <div class="item item-fore2"><label for="nloginpwd" class="login-label pwd-label" ></label><input id='pwd' name="pwd" type="password"  class="text" placeholder="用户密码"/>
 	     </div>
-	     <div class="Forgetpass"><a href="#">忘记密码？</a></div>
+
 	    </div>
 	    <div class="login-btn">
 	    <a href="javascript:sub()" class="btn_login">登&nbsp;&nbsp;&nbsp;&nbsp;录</a>

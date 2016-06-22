@@ -22,7 +22,7 @@
 <!--用户注册样式-->
 <div class="registered_style Narrow clearfix">
    <div class="left_advertising">
-    <img src="public/images/bg_03.png" />
+    <img src="public/images/img3.jpg" />
    </div>
    <div class="right_register">
      <div class="register_Switching" id="register_Switching">
@@ -50,14 +50,14 @@
        </form>
         </ul>
         <ul>
-            <form id="form1" name="form1" method="post" action="">
+            <form id="form1" name="" method="post" action="<?= Yii::$app->UrlManager->createUrl(['register/zhuce'])?>" >
 	   <div class="form clearfix">
-	    <div class="item"><label class="rgister-label">用&nbsp;&nbsp;户&nbsp;&nbsp;名：</label><input  id='name' name="name" type="text"  class="text" /><b>*</b></div>
-           <div class="item"><label class="rgister-label" >昵&nbsp;&nbsp;&nbsp;称：</label><input id="nickname" type="text" id="email"  class="text" /><b>*</b></div>
-		<div class="item"><label class="rgister-label" >密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</label><input id='pwd' name="pwd" type="password"  class="text" p/><b>*</b></div>
+	    <div class="item"><label class="rgister-label">用&nbsp;&nbsp;户&nbsp;&nbsp;名：</label><input id='name' onblur="check_user()" name="name" pattern="[\u4e00-\u9fa5]{2,5}" placeholder="请输入用户名"  required oninvalid="setCustomValidity('必须2-5汉字');" oninput="setCustomValidity('');"  type="text" class="text"/><b>*<span id="check_name"></span></b></div>
+           <div class="item"><label class="rgister-label" >昵&nbsp;&nbsp;&nbsp;称：</label><input name="nickname" type="text" id="email"  class="text" placeholder="请输入昵称"  required  pattern="[a-zA-Z]\w{3,5}"  oninvalid="setCustomValidity('4-8位的字母数字下划线组成，不能由数字开头');" oninput="setCustomValidity('');" /><b>*<span id="check_nickname"></span></b></div>
+		<div class="item"><label class="rgister-label" >密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：</label><input id='pwd' name="pwd" type="password"  class="text" placeholder="请输入密码"  required  pattern="[a-zA-Z]\w{5,17}"  oninvalid="setCustomValidity('以字母开头，长度在6-18之间，只能包含字符、数字和下划线');" oninput="setCustomValidity('');"/><b>*<span id="check_rpwd"></span></b></div>
 	    <!--<div class="Password_qd"><ul><li class="r">弱</li><li class="z">中</li><li class="q">强</li></ul></div>-->
-		<div class="item"><label class="rgister-label " >确认密码：</label><input name="" type="password" id="qpwd"  class="text" /><b>*</b></div>
-	    <div class="item"><label class="rgister-label" >电子邮箱：</label><input name="" type="text" id="email"  class="text" /><b>*</b></div>
+		<div class="item"><label class="rgister-label " >确认密码：</label><input name="" type="password" id="qpwd"  class="text"  placeholder="请输入密码"  required  pattern="[a-zA-Z]\w{5,17}"  oninvalid="setCustomValidity('以字母开头，长度在6-18之间，只能	包含字符、数字和下划线');" oninput="setCustomValidity('');" /><b>*<span id="check_rpwd"></span></b></div>
+	    <div class="item"><label class="rgister-label" >电子邮箱：</label><input  type="text" name="email"  placeholder="请输入邮箱"  class="text" required  pattern="\w+@\w+(\.)\w+$"  oninvalid="setCustomValidity('请输入正确的邮箱格式');" oninput="setCustomValidity('');" /><b>*<span id="check_email"></span></b></div>
 
 
 		<div class="item-ifo">
@@ -66,7 +66,7 @@
                 </div>
 	  </div>
 	  <div class="rgister-btn">
-	  <a href="javascript:;" onclick="hit()" class="btn_rgister">注&nbsp;&nbsp;&nbsp;&nbsp;册</a>
+	  <a href="javascript:;" ><input type="submit"  class="btn_rgister" value="注&nbsp;&nbsp;&nbsp;&nbsp;册"></a>
 	  </div>
 	  <div class="Note"><span class="login_link">已是会员<a href="login.html">请登录</a></span></div>
 	  </form>
@@ -129,34 +129,23 @@
 
         }
     }
-    function hit(){
+    function check_user(){
         var name=$('#name').val();
-        //alert(name);
-        var pwd=$('#pwd').val();
-       // alert(pwd);
-        var rpwd=$('#qpwd').val();
-        //alert(rpwd)
-        var email=$('#email').val();
-        //alert(email)
-        var nickname=$('#nickname').val();
-        //alert(nickname);
-
+        //alert(name)
         $.ajax({
-            post:'get',
-            url:'index.php?r=register/zhuce',
-            data:'name='+name+'&pwd='+pwd+'&rpwd='+pwd+'&email='+email+'&&nickname='+nickname,
+            type:'get',
+            url:'index.php?r=register/check_one',
+            data:'name='+name,
             success:function(msg){
                 if(msg==1){
-                    alert('注册成功');
-                    location.href="index.php?r=login/index";
+                    $('#check_name').html('该用户名已被注册');
+                }else{
+                    $('#check_name').html('ok');
                 }
-
             }
-
         })
-
-
-
-
     }
+
+
+
 </script>
