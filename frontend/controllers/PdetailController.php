@@ -14,7 +14,7 @@ class PdetailController extends \yii\web\Controller
     	$request = Yii::$app->request;
         //首页传过来的商品id(有待慧娜解决)
     	$goods_id = $request->get('goods_id');  
-        $sku_id = $request->get('sku_id');die; 
+        //$sku_id = $request->get('sku_id');die; 
     	$connection = Yii::$app->db;
         if($goods_id){
             if($sku_id){
