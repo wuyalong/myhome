@@ -14,7 +14,7 @@ class PdetailController extends \yii\web\Controller
     	$request = Yii::$app->request;
         //首页传过来的商品id(有待慧娜解决)
     	$goods_id = $request->get('goods_id');  
-        $sku_id = $request->get('sku_id');   
+        $sku_id = $request->get('sku_id');die; 
     	$connection = Yii::$app->db;
         if($goods_id){
             if($sku_id){
@@ -26,12 +26,15 @@ class PdetailController extends \yii\web\Controller
                 $goodsdetail2 = $command2->queryAll();
             }
         }
+        //单品信息
     	$command = $connection->createCommand("SELECT * FROM goods left join sku on goods.goods_id=sku.goods_id WHERE sku.goods_id='$goods_id' and sku.sku_num>0 group by sku.sku_size");
-        $goods_kc = $connection->createCommand("SELECT sum(sku_num) as counts FROM sku WHERE goods_id='$goods_id'");
-        $goods = $connection->createCommand("SELECT * FROM goods WHERE goods_id='$goods_id'");
         $goodsdetail = $command->queryAll();
+        //单品库存
+        $goods_kc = $connection->createCommand("SELECT sum(sku_num) as counts FROM sku WHERE goods_id='$goods_id'");
         $goods_counts = $goods_kc->queryOne();
-        $goods_name = $goods->queryAll(); 
+        //商品名称
+        $goods = $connection->createCommand("SELECT * FROM goods WHERE goods_id='$goods_id'");
+        $goods_name = $goods->queryAll();         
 		//print_r($goods_counts);die;
         return $this->render('Product_Detailed',['goodsdetail'=>$goodsdetail,'goodsdetail2'=>$goodsdetail2,'goods_counts'=>$goods_counts,'goods_name'=>$goods_name]);
     }
@@ -94,36 +97,38 @@ class PdetailController extends \yii\web\Controller
             //$this->redirect('index.php?r=scart/index');
             //print($_COOKIE['cartinfo']);die;
         }
+        //2.用户登录时
         else{
             $sku_id=$_GET['sku_id'];
             $command = $connection->createCommand("SELECT * FROM cart WHERE sku_id='$sku_id' and user_name='$username'");
             $skuinfo = $command->queryOne();
-            //判断cookie中是否有值(you)
+            //判断cookie有值(you)
             if(!empty($_COOKIE['cartinfo'])){
                 $info=unserialize($_COOKIE['cartinfo']);
-                //print_r($info);
+                //print_r($info[0]);die;
                 //判断购物车是否有此商品
                 if(!empty($skuinfo)){
                     echo "exist";
                 }
                 else{
-                    //$cart_size=$info['cart_size'];
-                    $cart_size=$info['cart_size'];
-                    $cart_color=$info['cart_color'];
-                    $cart_num=$info['cart_num'];
-                    $cart_price=$info['cart_price'];
-                    $cart_total=intval($cart_price)*intval($cart_num);
-                    $add_time=time();
-                    $ins_sql = $connection->createCommand()->insert('cart', [
-                                    'cart_size' => $cart_size,
-                                    'cart_color' => $cart_color,
-                                    'cart_goodsprice' => $cart_price,
-                                    'cart_num' => $cart_num,
-                                    'cart_total' => $cart_total,
-                                    'add_time' => $add_time,
-                                    'user_name' => $username,
-                                    'sku_id' => $sku_id,
-                                ])->execute();
+                    foreach($info as $k=>$v){
+                        $cart_size=$v['cart_size'];
+                        $cart_color=$v['cart_color'];
+                        $cart_num=$v['cart_num'];
+                        $cart_price=$v['cart_price'];
+                        $cart_total=intval($cart_price)*intval($cart_num);
+                        $add_time=time();
+                        $ins_sql = $connection->createCommand()->insert('cart', [
+                                        'cart_size' => $cart_size,
+                                        'cart_color' => $cart_color,
+                                        'cart_goodsprice' => $cart_price,
+                                        'cart_num' => $cart_num,
+                                        'cart_total' => $cart_total,
+                                        'add_time' => $add_time,
+                                        'user_name' => $username,
+                                        'sku_id' => $sku_id,
+                                    ])->execute();
+                    }          
                     if($ins_sql){
                         echo '1';
                         setcookie('cartinfo','',time()-1);
@@ -163,7 +168,7 @@ class PdetailController extends \yii\web\Controller
                         echo '0';
                     }
                 }
-            }//无值结束                                   
+            }//cookie无值结束                                   
         }//用户村子结束
 
     }
