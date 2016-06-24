@@ -758,7 +758,7 @@ function submitComment(frm)
 		totals=parseInt(goods_price)*parseInt(cart_num);
 		//alert(totals);
 		//alert(now_price);
-		//alert(cart_size+cart_color+cart_price+buy_num);
+		alert(cart_size+cart_color+cart_price+buy_num);
 		if(size==''||colors==''){
 			alert('请勾选您所选商品的所有信息');
 		}
