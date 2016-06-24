@@ -14,18 +14,11 @@ class PdetailController extends \yii\web\Controller
     	$request = Yii::$app->request;
         //首页传过来的商品id(有待慧娜解决)
     	$goods_id = $request->get('goods_id');  
-        //$sku_id = $request->get('sku_id');die; 
-    	$connection = Yii::$app->db;
-        if($goods_id){
-            if($sku_id){
-                $command2 = $connection->createCommand("SELECT * FROM sku WHERE sku.sku_id='$sku_id' and goods_id='$goods_id'");   
-                $goodsdetail2 = $command2->queryAll();
-            }
-            else{
-                $command2 = $connection->createCommand("SELECT * FROM goods WHERE goods_id='$goods_id'");
-                $goodsdetail2 = $command2->queryAll();
-            }
-        }
+        //$sku_id = $request->get('sku_id');
+    	$connection = Yii::$app->db;  
+        //大图展示        
+        $command2 = $connection->createCommand("SELECT goods.goods_img FROM goods WHERE goods.goods_id='$goods_id'");   
+        $goodsdetail2 = $command2->queryAll();                
         //单品信息
     	$command = $connection->createCommand("SELECT * FROM goods left join sku on goods.goods_id=sku.goods_id WHERE sku.goods_id='$goods_id' and sku.sku_num>0 group by sku.sku_size");
         $goodsdetail = $command->queryAll();
