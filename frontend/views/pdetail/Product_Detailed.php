@@ -130,16 +130,13 @@
   <div class="mod_picfold clearfix">
     <div class="clearfix" id="detail_main_img">
 	 <div class="layout_wrap preview">
-	 <!--商品大图-->
+	 <!--商品大图$goodsdetail2-->
 	 <?php foreach($goodsdetail2 as $k=>$v){?>
      <div id="vertical" class="bigImg">
      	<p id='big1'>
-     	<?php if(isset($v['goods_img'])){?>
+     	
      		<img src="public/images/<?php echo $v['goods_img'];?>" width="" height="" alt="" id="midimg" />
-     	<?php }?>
-     	<?php if(isset($v['sku_img'])){?>
-     		<img src="public/images/<?php echo $v['sku_img'];?>" width="" height="" alt="" id="midimg" />
-     	<?php }?>
+     	
 		</p>
 		<div style="display:none;" id="winSelector"></div>
 	</div>
@@ -758,7 +755,7 @@ function submitComment(frm)
 		totals=parseInt(goods_price)*parseInt(cart_num);
 		//alert(totals);
 		//alert(now_price);
-		alert(cart_size+cart_color+cart_price+buy_num);
+		//alert(cart_size+cart_color+cart_price+buy_num);
 		if(size==''||colors==''){
 			alert('请勾选您所选商品的所有信息');
 		}
