@@ -34,18 +34,23 @@ class OrdersController extends \yii\web\Controller
 	        if($checkout=='myorder'){
 	        	$where.='1';
 	        	//订单总金额
-	        	$total =$connection->createCommand("select sum(cart_total) as total from cart where user_name='$username'")->queryOne();
+	        	$total =$connection->createCommand("select sum(order_total) as total from `order` where user_id='$user_id'")->queryOne();
+	        	//三表联查展示订单列表
+				$order =$connection->createCommand("SELECT cart.cart_id,cart.sku_id,sku.sku_img,cart.cart_size,cart.cart_color,goods.goods_name,cart.cart_total,cart.cart_goodsprice,cart.cart_num,`order`.order_numbers FROM cart inner join sku on sku.sku_id=cart.sku_id inner join goods on goods.goods_id=sku.goods_id inner join `order` on `order`.sku_id=cart.sku_id where $where and `order`.user_id=$user_id");
+		        $orderinfo = $order->queryAll();
 	        }
 	         if($checkout=='checkout'){
 	         	//$where.="cart.cart_id in ($cart_id)";
 	        	$where.="cart.sku_id in ($sku_id)";
 	        	//订单总金额
 	        	$total =$connection->createCommand("select sum(cart_total) as total from cart where $where and user_name='$username'")->queryOne();
+
+	        		$order =$connection->createCommand("SELECT cart.cart_id,cart.sku_id,sku.sku_img,cart.cart_size,cart.cart_color,goods.goods_name,cart.cart_total,cart.cart_goodsprice,cart.cart_num FROM cart inner join sku on sku.sku_id=cart.sku_id inner join goods on goods.goods_id=sku.goods_id where $where and `cart`.user_name='$username'");
+        				$orderinfo = $order->queryAll();
+
 	        }
 	    }
-		//三表联查展示订单列表
-		$order =$connection->createCommand("SELECT cart.cart_id,cart.sku_id,sku.sku_img,cart.cart_size,cart.cart_color,goods.goods_name,cart.cart_total,cart.cart_goodsprice,cart.cart_num FROM cart inner join sku on sku.sku_id=cart.sku_id inner join goods on goods.goods_id=sku.goods_id where $where and user_name='$username'");
-        $orderinfo = $order->queryAll();
+		
         //print_r($total);die;
         //查询收货人信息
         $address =$connection->createCommand("select * from address left join `user` on user.user_id=address.user_id where address.user_id='$user_id' group by address.address_place")->queryAll();
