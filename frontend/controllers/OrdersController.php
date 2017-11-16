@@ -18,7 +18,6 @@ class OrdersController extends \yii\web\Controller
         $checkout = $request->get('checkout');
         $session = Yii::$app->session;
         $connection = Yii::$app->db;
-        //session值有待慧娜记录
         $username = $session->get('name');
         $user_id = $session->get('id');
         if($username==''){
